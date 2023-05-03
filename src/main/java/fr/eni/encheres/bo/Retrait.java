@@ -17,5 +17,7 @@ public class Retrait {
 	@NonNull private String codePostal;
 	@NonNull private String ville;
 	@NonNull private ArticleVendu articleVendu;
+	//comm
+	
 	
 }

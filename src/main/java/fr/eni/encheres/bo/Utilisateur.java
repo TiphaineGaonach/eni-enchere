@@ -33,5 +33,6 @@ public class Utilisateur {
 	private List<ArticleVendu> articleVendus = new ArrayList<>();
 	private List<Enchere> encheres  = new ArrayList<>();
 	
+	//comm
 	
 }

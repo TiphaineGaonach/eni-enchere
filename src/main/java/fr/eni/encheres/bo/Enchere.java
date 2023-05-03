@@ -19,4 +19,5 @@ public class Enchere {
 	@NonNull private Integer montantEnchere;
 	@NonNull private Utilisateur utilisateur;
 	@NonNull private ArticleVendu articleVendu;
+	//comm
 }

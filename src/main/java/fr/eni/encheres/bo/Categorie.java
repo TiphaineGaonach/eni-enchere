@@ -19,5 +19,6 @@ public class Categorie {
 	@NonNull private Integer noCategorie;
 	@NonNull private String libelle;
 	private List<ArticleVendu> articleVendus;
+	// Comm
 	
 }
