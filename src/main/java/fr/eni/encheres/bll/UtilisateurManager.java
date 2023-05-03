@@ -1,7 +1,8 @@
 package fr.eni.encheres.bll;
 
+import java.util.List;
+
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import bo.User;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -23,7 +24,7 @@ public class UtilisateurManager {
 	private UtilisateurDAO daoU = DaoFactory.getUtilisateur();
 	
 	
-	
+	//recuperer un utilisateur par son nom pour la connexion
 	public Utilisateur connexion(String username, String password) {
 		Utilisateur user = daoU.selectByUser(username);
 
@@ -51,8 +52,35 @@ public class UtilisateurManager {
 //		user.setPassword(
 //				BCrypt.withDefaults().hashToString(12, user.getPassword().toCharArray()));
 		
+		daoU.insert(utilisateur);
+		
 	}
 	
 	
+	//Afficher tous les utilisateurs
+	public List<Utilisateur> getAllUtilisateur(){
+		
+		return daoU.selectAll();
+		
+	}
+	
+	
+	
+	/** recuperer un utilisateur par son id **/
+	public Utilisateur getUtilisateur(int id) {
+		return daoU.selectOne(id);
+	}
+	
+	
+	
+	public void updateUtilisateur(Utilisateur utilisateur){
+		//checkUtilisateur(utilisateur);
+		daoU.update(utilisateur);
+		
+	}
+	
+	public void deleteUtilisateur(int id) {
+		daoU.delete(id);
+	}
 	
 }
