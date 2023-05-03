@@ -14,7 +14,7 @@ import fr.eni.encheres.bll.exception.BLLException;
 import fr.eni.encheres.bo.Utilisateur;
 
 
-@WebServlet("connexion")
+@WebServlet("/connexion")
 public class ConnexionUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -25,7 +25,6 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 		.forward(request, response);
 
 	}
-
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	

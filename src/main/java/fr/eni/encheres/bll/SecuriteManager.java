@@ -3,6 +3,7 @@ package fr.eni.encheres.bll;
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import fr.eni.encheres.bll.exception.BLLException;
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.DaoFactory;
 
 public class SecuriteManager {
 
