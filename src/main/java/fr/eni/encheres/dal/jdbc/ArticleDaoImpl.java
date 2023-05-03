@@ -9,22 +9,18 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
 
-=======
->>>>>>> 82964e7762027af421364b38039dc4b8d7a292fb
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDaoImpl implements ArticleDAO{
-<<<<<<< HEAD
-=======
-	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
-	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
-	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";
-	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (unMachinEnInt, unMachinEnFloat, unMachinEnString, unMachinEnLocalDate, unMachinEnBoolean) VALUES (?,?,?,?,?)";
-	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
+
+//	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+//	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
+//	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";
+//	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (unMachinEnInt, unMachinEnFloat, unMachinEnString, unMachinEnLocalDate, unMachinEnBoolean) VALUES (?,?,?,?,?)";
+//	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
 	
 //	@Override
 //	public List<ArticleVendu> selectAll() {
@@ -136,7 +132,6 @@ public class ArticleDaoImpl implements ArticleDAO{
 //		stmt.setBoolean(5, truc.isUnMachinEnBoolean()); // pour ajouter un boolean vraix
 //	}
 
->>>>>>> 82964e7762027af421364b38039dc4b8d7a292fb
 	
 //	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
 //	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
