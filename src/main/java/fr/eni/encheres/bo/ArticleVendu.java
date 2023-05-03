@@ -31,4 +31,6 @@ public class ArticleVendu {
 	private List<Enchere> encheres;
 	private Retrait retrait;
 	
+	private Integer integer;
+	
 }
