@@ -2,16 +2,18 @@ package fr.eni.encheres.dal;
 
 import java.util.List;
 
+import fr.eni.encheres.bo.ArticleVendu;
+
 public interface ArticleDAO {
 	
-	List<Truc> selectAll();
+	List<ArticleVendu> selectAll();
 	
-	Truc selectOne(int id);
+	ArticleVendu selectOne(int id);
 
-	void insert(bo.Truc truc);
+	void insert(ArticleVendu article);
 
-	void delete(bo.Truc truc);
+	void delete(ArticleVendu article);
 
-	void update(bo.Truc truc);
+	void update(ArticleVendu article);
 
 }
