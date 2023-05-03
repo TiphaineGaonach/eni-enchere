@@ -6,7 +6,7 @@ import bo.Truc;
 
 
 
-public interface TrucDAO {
+public interface UtilisateurDAO {
 
 	
 	List<Truc> selectAll();
