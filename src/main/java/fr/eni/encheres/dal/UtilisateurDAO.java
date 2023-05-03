@@ -2,22 +2,24 @@ package fr.eni.encheres.dal;
 
 import java.util.List;
 
-import bo.Truc;
+import fr.eni.encheres.bo.Utilisateur;
 
 
 
 public interface UtilisateurDAO {
 
 	
-	List<Truc> selectAll();
+	List<Utilisateur> selectAll();
 	
-	Truc selectOne(int id);
+	Utilisateur selectOne(int id);
 
-	void insert(bo.Truc truc);
+	void insert(Utilisateur utilisateur);
 
-	void delete(bo.Truc truc);
+	void delete(int id);
 
-	void update(bo.Truc truc);
+	void update(Utilisateur utilisateur);
+
+	Utilisateur selectByUser(String username);
 
 	
 

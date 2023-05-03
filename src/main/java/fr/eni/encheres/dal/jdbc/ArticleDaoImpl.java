@@ -13,23 +13,25 @@ import java.util.List;
 import bo.Truc;
 import config.ConnectionProvider;
 import dal.TrucDAO;
+import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.dal.ArticleDAO;
 
-public class ArticleDaoImpl implements TrucDAO{
-	private final static String SELECT_ALL_TRUC = "SELECT * FROM trucs";
-	private final static String SELECT_ONE_TRUC = "SELECT * FROM trucs WHERE id = ?";
-	private final static String UPDATE_TRUC = "UPDATE trucs SET unMachinEnInt = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";
-	private final static String INSERT_TRUC = "INSERT INTO trucs (unMachinEnInt, unMachinEnFloat, unMachinEnString, unMachinEnLocalDate, unMachinEnBoolean) VALUES (?,?,?,?,?)";
-	private final static String DELETE_TRUC = "DELETE FROM trucs WHERE id = ?";
+public class ArticleDaoImpl implements ArticleDAO{
+	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
+	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";
+	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (unMachinEnInt, unMachinEnFloat, unMachinEnString, unMachinEnLocalDate, unMachinEnBoolean) VALUES (?,?,?,?,?)";
+	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
 	
 	@Override
-	public List<Truc> selectAll() {
+	public List<ArticleVendu> selectAll() {
 		System.out.println("dao select all");
-		try(Connection connection = ConnectionProvider.getConnection()){
-			List<Truc> trucs = new ArrayList<>();
+		try(Connection connection = fr.eni.encheres.config.ConnectionProvider.getConnection()){
+			List<ArticleVendu> articles = new ArrayList<>();
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL_TRUC);
+			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLE);
 			while(rs.next()) {
-				trucs.add( new Truc(
+				articles.add( new ArticleVendu(
 						rs.getInt("id"),
 						rs.getInt("unMachinEnInt"),
 						rs.getFloat("unMachinEnFloat"),
@@ -37,7 +39,7 @@ public class ArticleDaoImpl implements TrucDAO{
 						rs.getDate("unMachinEnLocalDate").toLocalDate(),
 						rs.getBoolean("unMachinEnBoolean"))) ;
 			}
-			return trucs;
+			return articles;
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}		
@@ -45,7 +47,7 @@ public class ArticleDaoImpl implements TrucDAO{
 	}
 
 	@Override
-	public Truc selectOne(int id) {
+	public ArticleVendu selectOne(int id) {
 		try(Connection connection = ConnectionProvider.getConnection()){
 			
 			PreparedStatement  stmt = connection.prepareStatement(SELECT_ONE_TRUC);
@@ -54,7 +56,7 @@ public class ArticleDaoImpl implements TrucDAO{
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				
-				return new Truc(
+				return new ArticleVendu(
 						rs.getInt("unMachinEnInt"),
 						rs.getFloat("unMachinEnFloat"),
 						rs.getString("unMachinEnString"),
@@ -68,7 +70,7 @@ public class ArticleDaoImpl implements TrucDAO{
 	}
 
 	@Override
-	public void insert(Truc truc) { // passage par ref
+	public void insert(ArticleVendu truc) { // passage par ref
 		System.out.println("DAOIMPL insert un truc");
 		try(Connection connection = ConnectionProvider.getConnection()){
 			
@@ -92,7 +94,7 @@ public class ArticleDaoImpl implements TrucDAO{
 	}
 
 	@Override
-	public void delete(Truc truc) {
+	public void delete(ArticleVendu truc) {
 		try(Connection connection = ConnectionProvider.getConnection()){					
 			PreparedStatement  stmt = connection.prepareStatement(DELETE_TRUC);
 			stmt.setInt(1, truc.getId());
@@ -103,7 +105,7 @@ public class ArticleDaoImpl implements TrucDAO{
 	}
 
 	@Override
-	public void update(Truc truc) {
+	public void update(ArticleVendu truc) {
 		try(Connection connection = ConnectionProvider.getConnection()){
 			PreparedStatement stmt = connection.prepareStatement(UPDATE_TRUC);
 			prepareTrucSQL(truc, stmt);// Extrait les info de l'objet Truc pour le stmt
@@ -122,7 +124,7 @@ public class ArticleDaoImpl implements TrucDAO{
 	 * @param stmt : PrepareStatement de l'instruction SQL à préparer
 	 * @throws SQLException
 	 */
-	private void prepareTrucSQL(Truc truc, PreparedStatement stmt) throws SQLException {
+	private void prepareTrucSQL(ArticleVendu truc, PreparedStatement stmt) throws SQLException {
 		
 		stmt.setInt(1, truc.getUnMachinEnInt());// pour ajouter un int
 		stmt.setFloat(2, truc.getUnMachinEnFloat());// pour ajouter un Float
