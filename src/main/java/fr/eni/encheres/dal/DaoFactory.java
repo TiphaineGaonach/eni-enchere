@@ -6,12 +6,12 @@ import fr.eni.encheres.dal.jdbc.UtilisateurDaoImpl;
 public class DaoFactory {
 	
 
-	public static UtilisateurDAO getUtilisateur() {
+	public static UtilisateurDAO getUtilisateurDao() {
 		return new UtilisateurDaoImpl();
 	}
 
 
-	public static ArticleDAO getArticle() {
+	public static ArticleDAO getArticleDao() {
 		return new ArticleDaoImpl();
 	}	
 	

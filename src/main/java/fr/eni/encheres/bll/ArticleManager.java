@@ -3,11 +3,11 @@ package fr.eni.encheres.bll;
 import java.util.List;
 
 
-
 public class ArticleManager {
 	
-//	/** start Singleton */	
-//	// étape 1
+	/** start Singleton */	
+	// étape 1
+
 //	private static TrucManager instance;
 //	// étape 2
 //	private TrucManager() {}
