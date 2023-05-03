@@ -1,4 +1,4 @@
-package ihm.utilisateur;
+package fr.eni.encheres.ihm.utilisateurs;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

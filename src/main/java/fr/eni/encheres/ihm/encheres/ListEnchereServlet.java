@@ -1,4 +1,4 @@
-package ihm.utilisateur;
+package fr.eni.encheres.ihm.encheres;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,15 +8,15 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class modifierUserServlet
+ * Servlet implementation class ListEnchereServlet
  */
-public class modifierUserServlet extends HttpServlet {
+public class ListEnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public modifierUserServlet() {
+    public ListEnchereServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

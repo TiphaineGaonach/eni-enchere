@@ -10,7 +10,7 @@
     <servlet-name>ConnectionServlet</servlet-name>
     <url-pattern>/ConnectionServlet</url-pattern>
   </servlet-mapping>
-  <display-name>eni-enchere</display-name>
+  <display-name>eni-encheres</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
