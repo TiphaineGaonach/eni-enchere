@@ -1,12 +1,10 @@
 package fr.eni.encheres.dal;
 
-
-import dal.jdbc.TrucDaoImpl;
+import fr.eni.encheres.dal.jdbc.UtilisateurDaoImpl;
 
 public class DaoFactory {
 	
-	public static TrucDAO getTrucDao() {
-		return  new TrucDaoImpl();
-	}
+
+
 
 }
