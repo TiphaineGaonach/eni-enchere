@@ -21,4 +21,5 @@ public class Categorie {
 	private List<ArticleVendu> articleVendus;
 	// Comm
 	
+	
 }
