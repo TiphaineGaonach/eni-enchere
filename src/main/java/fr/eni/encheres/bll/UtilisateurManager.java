@@ -21,7 +21,7 @@ public class UtilisateurManager {
 	
 	
 	//Factorisation DAOFactory	
-	private UtilisateurDAO daoU = DaoFactory.getUtilisateur();
+	private UtilisateurDAO daoU = DaoFactory.getUtilisateurDao();
 	
 	
 	//recuperer un utilisateur par son nom pour la connexion
