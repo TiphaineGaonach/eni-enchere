@@ -14,7 +14,7 @@ import bo.Truc;
 import config.ConnectionProvider;
 import dal.TrucDAO;
 
-public class TrucDaoImpl implements TrucDAO{
+public class UtilisateurDaoImpl implements TrucDAO{
 	private final static String SELECT_ALL_TRUC = "SELECT * FROM trucs";
 	private final static String SELECT_ONE_TRUC = "SELECT * FROM trucs WHERE id = ?";
 	private final static String UPDATE_TRUC = "UPDATE trucs SET unMachinEnInt = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";

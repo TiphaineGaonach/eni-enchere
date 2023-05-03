@@ -7,7 +7,7 @@ import bll.Exception.BLLException;
 import bo.Truc;
 import dal.DaoFactory;
 
-public class TrucManager {
+public class ArticleManager {
 	
 	/** start Singleton */	
 	// étape 1
