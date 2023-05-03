@@ -1,4 +1,4 @@
-package fr.eni.encheres.ihm.security;
+package fr.eni.encheres.ihm.securite;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
