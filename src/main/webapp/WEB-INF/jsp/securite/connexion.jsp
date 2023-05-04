@@ -1,7 +1,11 @@
 <%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+<% Utilisateur utilisateur; %>
+<% String erreur = (String) request.getAttribute("erreur"); %>
+
+<% %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,9 +26,6 @@
 	<h1>Connexion</h1>
 		<form method="post">
 			<div>
-<%-- 				<% if (utilisateur == null){ %> --%>
-<!-- 				<p>Pseudo ou mot de passe invalide</p> -->
-<%-- 				<%} %> --%>
 				<label>Pseudo</label>
 				<input type = "text" name = "pseudo">
 			</div>
@@ -47,6 +48,11 @@
 		      <a href= "">Mot de passe oublié</a>
 		    </fieldset>
 		   	<button type = "submit">Créer un compte</button>
+		   	
+ 		   		<%	
+ 		   		if (erreur!= null){ %> 
+ 				<p><%=erreur %></p>
+ 				<%} %> 
 		</form>
 	
 	

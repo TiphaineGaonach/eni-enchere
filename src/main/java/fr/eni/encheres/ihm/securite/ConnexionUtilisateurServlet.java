@@ -30,19 +30,30 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 	
 		try {
 			String pseudo = request.getParameter("pseudo");
-			String motDePasse = request.getParameter("mot_de_passe");
+			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur utilisateur = SecuriteManager.getInstance().connexion(pseudo, motDePasse);
 			
-//				if (utilisateur == null) {
-//					response.sendRedirect(request.getContextPath()+"/connexion");
-//				}
+			System.out.println(pseudo);
+			System.out.println("mdp saisi "+motDePasse);
+			System.out.println("mdp bdd " +utilisateur.getMotDePasse());
+			
+			if (utilisateur.getMotDePasse().equals(motDePasse)) {
+	
+				
 			
 			//Création session
 			HttpSession session = request.getSession();
 			session.setAttribute("pseudo", utilisateur);
 //			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
 //			session.setAttribute("useragent", request.getHeader("user-agent")); // verif du navigateur
-			response.sendRedirect(request.getContextPath()+"/listeEncheres");
+			response.sendRedirect(request.getContextPath()+"/listeEncheres");			
+			return;
+				
+			}
+			request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
+			request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
+			
+			//response.sendRedirect(request.getContextPath()+"/connexion");
 			
 		} catch (BLLException e) {
 			e.printStackTrace();
