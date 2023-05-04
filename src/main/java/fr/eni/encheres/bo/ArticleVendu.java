@@ -31,6 +31,19 @@ public class ArticleVendu {
 	private List<Enchere> encheres;
 	private Retrait retrait;
 	
-	// comm
+	public ArticleVendu(Integer noArticle) {
+		super();
+		this.noArticle = noArticle;
+	}
+
+	
+	// SYLVAIN constructeur créé pour selectAllEnchere() -> recuperer la liste des encheres sur la page d'accueil
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+	}
+	
+	
 	
 }
