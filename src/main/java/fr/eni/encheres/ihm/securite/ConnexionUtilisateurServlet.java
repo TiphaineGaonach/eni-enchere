@@ -33,30 +33,32 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur utilisateur = SecuriteManager.getInstance().connexion(pseudo, motDePasse);
 			
+			System.out.println("utilisateur " +utilisateur);
 			System.out.println(pseudo);
-			System.out.println("mdp saisi "+motDePasse);
-			System.out.println("mdp bdd " +utilisateur.getMotDePasse());
+			System.out.println("user saisi "+pseudo);
+			//System.out.println("user bdd " +utilisateur.getPseudo());
 			
-			if (utilisateur.getMotDePasse().equals(motDePasse)) {
-	
-				
+			// on teste que l'utilisateur existe et que le mot de passe est ok
+			if ((utilisateur == null) || !(utilisateur.getMotDePasse().equals(motDePasse)) ) { 
+				request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
+				request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
+				return;
+			}
 			
 			//Création session
 			HttpSession session = request.getSession();
 			session.setAttribute("pseudo", utilisateur);
 //			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
 //			session.setAttribute("useragent", request.getHeader("user-agent")); // verif du navigateur
-			response.sendRedirect(request.getContextPath()+"/");			
-			return;
+			response.sendRedirect(request.getContextPath()+"/");
 				
-			}
-			request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
-			request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
+			
 			
 			//response.sendRedirect(request.getContextPath()+"/connexion");
 			
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			
 		}
 	}
 
