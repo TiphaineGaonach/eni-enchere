@@ -16,3 +16,9 @@
 	
 	/>
 </Context>
+
+<!--		Pour passer sur MySQL:-->
+<!--		name="jdbc/pool_cnx"        -->
+<!--		driverClassName="com.mysql.cj.jdbc.Driver"        -->
+<!--		type="javax.sql.DataSource"        -->
+<!--		url="jdbc:mysql://localhost:3306/TRUC_DB"  -->

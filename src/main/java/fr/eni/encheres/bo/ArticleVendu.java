@@ -18,7 +18,7 @@ import lombok.ToString;
 @RequiredArgsConstructor
 public class ArticleVendu {
 
-	@NonNull private Integer noArticle;
+	private Integer noArticle;
 	@NonNull private String nomArticle;
 	@NonNull private String description;
 	@NonNull private LocalDate dateDebutEncheres;

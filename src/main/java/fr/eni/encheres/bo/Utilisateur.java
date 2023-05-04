@@ -18,7 +18,7 @@ import lombok.ToString;
 
 public class Utilisateur {
 	
-	@NonNull private Integer noUtilisateur;
+	private Integer noUtilisateur;
 	@NonNull private String pseudo;
 	@NonNull private String nom;
 	@NonNull private String prenom;
@@ -35,12 +35,11 @@ public class Utilisateur {
 	
 	
 	
-	public Utilisateur(@NonNull Integer noUtilisateur, @NonNull String pseudo, @NonNull String nom,
+	public Utilisateur( @NonNull String pseudo, @NonNull String nom,
 			@NonNull String prenom, @NonNull String email, String telephone, @NonNull String rue,
 			@NonNull String codePostal, @NonNull String ville, @NonNull String motDePasse, @NonNull Integer credit,
 			@NonNull boolean administrateur) {
 		super();
-		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
