@@ -16,11 +16,57 @@ import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDaoImpl implements ArticleDAO{
 
-//	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
-//	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE id = ?";
-//	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  = ?, unMachinEnFloat = ?, unMachinEnString = ?, unMachinEnLocalDate = ?, unMachinEnBoolean = ?, WHERE id = ?";
-//	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS (unMachinEnInt, unMachinEnFloat, unMachinEnString, unMachinEnLocalDate, unMachinEnBoolean) VALUES (?,?,?,?,?)";
-//	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
+	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE noArticle = ?";
+	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  "
+			+ "no_article = ?, nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, etat_vente=? "
+			+ "WHERE id = ?,?,?,?,?,?,?";
+	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS ("
+			+ "nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, ) VALUES (?,?,?,?,?)";
+	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<ArticleVendu> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArticleVendu selectOne(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insert(ArticleVendu articleVendu) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(ArticleVendu articleVendu) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void update(ArticleVendu articleVendu) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+
 	
 //	@Override
 //	public List<ArticleVendu> selectAll() {
