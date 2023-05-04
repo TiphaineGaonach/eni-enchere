@@ -1,7 +1,7 @@
 package fr.eni.encheres.bll;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import fr.eni.encheres.bll.exception.BLLException;
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
@@ -18,12 +18,12 @@ public class SecuriteManager {
 	
 	/** Connexion **/
 	
-	public Utilisateur connexion(String pseudo, String motDePasse) throws BLLException {
+	public Utilisateur connexion(String pseudo, String motDePasse) throws BusinessException {
 		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(pseudo);
 		System.out.println(pseudo);
 		System.out.println(motDePasse);
 		if (utilisateur == null) {
-			throw new BLLException("Utilisateur non trouvé");
+			throw new BusinessException("Utilisateur non trouvé");
 		}
 		
 //		BCrypt.Result result = BCrypt.verifyer()

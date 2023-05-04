@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.SecuriteManager;
-import fr.eni.encheres.bll.exception.BLLException;
 import fr.eni.encheres.bo.Utilisateur;
 
 
@@ -55,7 +55,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			
 			//response.sendRedirect(request.getContextPath()+"/connexion");
 			
-		} catch (BLLException e) {
+		} catch (BusinessException e) {
 			e.printStackTrace();
 		}
 	}

@@ -9,6 +9,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -25,7 +27,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	
 
 	@Override
-	public void insert(Utilisateur utilisateur) {
+	public void insert(Utilisateur utilisateur) throws BusinessException { 
 		try(Connection connection = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = connection.prepareStatement(INSERT_UTILISATEUR,PreparedStatement.RETURN_GENERATED_KEYS);
@@ -52,6 +54,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			throw new BusinessException ("Erreur insertion");
 		}
 
 		

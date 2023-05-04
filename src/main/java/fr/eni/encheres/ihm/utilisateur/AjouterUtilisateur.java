@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -41,13 +41,21 @@ public class AjouterUtilisateur extends HttpServlet {
 			if (motDePasse.equals(confirmation)) {
 				Utilisateur utilisateur = new Utilisateur(pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
 				System.out.println(utilisateur);
-				UtilisateurManager.getInstance().addUser(utilisateur);
+				try {
+					UtilisateurManager.getInstance().addUser(utilisateur);
 					if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
 						HttpSession session = request.getSession();
 						session.setAttribute("pseudo", utilisateur);
 						//		Flash.send("success", "l'utilisateur à bien été créé", request.getSession());
 							response.sendRedirect(request.getContextPath()+"");
 					}
+					
+					
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 		//			else {
 		//				//TODO ajouter erreure mot de passe != de confirmation
 		//			}
