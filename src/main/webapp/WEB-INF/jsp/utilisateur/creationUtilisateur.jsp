@@ -11,8 +11,7 @@
 </head>
 <body>
 	<header class="row">
-		<!-- 		Ajouter ici partie navBar -->
-		<%@ include file="/WEB-INF/jsp/part/navBarSansMenu.jsp" %>
+		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
 	</header>
 
 	<main class="row mt-5">

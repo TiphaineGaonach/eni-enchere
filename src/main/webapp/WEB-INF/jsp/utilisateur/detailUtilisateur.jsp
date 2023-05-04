@@ -11,9 +11,13 @@
 	<%@ include file ="/WEB-INF/jsp/part/metaLink.jsp" %>
 	<title>Mon compte</title>
 </head>
+
+
 <body>
 	<!----------------------- HEADER / NAVBAR ----------------------->
-	<%@ include file ="/WEB-INF/jsp/part/navBarSansMenu.jsp" %>
+	<header class="row">
+		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
+	</header>
 	
 	<!----------------------- MAIN ----------------------->
 	<main>

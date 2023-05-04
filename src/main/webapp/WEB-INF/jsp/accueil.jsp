@@ -13,10 +13,14 @@
 	<%@ include file ="/WEB-INF/jsp/part/metaLink.jsp" %>
 <title>Accueil</title>
 </head>
+
+
 <body>
 
 		<!----------------------- HEADER / NAVBAR ----------------------->
-			<%@ include file ="/WEB-INF/jsp/part/navBarAccueil.jsp" %>
+		<header class="row">
+		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
+		</header>	
 
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >

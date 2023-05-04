@@ -46,7 +46,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			session.setAttribute("pseudo", utilisateur);
 //			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
 //			session.setAttribute("useragent", request.getHeader("user-agent")); // verif du navigateur
-			response.sendRedirect(request.getContextPath()+"/listeEncheres");			
+			response.sendRedirect(request.getContextPath()+"/");			
 			return;
 				
 			}

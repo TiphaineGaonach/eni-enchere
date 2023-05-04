@@ -7,7 +7,14 @@
 	<%@ include file ="/WEB-INF/jsp/part/metaLink.jsp" %>
 	<title>Modifier l'utilisateur</title>
 </head>
+
+
+
 <body>
+
+	<header class="row">
+		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
+	</header>
 
 	<main class="row mt-5">
 			<div class="row text-center">
