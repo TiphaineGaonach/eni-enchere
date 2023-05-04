@@ -55,14 +55,12 @@ public class Utilisateur {
 
 
 
-	public Utilisateur(int int1, String string, String string2, String string3, String string4, String string5,
-			String string6, String string7, String string8, String string9, int int2, boolean boolean1) {
-		// TODO Auto-generated constructor stub
-	}
 	
-	public Utilisateur( Integer noUtilisateur, @NonNull String pseudo, @NonNull String nom,
-			@NonNull String prenom, @NonNull String email, String telephone, @NonNull String rue,
-			@NonNull String codePostal, @NonNull String ville, @NonNull String motDePasse, @NonNull Integer credit,
+
+	public Utilisateur(Integer noUtilisateur, @NonNull String pseudo, @NonNull String nom, @NonNull String prenom,
+			@NonNull String email, String telephone, @NonNull String rue, @NonNull String codePostal,
+			@NonNull String ville, @NonNull String motDePasse, @NonNull Integer credit,
+
 			@NonNull boolean administrateur) {
 		super();
 		this.noUtilisateur = noUtilisateur;
@@ -77,6 +75,14 @@ public class Utilisateur {
 		this.motDePasse = motDePasse;
 		this.credit = credit;
 		this.administrateur = administrateur;
+	}
+
+
+	// SYLVAIN : constructeur créé pour selectAllEnchere() -> recuperer la liste des encheres sur la page d'accueil
+	public Utilisateur(Integer noUtilisateur,String pseudo) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
 	}
 	
 

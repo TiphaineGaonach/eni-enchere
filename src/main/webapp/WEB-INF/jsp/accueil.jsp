@@ -1,9 +1,10 @@
+<%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@page import="fr.eni.encheres.bo.ArticleVendu"%>
 <%@page import = "java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<% List<ArticleVendu> articleVendus = (List<ArticleVendu>) request.getAttribute("articleVendus"); 
+<% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); 
 %>      
 
 <!DOCTYPE html>
@@ -48,20 +49,20 @@
 			</div>
 			
 			<div class = "col-8 offset-2"> 
-	<!-- 			<div class = "row mt-5"> -->
-	<%-- 			<% for (ArticleVendu articleVendu: articleVendus){%> --%>
-	<!-- 					<div class = "col-4"> -->
-	<!-- 						<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			 -->
-	<%-- 						  <div class="card-header"><%= articleVendu.getNomArticle() %></div> --%>
-	<!-- 						  <div class="card-body"> -->
-	<%-- 						    <p class="card-text">Prix : <%=articleVendu.getMiseAPrix()%></p> --%>
-	<%-- 						    <p class="card-text">Fin de l'enchère : <%=articleVendu.getDateFinEncheres()%></p> --%>
-	<%-- 						    <p class="card-text">Vendeur : <%=articleVendu.getUtilisateur()%></p> --%>
-	<!-- 						  </div> -->
-	<!-- 						</div> -->
-	<!-- 					</div> -->
-	<%-- 			<%}%> --%>
-	<!-- 			</div> -->
+				<div class = "row mt-5">
+				<% for (Enchere enchere: encheres){%>
+						<div class = "col-4">
+							<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			
+							  <div class="card-header"><a href=#><%= enchere.getArticleVendu().getNomArticle()%></a></div>
+							  <div class="card-body">
+							    <p class="card-text">prix : <%=enchere.getMontantEnchere()%> points</p>
+							    <p class="card-text">date enchere : <%=enchere.getDateEnchere()%></p>					    
+							    <p class="card-text">vendeur : <%=enchere.getUtilisateur().getPseudo()%></p>
+							  </div>
+							</div>
+						</div>
+				<%}%>
+				</div>
 			</div>
 		</form>
 			

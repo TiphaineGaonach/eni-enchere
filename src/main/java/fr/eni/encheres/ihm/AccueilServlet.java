@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
+import fr.eni.encheres.bll.EnchereManager;
+import fr.eni.encheres.bo.Enchere;
 
 @WebServlet("")
 public class AccueilServlet extends HttpServlet {
@@ -14,8 +17,9 @@ public class AccueilServlet extends HttpServlet {
  
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp") // on délégue a la jsp
-		.forward(request, response);
+		List<Enchere> encheres=EnchereManager.getInstance().getAllEnchere();
+		request.setAttribute("encheres", encheres);
+		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
 
