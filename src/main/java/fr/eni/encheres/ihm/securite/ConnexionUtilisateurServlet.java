@@ -33,15 +33,18 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			String motDePasse = request.getParameter("mot_de_passe");
 			Utilisateur utilisateur = SecuriteManager.getInstance().connexion(pseudo, motDePasse);
 			
+//				if (utilisateur == null) {
+//					response.sendRedirect(request.getContextPath()+"/connexion");
+//				}
+			
 			//Création session
 			HttpSession session = request.getSession();
 			session.setAttribute("pseudo", utilisateur);
 //			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
 //			session.setAttribute("useragent", request.getHeader("user-agent")); // verif du navigateur
-			response.sendRedirect(request.getContextPath()+"/mon-compte");
+			response.sendRedirect(request.getContextPath()+"/listeEncheres");
 			
 		} catch (BLLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
