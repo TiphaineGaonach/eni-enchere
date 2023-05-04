@@ -21,6 +21,7 @@ public class SecuriteManager {
 	public Utilisateur connexion(String pseudo, String motDePasse) throws BusinessException {
 		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(pseudo);
 
+//		***** SYLVAIN -> j'ai mis ce test dans la servlet ConnexionUtilisateur ******
 //		if (utilisateur == null) {
 //			throw new BusinessException("Utilisateur non trouvé");
 //		}

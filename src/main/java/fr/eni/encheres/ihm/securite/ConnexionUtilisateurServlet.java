@@ -38,7 +38,7 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			System.out.println("user saisi "+pseudo);
 			//System.out.println("user bdd " +utilisateur.getPseudo());
 			
-			// on teste que l'utilisateur existe et que le mot de passe est ok
+			// on teste si l'utilisateur existe et que le mot de passe est ok
 			if ((utilisateur == null) || !(utilisateur.getMotDePasse().equals(motDePasse)) ) { 
 				request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
 				request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
