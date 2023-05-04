@@ -11,9 +11,7 @@ import java.io.IOException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
-/**
- * Servlet implementation class AjouterUtilisateur
- */
+@WebServlet("/ajouterUtilisateur")
 public class AjouterUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
@@ -37,7 +35,7 @@ public class AjouterUtilisateur extends HttpServlet {
 			String confirmation = request.getParameter("confirmation");
 			
 			
-	//TODO  Attention, id à suprimer après mise à jour des BO. 
+	 
 			if (motDePasse.equals(confirmation)) {
 				Utilisateur utilisateur = new Utilisateur(pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
 				System.out.println(utilisateur);
