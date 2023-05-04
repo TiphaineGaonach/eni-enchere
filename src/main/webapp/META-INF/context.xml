@@ -3,10 +3,11 @@
 <Context>
 	<Resource
 	
-		name = "jdbc/pool_cnx"
-		driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		type= "javax.sql.DataSource"
-		url = "jdbc:sqlserver://localhost;databasename=TROCENCHERES_DB;encrypt=false"
+		
+		name="jdbc/pool_cnx"       
+		driverClassName="com.mysql.cj.jdbc.Driver"        
+		type="javax.sql.DataSource"        
+		url="jdbc:mysql://localhost/encheres_db"  
 		
 		username = "sa"
 		password = "Pa$$w0rd"
@@ -17,7 +18,7 @@
 	/>
 </Context>
 
-<!--		Pour passer sur MySQL:-->
+<!--		Pour passer sur SQLserveur:-->
 <!--		name = "jdbc/pool_cnx"-->
 <!--		driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"-->
 <!--		type= "javax.sql.DataSource"-->
@@ -28,4 +29,4 @@
 <!--		name="jdbc/pool_cnx"        -->
 <!--		driverClassName="com.mysql.cj.jdbc.Driver"        -->
 <!--		type="javax.sql.DataSource"        -->
-<!--		url="jdbc:mysql://localhost:3306/TRUC_DB"  -->
+<!--		url="jdbc:mysql://localhost:3306/enchere_db"  -->

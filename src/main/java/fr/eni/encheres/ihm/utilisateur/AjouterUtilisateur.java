@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
 
@@ -39,19 +41,20 @@ public class AjouterUtilisateur extends HttpServlet {
 			if (motDePasse.equals(confirmation)) {
 				Utilisateur utilisateur = new Utilisateur(pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
 				System.out.println(utilisateur);
-		//	TODO	UtilisateurManager.getInstance().addUser(utilisateur);
-				if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
-					
+				UtilisateurManager.getInstance().addUser(utilisateur);
+					if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
+						HttpSession session = request.getSession();
+						session.setAttribute("pseudo", utilisateur);
 						//		Flash.send("success", "l'utilisateur à bien été créé", request.getSession());
-						//		response.sendRedirect(request.getContextPath()+"/truc/detail/"+truc.getId());
-							}
-			}else {
-				//TODO ajouter erreure mot de passe != de confirmation
-			}
-			;
+							response.sendRedirect(request.getContextPath()+"");
+					}
+		//			else {
+		//				//TODO ajouter erreure mot de passe != de confirmation
+		//			}
+			};
 			
 	
-		
+			
 		
 	}
 
