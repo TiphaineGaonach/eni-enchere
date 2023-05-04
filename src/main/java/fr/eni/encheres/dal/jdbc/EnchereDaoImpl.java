@@ -10,6 +10,7 @@ import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.EnchereDAO;
 
+//commentaire
 public class EnchereDaoImpl implements EnchereDAO {
 	private final static String SELECT_ALL_ENCHERE = "SELECT * FROM ENCHERES";
 
