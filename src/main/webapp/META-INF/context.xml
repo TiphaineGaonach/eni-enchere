@@ -18,6 +18,13 @@
 </Context>
 
 <!--		Pour passer sur MySQL:-->
+<!--		name = "jdbc/pool_cnx"-->
+<!--		driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"-->
+<!--		type= "javax.sql.DataSource"-->
+<!--		url = "jdbc:sqlserver://localhost;databasename=TROCENCHERES_DB;encrypt=false"-->
+
+
+<!--		Pour passer sur MySQL:-->
 <!--		name="jdbc/pool_cnx"        -->
 <!--		driverClassName="com.mysql.cj.jdbc.Driver"        -->
 <!--		type="javax.sql.DataSource"        -->
