@@ -24,11 +24,11 @@
 	
 			<!------------------- DETAIL ------------------->
 		
-			<div class = "row mt-5 col-md-4 offset-4">
-				<h1> Mon Profil</h1>
+			<div class = "row mt-5 col-8 offset-2	col-sm-4 offset-sm-4	col-md-4 offset-md-4 ">
+				<h1 class="text-center"> Mon Profil</h1>
 							
 				
-							<div class="container ">
+							<div class="container	col-10 offset-1  col-xl-8 offset-xl-2		col-xxl-6 offset-xxl-3">
 
 									<div class="row">								
 										<div class="form-group col-md-6 col-12 " >
@@ -104,8 +104,8 @@
 																								
 									
 									<div class=" " >
-								    	<button type="submit" class="btn btn-primary mt-3 col-4 " >Modifier l'utilisateur</button>
-								    	<a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3 col-4 offset-2 " >Annuler</a>
+								    	
+								    	<a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-primary mt-3 col-12 " >Modifier l'utilisateur</a>
 								    </div>
 								    
 								    
