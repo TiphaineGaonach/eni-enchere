@@ -1,7 +1,6 @@
 package fr.eni.encheres.bo;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
