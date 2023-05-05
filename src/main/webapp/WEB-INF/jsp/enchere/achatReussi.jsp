@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+	<%@ include file ="/WEB-INF/jsp/part/metaLink.jsp" %>
 <title>Insert title here</title>
 </head>
 

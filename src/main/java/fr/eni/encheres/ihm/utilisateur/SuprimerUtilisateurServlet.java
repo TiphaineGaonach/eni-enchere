@@ -1,4 +1,4 @@
-package fr.eni.encheres.ihm.enchere;
+package fr.eni.encheres.ihm.utilisateur;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -7,20 +7,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/enchere/ModifierUneVente")
-public class ModifierEnchereServlet extends HttpServlet {
+@WebServlet("/utilisateur/suprimerMonCompte")
+public class SuprimerUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/jsp/enchere/ModifierUneVente.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
 
 }

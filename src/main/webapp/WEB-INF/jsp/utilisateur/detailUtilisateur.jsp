@@ -36,7 +36,10 @@
 			
 			<!-------------- BOUTONS -------------->
 						
-				<div><a href = "<%= request.getContextPath()%>/mon-compte/modifierUtilisateur<%= utilisateur.getNoUtilisateur() %>" class = "btn btn-info" >Modifier</a></div>
+				<div>
+				<a href = "<%= request.getContextPath()%>/utilisateur/modifierMonCompte/<%= utilisateur.getNoUtilisateur() %>" class = "btn btn-info" >Modifier</a>
+				<a href = "<%= request.getContextPath()%>/utilisateur/suprimerMonCompte" class = "btn btn-info" >Supprimer</a>
+				</div>
 				
 			</div>
 	

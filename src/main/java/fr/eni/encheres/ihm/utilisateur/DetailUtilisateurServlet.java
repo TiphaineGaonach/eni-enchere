@@ -11,7 +11,7 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 
-@WebServlet("/mon-compte/*")
+@WebServlet("/utilisateur/mon-compte/*")
 public class DetailUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
