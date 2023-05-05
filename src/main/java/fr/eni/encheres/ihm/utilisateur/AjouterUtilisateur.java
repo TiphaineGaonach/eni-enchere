@@ -18,7 +18,6 @@ public class AjouterUtilisateur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(" je suis dans le doGet de AjouterUtilisateur");
 		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/creationUtilisateur.jsp") // on délégue a la jsp
 		.forward(request, response);
 	}
