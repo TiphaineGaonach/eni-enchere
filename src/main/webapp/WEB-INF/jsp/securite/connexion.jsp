@@ -4,8 +4,6 @@
 <% Utilisateur utilisateur; %>
 <% String erreur = (String) request.getAttribute("erreur"); %>
 
-<% %>
-
 <!DOCTYPE html>
 <html>
 <head>

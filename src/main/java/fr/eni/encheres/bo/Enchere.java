@@ -1,7 +1,8 @@
 package fr.eni.encheres.bo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,12 +19,10 @@ public class Enchere {
 
 
 	
-	
 	@NonNull private LocalDate dateEnchere;
 	@NonNull private Integer montantEnchere;
 	@NonNull private Utilisateur utilisateur;
 	@NonNull private ArticleVendu articleVendu;
-	
 	
 	
 	

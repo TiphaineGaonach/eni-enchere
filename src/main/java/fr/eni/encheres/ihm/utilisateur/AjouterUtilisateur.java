@@ -1,5 +1,6 @@
 package fr.eni.encheres.ihm.utilisateur;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,11 +43,14 @@ public class AjouterUtilisateur extends HttpServlet {
 				Utilisateur utilisateur = new Utilisateur(pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
 				System.out.println(utilisateur);
 				
+				
 					try {
 						UtilisateurManager.getInstance().addUser(utilisateur);
+					
 					} catch (BusinessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+					    request.setAttribute("erreur", "Le pseudo ou l'email est déjà utilisé. Veuillez en choisir un autre");
+					    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/creationUtilisateur.jsp");
+					    rd.forward(request, response);
 					}
 					if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
 						HttpSession session = request.getSession();

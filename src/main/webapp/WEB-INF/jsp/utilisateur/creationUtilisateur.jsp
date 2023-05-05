@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<% String erreur = (String) request.getAttribute("erreur"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,13 @@
 				<h1>Création d'un utilisateur </h1>
 			</div>
 			<div class="col-8 offset-2"></div>
-<!-- 			Gestion des erreures -->
+			
+			 	<%	
+ 		   		if (erreur!= null){ %> 
+ 				<p><%=erreur %></p>
+ 				<%} %> 
+			
+<!-- 			Gestion des erreurs -->
 <%-- 				<%  if( erreurs!=null ) for(String erreur : erreurs){ %> --%>
 <!-- 					<div class="alert alert-danger"> -->
 <%-- 						<%= erreur %> --%>
@@ -29,15 +37,16 @@
 							<div class="col-md-6 ">
 							
 								<div class="form-group col-8 " >
-								  <label for="title" class="col-form-label mt-4">pseudo</label>
+								  <label for="pseudo" class="col-form-label mt-4">pseudo</label>
 								  <input type="text" class="form-control" 
-								  id="pseudo" name="pseudo" value=""  placeholder="ex. Tuto Spring">  
+								  id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+"  value=""  placeholder="ex. Tuto Spring">  
+									 <span class="error">Le pseudo ne doit comporter que des lettres et des chiffres</span>
 								</div>
 								
 								<div class="form-group col-8">
 								  <label for="title" class="form-label mt-4">penom</label>
 								  <input type="text" class="form-control" 
-								  id="penom" name="penom" value=""  placeholder="ex. Tuto Spring">  
+								  id="penom" name="penom"  value=""  placeholder="ex. Tuto Spring">  
 								</div>
 								
 								<div class="form-group col-8">

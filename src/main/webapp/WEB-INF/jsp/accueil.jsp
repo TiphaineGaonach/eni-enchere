@@ -1,11 +1,18 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="fr.eni.encheres.bll.EnchereManager"%>
 <%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@page import="fr.eni.encheres.bo.ArticleVendu"%>
 <%@page import = "java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); 
-%>      
+<% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); %> 
+
+<% // Extraction du code de formatage de date en dehors de la boucle
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");%>
+
 
 <!DOCTYPE html>
 <html>
@@ -56,7 +63,7 @@
 							  <div class="card-header"><a href=#><%= enchere.getArticleVendu().getNomArticle()%></a></div>
 							  <div class="card-body">
 							    <p class="card-text">prix : <%=enchere.getMontantEnchere()%> points</p>
-							    <p class="card-text">date enchere : <%=enchere.getDateEnchere()%></p>					    
+							    <p class="card-text">date enchere : <%=enchere.getDateEnchere().format(formatter)%></p>					    
 							    <p class="card-text">vendeur : <%=enchere.getUtilisateur().getPseudo()%></p>
 							  </div>
 							</div>
