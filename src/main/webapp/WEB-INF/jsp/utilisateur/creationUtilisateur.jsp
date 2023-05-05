@@ -25,7 +25,7 @@
 <%-- 				<% } %> --%>
 				<div >
 					<form action="" method="POST" >
-						<div class="row col-md-10 offset-1 col-xl-10 offset-xl-2">
+						<div class="row col-md-10 offset-md-1 col-xl-10 offset-xl-2">
 							<div class="col-md-6 ">
 							
 								<div class="form-group col-8 " >
