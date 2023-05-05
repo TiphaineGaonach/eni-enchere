@@ -77,8 +77,8 @@ public class UtilisateurManager {
 		daoU.update(utilisateur);
 	}
 	
-	public void deleteUtilisateur(int id) {
-		daoU.delete(id);
+	public void deleteUtilisateur(Utilisateur utilisateur) {
+		daoU.delete(utilisateur);
 	}
 	
 	

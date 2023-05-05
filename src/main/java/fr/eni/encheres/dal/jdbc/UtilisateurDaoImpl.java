@@ -61,11 +61,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	}
 
 	@Override
-	public void delete(int id) {
+	public void delete(Utilisateur utilisateur) {
 		try(Connection connection = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = connection.prepareStatement(DELETE_UTILISATEUR);			
-			pStmt.setInt(1, id);
+			pStmt.setInt(1, utilisateur.getNoUtilisateur());
 			
 			pStmt.executeUpdate();
 			
