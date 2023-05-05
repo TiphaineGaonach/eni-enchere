@@ -16,7 +16,7 @@ public interface UtilisateurDAO {
 
 	void insert(Utilisateur utilisateur) throws BusinessException;
 
-	void delete(int id);
+	void delete(Utilisateur utilisateur);
 
 	void update(Utilisateur utilisateur);
 

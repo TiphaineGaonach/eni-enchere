@@ -24,29 +24,99 @@
 	
 			<!------------------- DETAIL ------------------->
 		
-			<div class = "row mt-5 text-center">
+			<div class = "row mt-5 col-md-4 offset-4">
 				<h1> Mon Profil</h1>
-				<p>Pseudo : 		${pseudo.pseudo }</p>
-				<p>nom : 			${pseudo.nom }</p>
-				<p>prénom : 		${pseudo.prenom }</p>
-				<p>émail : 			${pseudo.email }</p>
-				<p>Téléphone : 		${pseudo.telephone }</p>
-				<p>Rue : 			${pseudo.rue }</p>
-				<p>Code Postal :	${pseudo.codePostal }</p>
-				<p>Ville : 			${pseudo.ville }</p>
+							
 				
+							<div class="container ">
 
+									<div class="row">								
+										<div class="form-group col-md-6 col-12 " >
+											Pseudo : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.pseudo }  
+										</div>
+									</div>	
+										
+									<div class="row">	
+										<div class="form-group col-md-6 col-12">
+											nom : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.nom }  
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											prénom : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.prenom } 
+										</div>
+									</div>
+										
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											email : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.email } 
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											Téléphone : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.telephone }
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											Rue : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.rue }
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											Code Postal : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.codePostal } 
+										</div>
+									</div>
+									
+									<div class="row">
+										<div class="form-group col-md-6 col-12">
+											Ville : 
+										</div>
+										<div class="form-group col-md-6 col-12">
+											${pseudo.ville }
+										</div>
+									</div>
+																								
+									
+									<div class=" " >
+								    	<button type="submit" class="btn btn-primary mt-3 col-4 " >Modifier l'utilisateur</button>
+								    	<a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3 col-4 offset-2 " >Annuler</a>
+								    </div>
+								    
+								    
+								</div>
+								
 			
 			<!-------------- BOUTONS -------------->
 						
 
 				
-				<div class="row mt-5 text-center">
-								
-					<div class="col-2 offset-4" ><a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-info" >Modifier</a></div>
-							
-					<div class="col-2" ><a onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');"  href="<%= request.getContextPath() %>/utilisateur/suprimerMonCompte" class="btn btn-danger" >Supprimer</a></div>
-				</div>
+				
 				
 			</div>
 	
