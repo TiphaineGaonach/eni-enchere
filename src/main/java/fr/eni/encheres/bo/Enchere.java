@@ -18,11 +18,24 @@ public class Enchere {
 
 
 	
-	
+	@NonNull private Integer noEnchere;
 	@NonNull private LocalDate dateEnchere;
 	@NonNull private Integer montantEnchere;
 	@NonNull private Utilisateur utilisateur;
 	@NonNull private ArticleVendu articleVendu;
+	
+	
+	//*** SYLVAIN -> constructeur pour le selectAllEnchere de EnchereDaoImpl 
+	public Enchere(@NonNull Integer noEnchere, @NonNull Integer montantEnchere, @NonNull Utilisateur utilisateur,
+			@NonNull ArticleVendu articleVendu) {
+		super();
+		this.noEnchere = noEnchere;
+		this.montantEnchere = montantEnchere;
+		this.utilisateur = utilisateur;
+		this.articleVendu = articleVendu;
+	}
+	
+	
 	
 	
 	

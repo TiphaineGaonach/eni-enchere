@@ -15,7 +15,7 @@ import fr.eni.encheres.dal.EnchereDAO;
 
 //commentaire
 public class EnchereDaoImpl implements EnchereDAO {
-	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, c.pseudo, a.nom_article FROM ENCHERES e "
+	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, c.pseudo, a.nom_article , a.date_fin_encheres FROM ENCHERES e "
 												+ "INNER JOIN UTILISATEURS c ON e.no_utilisateur=c.no_utilisateur "
 												+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article ";
 
@@ -28,14 +28,13 @@ public class EnchereDaoImpl implements EnchereDAO {
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERE);
 			
 			while(rs.next()) {
-				encheres.add(new Enchere(						
-						rs.getDate("date_enchere").toLocalDate(),
+				encheres.add(new Enchere(
+						rs.getInt("no_enchere"),
 						rs.getInt("montant_enchere"),
 						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
-						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"))));
+						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate())));
 			}
-			
-			
+						
 			return encheres;
 		}catch (SQLException e) {
 			e.printStackTrace();

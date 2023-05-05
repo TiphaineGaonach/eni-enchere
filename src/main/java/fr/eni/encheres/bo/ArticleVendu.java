@@ -37,11 +37,12 @@ public class ArticleVendu {
 	}
 
 	
-	// SYLVAIN constructeur créé pour selectAllEnchere() -> recuperer la liste des encheres sur la page d'accueil
-	public ArticleVendu(Integer noArticle, @NonNull String nomArticle) {
+	// *** SYLVAIN -> constructeur pour le selectAllEnchere de EnchereDaoImpl
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull LocalDate dateFinEncheres) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
 	}
 	
 	
