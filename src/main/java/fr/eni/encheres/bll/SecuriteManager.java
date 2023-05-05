@@ -21,17 +21,22 @@ public class SecuriteManager {
 	public Utilisateur connexion(String pseudo, String motDePasse) throws BusinessException {
 		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(pseudo);
 
-//		***** SYLVAIN -> j'ai mis ce test dans la servlet ConnexionUtilisateur ******
-//		if (utilisateur == null) {
-//			throw new BusinessException("Utilisateur non trouvé");
-//		}
+		
+		if (utilisateur == null) {
+			throw new BusinessException("Utilisateur non trouvé");
+		}else if (utilisateur.getMotDePasse().equals(motDePasse)) {
+			return utilisateur;
+		}else {
+			throw new BusinessException("Mot de Passe erroné");
+		}
+
 		
 //		BCrypt.Result result = BCrypt.verifyer()
 //				.verify(motDePasse.toCharArray(), utilisateur.getMotDePasse());
 //		if (!result.verified) {
 //			throw new BLLException("Erreur mot de passe");
 //		}
-		return utilisateur;
+		
 		
 		
 		
