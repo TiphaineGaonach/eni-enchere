@@ -1,3 +1,19 @@
 @charset "UTF-8";
 
+input:invalid {
+  border: 1px solid red;
+}
+
+input:valid + .error {
+  display: none;
+}
+
+input:invalid + .error {
+  display: block;
+  color: red;
+}
+
+
+
+
 

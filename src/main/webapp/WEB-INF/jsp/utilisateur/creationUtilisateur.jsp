@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<% String erreur = (String) request.getAttribute("erreur"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,13 +18,22 @@
 			<div class="row text-center">
 				<h1>Création d'un utilisateur </h1>
 			</div>
+
+			<div class="col-8 offset-2"></div>
 			
-<!-- 			Gestion des erreures -->
+			 	<%	
+ 		   		if (erreur!= null){ %> 
+ 				<p><%=erreur %></p>
+ 				<%} %> 
+			
+<!-- 			Gestion des erreurs -->
+
 <%-- 				<%  if( erreurs!=null ) for(String erreur : erreurs){ %> --%>
 <!-- 					<div class="alert alert-danger"> -->
 <%-- 						<%= erreur %> --%>
 <!-- 					</div>	 -->
 <%-- 				<% } %> --%>
+
 								
 						<form action="" method="POST" >
 
@@ -30,12 +41,13 @@
 
 									<div class="row">								
 										<div class="form-group col-md-6 col-12 " >
-											<label for="title" class="col-form-label mt-4">pseudo</label>
+											<label for="title" class="col-form-label mt-4">Pseudo</label>
 											<input type="text" class="form-control" 
-											id="pseudo" name="pseudo" value="${pseudo}"  placeholder="">  
+											id="pseudo" name="pseudo" pattern="[a-zA-Z0-9]+" value="${pseudo}"  placeholder="">  
+											<span class="error">Le pseudo ne doit comporter que des lettres et des chiffres</span>
 										</div>
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">nom</label>
+											<label for="title" class="form-label mt-4">Nom</label>
 											<input type="text" class="form-control" 
 											id="nom" name="nom" value=""  placeholder="">  
 										</div>
@@ -43,12 +55,12 @@
 										
 									<div class="row">	
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">pénom</label>
+											<label for="title" class="form-label mt-4">Prénom</label>
 											<input type="text" class="form-control" 
-											id="penom" name="penom" value=""  placeholder="">  
+											id="penom" name="prenom" value=""  placeholder="">  
 										</div>
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">email</label>
+											<label for="title" class="form-label mt-4">Email</label>
 											<input type="email" class="form-control" 
 											id="email" name="email" value=""  placeholder="">  
 										</div>
@@ -56,12 +68,12 @@
 									
 									<div class="row">
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">téléphone</label>
+											<label for="title" class="form-label mt-4">Téléphone</label>
 											<input type="text" class="form-control" 
 											id="telephone" name="telephone" value=""  placeholder="">  
 										</div>
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">rue</label>
+											<label for="title" class="form-label mt-4">Rue</label>
 											<input type="text" class="form-control" 
 											id="rue" name="rue" value=""  placeholder="">  
 										</div>
@@ -69,12 +81,12 @@
 										
 									<div class="row">
 										<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">codePostal</label>
+											<label for="title" class="form-label mt-4">Code Postal</label>
 										  	<input type="text" class="form-control" 
 										  	id="codePostal" name="codePostal" value=""  placeholder="">  
 										</div>
 											<div class="form-group col-md-6 col-12">
-											<label for="title" class="form-label mt-4">ville</label>
+											<label for="title" class="form-label mt-4">Ville</label>
 										  	<input type="text" class="form-control" 
 										  	id="ville" name="ville" value=""  placeholder="">  
 										</div>
@@ -99,10 +111,7 @@
 								    </div>
 								</div>
 								
-
 						</form>
-						
-					
 			
 		</main>
 		
