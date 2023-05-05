@@ -33,15 +33,9 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			String motDePasse = request.getParameter("motDePasse");
 			Utilisateur utilisateur = SecuriteManager.getInstance().connexion(pseudo, motDePasse);
 			
-			System.out.println(pseudo);
-			System.out.println("mdp saisi "+motDePasse);
-			System.out.println("mdp bdd " +utilisateur.getMotDePasse());
-			
-			if (utilisateur.getMotDePasse().equals(motDePasse)) {
-	
-				
-			
-			//Création session
+			if (utilisateur!=null) {
+
+			//Connection / Création session
 			HttpSession session = request.getSession();
 			session.setAttribute("pseudo", utilisateur);
 //			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
@@ -56,7 +50,9 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			//response.sendRedirect(request.getContextPath()+"/connexion");
 			
 		} catch (BusinessException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
+			request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
 		}
 	}
 
