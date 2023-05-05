@@ -14,7 +14,7 @@ import fr.eni.encheres.bll.SecuriteManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 
-@WebServlet("/connexion")
+@WebServlet("/utilisateur/connexion")
 public class ConnexionUtilisateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -1,7 +1,7 @@
 <%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+<%-- <% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %> --%>
     
     
 <!DOCTYPE html>
@@ -25,20 +25,27 @@
 			<!------------------- DETAIL ------------------->
 		
 			<div class = "row mt-5 text-center">
-				<p>Pseudo : <%= utilisateur.getPseudo() %></p>
-				<p>Nom : <%= utilisateur.getNom() %></p>
-				<p>Prénom : <%= utilisateur.getPrenom() %></p>
-				<p>Email : <%= utilisateur.getEmail() %></p>
-				<p>Téléphone : <%= utilisateur.getTelephone() %></p>
-				<p>Rue : <%= utilisateur.getRue() %></p>
-				<p>Code Postal : <%= utilisateur.getCodePostal() %></p>
-				<p>Ville : <%= utilisateur.getVille() %></p>
+				<h1> Mon Profil</h1>
+				<p>Pseudo : 		${pseudo.pseudo }</p>
+				<p>nom : 			${pseudo.nom }</p>
+				<p>prénom : 		${pseudo.prenom }</p>
+				<p>émail : 			${pseudo.email }</p>
+				<p>Téléphone : 		${pseudo.telephone }</p>
+				<p>Rue : 			${pseudo.rue }</p>
+				<p>Code Postal :	${pseudo.codePostal }</p>
+				<p>Ville : 			${pseudo.ville }</p>
+				
+
 			
 			<!-------------- BOUTONS -------------->
 						
-				<div>
-				<a href = "<%= request.getContextPath()%>/utilisateur/modifierMonCompte/<%= utilisateur.getNoUtilisateur() %>" class = "btn btn-info" >Modifier</a>
-				<a href = "<%= request.getContextPath()%>/utilisateur/suprimerMonCompte" class = "btn btn-info" >Supprimer</a>
+
+				
+				<div class="row mt-5 text-center">
+								
+					<div class="col-2 offset-4" ><a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-info" >Modifier</a></div>
+							
+					<div class="col-2" ><a onclick="return confirm('Voulez-vous vraiment supprimer votre compte ?');"  href="<%= request.getContextPath() %>/utilisateur/suprimerMonCompte" class="btn btn-danger" >Supprimer</a></div>
 				</div>
 				
 			</div>

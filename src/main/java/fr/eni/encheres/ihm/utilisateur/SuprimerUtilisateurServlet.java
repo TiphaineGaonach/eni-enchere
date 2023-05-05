@@ -14,6 +14,7 @@ public class SuprimerUtilisateurServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("servlet suprimer le compte");
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 

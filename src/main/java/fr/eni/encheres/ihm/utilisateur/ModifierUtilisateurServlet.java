@@ -5,9 +5,11 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 
-
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -17,22 +19,48 @@ public class ModifierUtilisateurServlet extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String params = request.getPathInfo();
-		int id= Integer.parseInt(params.substring(1));// substring pour se débarasser du / + ParseInt pour caster en entier
-		// récupère l'utilisateur
-		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(id); 
-		request.setAttribute("utilisateur", utilisateur);
-		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/detailUtilisateur.jsp")
-		.forward(request, response);
-		
-		
-		
+		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/modifierUtilisateur.jsp")
+		.forward(request, response);	
 	}
 
 	
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		// TODO Auto-generated method stub
-//		doGet(request, response);
-//	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		Utilisateur ancienUtilisateur = (Utilisateur) session.getAttribute("pseudo");
+		int id = ancienUtilisateur.getNoUtilisateur();
+		
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String penom = request.getParameter("penom");
+		String email = request.getParameter("email");
+		String telephone = request.getParameter("telephone");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String motDePasse = request.getParameter("motDePasse");
+		String confirmation = request.getParameter("confirmation");
+		
+		if (motDePasse.equals(confirmation)) {
+			Utilisateur utilisateur = new Utilisateur(id, pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
+			System.out.println(utilisateur);
+			
+			//try {
+				UtilisateurManager.getInstance().updateUtilisateur(utilisateur);
+				//TODO ajoute messega de réussite si utilisateur modifier + modifie la session
+				session.setAttribute("pseudo", utilisateur);
+//			} catch (BusinessException e) {
+//				// TODO message d'erreur + retour à la modification
+//				request.setAttribute("erreurs", e.getErreurs());
+//				doGet(request, response);
+//			}
+			
+			
+		}
+		
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/detailUtilisateur.jsp")
+		.forward(request, response);
+	}
 
 }
