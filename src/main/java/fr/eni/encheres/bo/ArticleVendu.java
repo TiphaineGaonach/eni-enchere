@@ -1,5 +1,6 @@
 package fr.eni.encheres.bo;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,8 +22,8 @@ public class ArticleVendu {
 	private Integer noArticle;
 	@NonNull private String nomArticle;
 	@NonNull private String description;
-	@NonNull private LocalDateTime dateDebutEncheres;
-	@NonNull private LocalDateTime dateFinEncheres;
+	@NonNull private LocalDate dateDebutEncheres;
+	@NonNull private LocalDate dateFinEncheres;
 	private Integer miseAPrix;
 	private Integer prixVente;
 	private char etatVente; //TODO à vérifier Char ou Integer...
