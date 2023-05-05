@@ -21,10 +21,11 @@
 	String [][] menuConnecter = {
 		
 		
-		{"Mes Enchères","#"},
-		{"Vendre un Article","#"},
+		{"Mes Enchères","/"},
+		
+		{"Vendre un Article","/enchere/ajouterEnchere"},
 		{"Mon Profil","/mon-compte/*"},
-		{"déconnection","#"}
+		{"déconnection","/"}
 		
 		
 };

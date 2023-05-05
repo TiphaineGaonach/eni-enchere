@@ -7,7 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import fr.eni.encheres.bll.EnchereManageur;
+import fr.eni.encheres.bll.EnchereManager;
+
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -20,7 +21,7 @@ public class DetailEnchereServlet extends HttpServlet {
 		String params = request.getPathInfo();
 		int id= Integer.parseInt(params.substring(1));// substring pour se débarasser du / + ParseInt pour caster en entier
 		// récupère l'utilisateur
-		Utilisateur enchere = EnchereManageur.getInstance().getEnchere(id); UtilisateurManager.getInstance().getUtilisateur(id); 
+		Utilisateur enchere = EnchereManager.getInstance().getEnchere(id); UtilisateurManager.getInstance().getUtilisateur(id); 
 		request.setAttribute("enchere", enchere);
 		request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp")
 		.forward(request, response);

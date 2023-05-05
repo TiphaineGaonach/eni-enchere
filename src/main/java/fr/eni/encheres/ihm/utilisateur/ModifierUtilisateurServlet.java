@@ -26,8 +26,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		.forward(request, response);
 		
 		
-		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/ModifierUtilisateur.jsp")
-		.forward(request, response);
+		
 	}
 
 	

@@ -31,4 +31,9 @@ public class EnchereManager {
 		
 	}
 
+	public Utilisateur getEnchere(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
