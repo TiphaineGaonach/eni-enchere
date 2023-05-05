@@ -20,11 +20,11 @@ public class SecuriteManager {
 	
 	public Utilisateur connexion(String pseudo, String motDePasse) throws BusinessException {
 		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(pseudo);
-		System.out.println(pseudo);
-		System.out.println(motDePasse);
-		if (utilisateur == null) {
-			throw new BusinessException("Utilisateur non trouvé");
-		}
+
+//		***** SYLVAIN -> j'ai mis ce test dans la servlet ConnexionUtilisateur ******
+//		if (utilisateur == null) {
+//			throw new BusinessException("Utilisateur non trouvé");
+//		}
 		
 //		BCrypt.Result result = BCrypt.verifyer()
 //				.verify(motDePasse.toCharArray(), utilisateur.getMotDePasse());
