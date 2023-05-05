@@ -18,7 +18,6 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Enchere> encheres=EnchereManager.getInstance().getAllEnchere();
-		System.out.println("encheres : "+encheres);
 		request.setAttribute("encheres", encheres);
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
