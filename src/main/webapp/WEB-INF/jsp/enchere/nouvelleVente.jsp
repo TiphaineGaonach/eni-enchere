@@ -82,7 +82,7 @@
 						</div>
 						<div class="col-8">
 							<input type="text" class="form-control" 
-							id="dateDebutEncheres" name="dateDebutEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="">						
+							id="dateDebutEncheres" name="dateDebutEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="jj/mm/aaaa">						
 						</div>
 					</div>
 					<div class=" row mt-4">
@@ -91,7 +91,7 @@
 						</div>
 						<div class="col-8">
 							<input type="text" class="form-control" 
-							id="dateFinEncheres" name="dateFinEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="">						
+							id="dateFinEncheres" name="dateFinEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="jj/mm/aaaa">						
 						</div>
 					</div>
 					
