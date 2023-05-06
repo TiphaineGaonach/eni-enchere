@@ -61,7 +61,7 @@
 		
 			
 				
-				<button type = "submit" class="btn btn-primary mt-3">Connexion</button>
+		
 				
 				
 				
@@ -69,11 +69,7 @@
 			      
 		      
 		  
-		   					<div class=" col-md-5 mx-auto py-5" >
-<!-- 						    	<button type="submit" class="btn btn-primary mt-3">Créer l'utilisateur</button> -->
-<%-- 						    	<a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublié -> iteration 2</a> --%>
-						    	<a href="<%= request.getContextPath() %>/ajouterUtilisateur" class="btn btn-primary mt-3" >Créer un Compte </a>
-						    </div>
+		   					
 
 		   	
  		   		<%	
