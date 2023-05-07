@@ -43,8 +43,7 @@ public class EnchereDaoImpl implements EnchereDAO {
 						rs.getInt("montant_enchere"),
 						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
 						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate())));
-			}	
-			System.out.println(encheres);
+			}
 			return encheres;
 			
 		}catch (SQLException e) {

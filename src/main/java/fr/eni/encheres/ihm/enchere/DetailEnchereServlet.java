@@ -25,7 +25,6 @@ public class DetailEnchereServlet extends HttpServlet {
 	    Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
 	    
 	    Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
-	    System.out.println("enchere "+enchere);
 	    request.setAttribute("enchere", enchere);
 	    request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
 
