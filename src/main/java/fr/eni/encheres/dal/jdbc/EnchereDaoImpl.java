@@ -16,10 +16,13 @@ import fr.eni.encheres.dal.EnchereDAO;
 
 //commentaire
 public class EnchereDaoImpl implements EnchereDAO {
-	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, u.pseudo, a.nom_article , a.date_fin_encheres FROM ENCHERES e "			
-												+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
-												+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
-												+ "WHERE e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article)";
+
+	// requete imbriquée pour recupéré le vendeur et non l'user qui a enchéri (user de l'article)
+	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, a.nom_article , a.date_fin_encheres, ut.pseudo FROM ENCHERES e "
+													+"INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur " 
+													+"INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+													+"INNER JOIN (SELECT no_utilisateur, pseudo FROM UTILISATEURS) ut ON a.no_utilisateur=ut.no_utilisateur " 
+													+"WHERE e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article)";
 
 
 	private final static String SELECT_ONE_ENCHERE = "SELECT * FROM ENCHERES e "
@@ -41,7 +44,9 @@ public class EnchereDaoImpl implements EnchereDAO {
 						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
 						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate())));
 			}	
+			System.out.println(encheres);
 			return encheres;
+			
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
