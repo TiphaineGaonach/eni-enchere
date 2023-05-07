@@ -1,7 +1,8 @@
 <%@page import="fr.eni.encheres.bo.Utilisateur"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<% Utilisateur utilisateur = (Utilisateur) request.getAttribute("utilisateur"); %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<c:set var="utilisateur" value="${requestScope.utilisateur}" />
     
     
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
 		
 			<div class = "row mt-5 col-8 offset-2	col-sm-4 offset-sm-4	col-md-4 offset-md-4 ">
 				<h1 class="text-center">
-					${utilisateur == null ? "Mon Profil" : utilisateur.pseudo}
+					${empty utilisateur ? "Mon Profil" : utilisateur.pseudo}
 				</h1>
 							
 							<div class="container	col-10 offset-1  col-xl-8 offset-xl-2		col-xxl-6 offset-xxl-3">
@@ -36,7 +37,7 @@
 											Pseudo : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.pseudo : utilisateur.pseudo}  
+											${empty utilisateur ? pseudo.pseudo : utilisateur.pseudo}  
 										</div>
 									</div>	
 										
@@ -45,7 +46,7 @@
 											nom : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.nom : utilisateur.nom}
+											${empty utilisateur ? pseudo.nom : utilisateur.nom}
 										</div>
 									</div>
 									
@@ -54,7 +55,7 @@
 											prénom : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.prenom : utilisateur.prenom}
+											${empty utilisateur ? pseudo.prenom : utilisateur.prenom}
 										</div>
 									</div>
 										
@@ -63,7 +64,7 @@
 											email : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.email : utilisateur.email}
+											${empty utilisateur ? pseudo.email : utilisateur.email}
 										</div>
 									</div>
 									
@@ -72,7 +73,7 @@
 											Téléphone : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.telephone : utilisateur.telephone}
+											${empty utilisateur ? pseudo.telephone : utilisateur.telephone}
 										</div>
 									</div>
 									
@@ -81,7 +82,7 @@
 											Rue : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.rue : utilisateur.rue}
+											${empty utilisateur ? pseudo.rue : utilisateur.rue}
 										</div>
 									</div>
 									
@@ -90,7 +91,7 @@
 											Code Postal : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.codePostal : utilisateur.codePostal}
+											${empty utilisateur ? pseudo.codePostal : utilisateur.codePostal}
 										</div>
 									</div>
 									
@@ -99,16 +100,15 @@
 											Ville : 
 										</div>
 										<div class="form-group col-md-6 col-12">
-											${utilisateur == null ? pseudo.ville : utilisateur.ville}
+											${empty utilisateur ? pseudo.ville : utilisateur.ville}
 										</div>
 									</div>
-																								
-									<% if (utilisateur == null) { %>
-									<div class=" " >
 									
-								    	<a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-primary mt-3 col-12 " >Modifier l'utilisateur</a>
-								    </div>
-								    <%} %>
+									<c:if test="${empty utilisateur}">
+										<div class=" ">
+											<a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-primary mt-3 col-12 " >Modifier l'utilisateur</a>
+										</div>
+									</c:if>
 								    
 								    
 								</div>
