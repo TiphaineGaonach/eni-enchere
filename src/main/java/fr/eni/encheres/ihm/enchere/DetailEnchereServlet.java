@@ -28,14 +28,7 @@ public class DetailEnchereServlet extends HttpServlet {
 	    request.setAttribute("enchere", enchere);
 	    request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
 
-	    
-	    
-		//int id= Integer.parseInt(params.substring(1));// substring pour se débarasser du / + ParseInt pour caster en entier
-		// récupère l'utilisateur
-	//	Utilisateur enchere = EnchereManager.getInstance().getEnchere(id); UtilisateurManager.getInstance().getUtilisateur(id); 
-		//request.setAttribute("enchere", enchere);
-		request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp")
-		.forward(request, response);
+
 	}
 
 

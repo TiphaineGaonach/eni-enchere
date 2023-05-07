@@ -71,7 +71,7 @@
 	
 								    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
 	
-								    <p class="card-text">vendeur : <%=enchere.getUtilisateur().getPseudo()%></p>
+								    <p class="card-text">vendeur : <a href="<%= request.getContextPath() %>/utilisateur/mon-compte/<%=enchere.getArticleVendu().getUtilisateur().getNoUtilisateur()%>"><%= enchere.getUtilisateur().getPseudo() %></a></p>
 								  </div>
 							</div>
 						</div>
