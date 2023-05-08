@@ -49,7 +49,6 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			
 		} catch (BusinessException e) {
 		    String message = e.getMessage();
-		    System.out.println(e.getMessage());
 		    if ("[Utilisateur non trouvé]".equals(message)) {
 		        request.setAttribute("erreur", "Utilisateur non trouvé");
 		    } else if ("[Mot de Passe erroné]".equals(message)) {

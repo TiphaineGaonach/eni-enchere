@@ -17,7 +17,7 @@ import fr.eni.encheres.dal.EnchereDAO;
 //commentaire
 public class EnchereDaoImpl implements EnchereDAO {
 
-	// requete imbriquée pour recupéré le vendeur et non l'user qui a enchéri (user de l'article)
+	// requete imbriquée pour recupérer le vendeur et non le dernier qui a enchéri (user de l'article)
 	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,u.pseudo FROM ENCHERES e "
 													+"INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
 													+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
@@ -25,9 +25,9 @@ public class EnchereDaoImpl implements EnchereDAO {
 
 
 	private final static String SELECT_ONE_ENCHERE = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
-			+ "where e.no_utilisateur = ? AND e.no_article = ?";
+													+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
+													+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+													+ "where e.no_utilisateur = ? AND e.no_article = ?";
 	
 	@Override
 	public List<Enchere> selectAllEnchere() {
