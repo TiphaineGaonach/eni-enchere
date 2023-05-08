@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.bll.ArticleManager;
+import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.RetraitManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;

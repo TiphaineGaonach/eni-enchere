@@ -2,7 +2,6 @@ package fr.eni.encheres.dal;
 
 import fr.eni.encheres.dal.jdbc.ArticleDaoImpl;
 import fr.eni.encheres.dal.jdbc.EnchereDaoImpl;
-import fr.eni.encheres.dal.jdbc.RetraitDAO;
 import fr.eni.encheres.dal.jdbc.RetraitDAOImpl;
 import fr.eni.encheres.dal.jdbc.UtilisateurDaoImpl;
 

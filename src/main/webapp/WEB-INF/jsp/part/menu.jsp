@@ -12,7 +12,7 @@
 	String [][] menuNonConnecter = {
 		
 		
-		{"Se connecter, S'inscrire","/utilisateur/connexion"},
+		{"Se connecter - S'inscrire","/utilisateur/connexion"},
 		
 		
 		
@@ -25,7 +25,7 @@
 		
 		{"Vendre un Article","/enchere/ajouterEnchere"},
 		{"Mon Profil","/utilisateur/mon-compte/"},
-		{"déconnection","/utilisateur/deconnexion"}
+		{"Déconnexion","/utilisateur/deconnexion"}
 		
 		
 };

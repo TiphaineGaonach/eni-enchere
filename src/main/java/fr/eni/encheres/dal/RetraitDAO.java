@@ -1,4 +1,4 @@
-package fr.eni.encheres.dal.jdbc;
+package fr.eni.encheres.dal;
 
 import java.util.List;
 

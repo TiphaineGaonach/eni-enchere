@@ -20,7 +20,15 @@ public class ModifierUtilisateurServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/modifierUtilisateur.jsp")
-		.forward(request, response);	
+		.forward(request, response);
+		
+//		//int id = Integer.parseInt(request.getParameter("id"));
+//			String params = request.getPathInfo();
+//			int noUtilisateur = Integer.parseInt(params.substring(1));// substring pour se débarasser du / + ParseInt pour caster en entier
+//		// récupere l'utilisateur pour la suppression
+//			Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(noUtilisateur);
+//			request.setAttribute("utilisateur", utilisateur);
+		
 	}
 
 	
@@ -32,7 +40,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
-		String penom = request.getParameter("penom");
+		String penom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String rue = request.getParameter("rue");
