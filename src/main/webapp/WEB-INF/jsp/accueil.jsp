@@ -9,7 +9,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-<% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); %> 
+<% List<ArticleVendu> articleVendus = (List<ArticleVendu>) request.getAttribute("articleVendus"); %> 
 <% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); %>  
 
 
@@ -126,23 +126,23 @@
 		
 			 
 				<div class = "row mt-5">
-				<% for (Enchere enchere: encheres){%>
+				<% for (ArticleVendu articleVendu: articleVendus){%>
 						<div class = "col-4">
 							<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			
 								  <div class="card-header card-header-link text-center">
 <%-- 								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>&user=<%= enchere.getUtilisateur().getNoUtilisateur()%>"> --%>
-								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>">
-								  		<h4><%= enchere.getArticleVendu().getNomArticle()%></h4>
+								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= articleVendu.getNoArticle() %>">
+								  		<h4><%= articleVendu.getNomArticle()%></h4>
 								  	</a>
 								  </div>
 								  <div class="card-body">
-								  	<div class="alert alert-dismissible alert-secondary"><img src="<%= request.getContextPath()%>/img/article_<%= enchere.getArticleVendu().getNoArticle() %>.png" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>" width="255" height="150"></div>
-								    <p class="card-text">prix : <%= (enchere.getMontantEnchere()==0)?enchere.getArticleVendu().getMiseAPrix(): enchere.getMontantEnchere()%> points</p>
+								  	<div class="alert alert-dismissible alert-secondary"><img src="<%= request.getContextPath()%>/img/article_<%= articleVendu.getNoArticle() %>.png" alt="Image de l'article <%=articleVendu.getNoArticle()%>" width="255" height="150"></div>
+								    <p class="card-text">prix : <%= (articleVendu.getPrixVente()==0)?articleVendu.getMiseAPrix(): articleVendu.getPrixVente()%> points</p>
 								    
 	
-								    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
+								    <p class="card-text">Fin de l'enchère : <%=articleVendu.getDateFinEncheres().format(formatter)%></p>					    
 	
-								    <p class="card-text">vendeur : <a href="<%= request.getContextPath() %>/utilisateur/mon-compte/<%=enchere.getArticleVendu().getUtilisateur().getNoUtilisateur()%>"><%= enchere.getUtilisateur().getPseudo() %></a></p>
+								    <p class="card-text">vendeur : <a href="<%= request.getContextPath() %>/utilisateur/mon-compte/<%=articleVendu.getUtilisateur().getNoUtilisateur()%>"><%= articleVendu.getUtilisateur().getPseudo() %></a></p>
 								  </div>
 							</div>
 						</div>

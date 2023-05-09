@@ -22,10 +22,38 @@ import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDaoImpl implements ArticleDAO{
 	
-	private final static String SELECT_ALL_ENCHERE = "SELECT e.no_utilisateur,e.montant_enchere,a.no_article, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,a.etat_vente,a.prix_initial,u.pseudo FROM ENCHERES e "
+	private final static String SELECT_ALL_ARTICLES = "SELECT "
+			+ "e.no_utilisateur, "// de l'acheteur
+			+ "e.montant_enchere, "
+			+ "a.no_article, "
+			+ "a.nom_article, "
+			+ "a.date_debut_encheres, "
+			+ "a.date_fin_encheres, "
+			+ "a.no_utilisateur AS no_utilisateur_article, "// du vendeur
+			+ "a.etat_vente, "
+			+ "a.prix_initial, "
+			+ "a.description, "
+			+ "a.prix_vente, "
+			+ "a.etat_vente, "
+			+ "u.pseudo, "// du vendeur
+			+ "u.no_utilisateur, "
+			+ "u.nom, "
+			+ "u.prenom, "
+			+ "u.email, "
+			+ "u.telephone, "
+			+ "u.rue, "
+			+ "u.code_postal,"
+			+ "u.ville, "
+			+ "u.mot_de_passe, "
+			+ "u.administrateur, "
+			+ "u.credit, "
+			+ "c.no_categorie, "
+			+ "c.libelle "
+			+ "FROM ENCHERES e "
 			+"RIGHT JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
-			+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
-			+"WHERE (e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article) OR e.montant_enchere IS NULL) AND a.etat_vente='C'";
+			+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur "
+			+"Inner join CATEGORIES c On a.no_categorie= c.no_categorie " 
+			+"WHERE (e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article) OR e.montant_enchere IS NULL)";
 
 
 
@@ -45,20 +73,61 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 	
 	@Override
-	public List<Enchere> selectAllEnchere() {
+	public List<ArticleVendu> selectAll() {
 		try(Connection connection = ConnectionProvider.getConnection()){
-			List<Enchere> encheres = new ArrayList<>();
+			List<ArticleVendu> articleVendus = new ArrayList<>();
 			
 			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERE);
+			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLES);
 			
 			while(rs.next()) {
-				encheres.add(new Enchere(
-						rs.getInt("montant_enchere"),
-						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
-						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
+				System.out.println("test ici");
+				Categorie categorie= new Categorie(
+						rs.getInt("no_categorie"),
+						
+						rs.getString("libelle")
+						);
+				
+				Utilisateur utilisateur = new Utilisateur(
+						rs.getInt("no_utilisateur"),
+						rs.getString("pseudo"),
+						rs.getString("nom"),
+						rs.getString("prenom"),
+						rs.getString("email"),
+						rs.getString("telephone"),
+						rs.getString("rue"),
+						rs.getString("code_postal"),
+						rs.getString("ville"),
+						rs.getString("mot_de_passe"),
+						rs.getInt("credit"),
+						rs.getBoolean("administrateur"));
+						
+						
+						
+				
+				
+				articleVendus.add( new ArticleVendu(
+						rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(),
+						rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"),
+						rs.getString("etat_vente").charAt(0),
+						categorie,
+						utilisateur));
+						
+						
+						
+						
+						
+//						Enchere(
+//						rs.getInt("montant_enchere"),
+//						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
+//						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
 			}
-			return encheres;
+			return articleVendus;
 			
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -70,48 +139,48 @@ public class ArticleDaoImpl implements ArticleDAO{
 	
 	
 	
-	@Override
-	public List<ArticleVendu> selectAll() {
-		try(Connection connection = fr.eni.encheres.config.ConnectionProvider.getConnection()){
-			List<ArticleVendu> articles = new ArrayList<>();
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLE);
-			while(rs.next()) {
-				List<Utilisateur> utilisateurs = UtilisateurManager.getInstance().getAllUtilisateur();
-				Utilisateur utilisateur = new Utilisateur();
-				for (Utilisateur u : utilisateurs) {
-					if (u.getNoUtilisateur()==rs.getInt("no_utilisateur")) {
-						utilisateur = u;
-					}
-				}
-				List<Categorie> categoris = CategorieManager.getInstance().getAllCategorie();
-				Categorie categorie = new Categorie();
-				for (Categorie c : categoris) {
-					if (c.getNoCategorie()==rs.getInt("no_categorie")) {
-						categorie = c;
-					}
-				}
-				
-				articles.add( new ArticleVendu(
-						rs.getInt("no_article"),
-						rs.getString("nom_article"),
-						rs.getString("description"),
-						rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(),
-						rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"),
-						rs.getString("etat_vente").charAt(0),
-						categorie,
-						utilisateur));
-				
-						
-			}
-			return articles;
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}		
-		return null;
-	}
+//	@Override
+//	public List<ArticleVendu> selectAll() {
+//		try(Connection connection = fr.eni.encheres.config.ConnectionProvider.getConnection()){
+//			List<ArticleVendu> articles = new ArrayList<>();
+//			Statement stmt = connection.createStatement();
+//			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLE);
+//			while(rs.next()) {
+//				List<Utilisateur> utilisateurs = UtilisateurManager.getInstance().getAllUtilisateur();
+//				Utilisateur utilisateur = new Utilisateur();
+//				for (Utilisateur u : utilisateurs) {
+//					if (u.getNoUtilisateur()==rs.getInt("no_utilisateur")) {
+//						utilisateur = u;
+//					}
+//				}
+//				List<Categorie> categoris = CategorieManager.getInstance().getAllCategorie();
+//				Categorie categorie = new Categorie();
+//				for (Categorie c : categoris) {
+//					if (c.getNoCategorie()==rs.getInt("no_categorie")) {
+//						categorie = c;
+//					}
+//				}
+//				
+//				articles.add( new ArticleVendu(
+//						rs.getInt("no_article"),
+//						rs.getString("nom_article"),
+//						rs.getString("description"),
+//						rs.getDate("date_debut_encheres").toLocalDate(),
+//						rs.getDate("date_fin_encheres").toLocalDate(),
+//						rs.getInt("prix_initial"),
+//						rs.getInt("prix_vente"),
+//						rs.getString("etat_vente").charAt(0),
+//						categorie,
+//						utilisateur));
+//				
+//						
+//			}
+//			return articles;
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}		
+//		return null;
+//	}
 
 	@Override
 	public ArticleVendu selectOne(int id) {
@@ -156,6 +225,16 @@ public class ArticleDaoImpl implements ArticleDAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+
+
+
+
+//	@Override
+//	public List<Enchere> selectAllEnchere() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
 
 	

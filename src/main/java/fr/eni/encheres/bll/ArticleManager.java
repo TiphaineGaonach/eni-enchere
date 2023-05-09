@@ -92,11 +92,11 @@ public class ArticleManager {
 			be.ajouterErreur("Le champs %s ne peut pas etre vide!".formatted(name));
 		}
 	}
-	public List<Enchere> getAllEnchere() {
-		DaoFactory.getArticleDao().selectAllEnchere();
-		
-		return null;
-	}
+//	public List<Enchere> getAllEnchere() {
+//		DaoFactory.getArticleDao().selectAllEnchere();
+//		
+//		return null;
+//	}
 	
 	
 

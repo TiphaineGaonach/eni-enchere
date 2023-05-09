@@ -110,14 +110,14 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	@Override
 	public List<Utilisateur> selectAll() {
 		try(Connection connection = ConnectionProvider.getConnection()){
-			List<Utilisateur> articles = new ArrayList<>();
+			List<Utilisateur> Utilisateurs = new ArrayList<>();
 			
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_UTILISATEUR);
 			
 			
 			while(rs.next()) {
-				articles.add(new Utilisateur(rs.getInt("no_utilisateur"),
+				Utilisateurs.add(new Utilisateur(rs.getInt("no_utilisateur"),
 						rs.getString("pseudo"),
 						rs.getString("nom"),
 						rs.getString("prenom"),
@@ -130,7 +130,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 						rs.getInt("credit"),
 						rs.getBoolean("administrateur")));
 			}
-			return articles;
+			return Utilisateurs;
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
