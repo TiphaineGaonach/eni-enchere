@@ -72,6 +72,7 @@ public class UtilisateurManager {
 		return daoU.selectOne(id);
 	}
 	
+	/** Modifier Utilisateur **/
 	public void updateUtilisateur(Utilisateur utilisateur){
 		//checkUtilisateur(utilisateur);
 		daoU.update(utilisateur);

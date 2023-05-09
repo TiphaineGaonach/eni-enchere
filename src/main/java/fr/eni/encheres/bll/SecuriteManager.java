@@ -18,8 +18,8 @@ public class SecuriteManager {
 	
 	/** Connexion **/
 	
-	public Utilisateur connexion(String pseudo, String motDePasse) throws BusinessException {
-		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(pseudo);
+	public Utilisateur connexion(String identifiant, String motDePasse) throws BusinessException {
+		Utilisateur utilisateur =	DaoFactory.getUtilisateurDao().selectByUser(identifiant);
 
 		
 		if (utilisateur == null) {

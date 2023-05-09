@@ -57,7 +57,7 @@
 										<div class="form-group col-md-6 col-12">
 											<label for="title" class="form-label mt-4">Prénom</label>
 											<input type="text" class="form-control" 
-											id="penom" name="prenom" value=""  placeholder="">  
+											id="prenom" name="prenom" value=""  placeholder="">  
 										</div>
 										<div class="form-group col-md-6 col-12">
 											<label for="title" class="form-label mt-4">Email</label>
