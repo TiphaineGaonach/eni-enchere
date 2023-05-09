@@ -1,7 +1,7 @@
-<%@page import="fr.eni.encheres.bo.Enchere"%>
+<%@page import="fr.eni.encheres.bo.ArticleVendu"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<% Enchere enchere = (Enchere) request.getAttribute("enchere"); %>
+<% ArticleVendu article = (ArticleVendu) request.getAttribute("article"); %>
     
     
 <!DOCTYPE html>
@@ -23,17 +23,15 @@
 	
 <div class="row">
   <div class="col-md-3 offset-md-1">
-    <img src="<%= request.getContextPath()%>/img/article_<%= enchere.getArticleVendu().getNoArticle() %>.png" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>">
+    <img src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
   </div>
   <div class="col-md-7">
     <div class="text-center">
       <h3><span style="color:red; font-weight:bold;">Formulaire à créer</span></h3>
-      <p><%= enchere.getArticleVendu().getNomArticle() %></p>
-      <p>Description : <%= enchere.getArticleVendu().getDescription() %> </p>
+      <p><%= article.getNomArticle() %></p>
+      <p>Description : <%= article.getDescription() %> </p>
       <p>Catégorie : <span style="color:red; font-weight:bold;">A CREER </span></p>
-      <p>Meilleure Offre : <%= enchere.getMontantEnchere()%> points par <%= enchere.getUtilisateur().getPseudo() %></p>
-      <p>Mise à prix : <%= enchere.getArticleVendu().getMiseAPrix()%> </p>
-      <p>Fin de l'enchère: <%= enchere.getArticleVendu().getDateFinEncheres()%> </p>
+
       <p>Retrait: <span style="color:red; font-weight:bold;">A CREER </span> </p>
       <%-- <p>Vendeur: <%= enchere.getArticleVendu().getUtilisateur().getPseudo() %><span style="color:red; font-weight:bold;"> REQUETE A CREER</span> </p> --%>
       <p>Ma Proposition : <span style="color:red; font-weight:bold;">A CREER : liste déroulante    </span> <button type="submit">Enchérir</button></p>

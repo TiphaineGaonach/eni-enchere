@@ -130,13 +130,15 @@
 						<div class = "col-4">
 							<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			
 								  <div class="card-header card-header-link text-center">
-								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>&user=<%= enchere.getUtilisateur().getNoUtilisateur()%>">
+<%-- 								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>&user=<%= enchere.getUtilisateur().getNoUtilisateur()%>"> --%>
+								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>">
 								  		<h4><%= enchere.getArticleVendu().getNomArticle()%></h4>
 								  	</a>
 								  </div>
 								  <div class="card-body">
 								  	<div class="alert alert-dismissible alert-secondary"><img src="<%= request.getContextPath()%>/img/article_<%= enchere.getArticleVendu().getNoArticle() %>.png" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>" width="255" height="150"></div>
-								    <p class="card-text">prix : <%= enchere.getMontantEnchere() %> points</p>
+								    <p class="card-text">prix : <%= (enchere.getMontantEnchere()==0)?enchere.getArticleVendu().getMiseAPrix(): enchere.getMontantEnchere()%> points</p>
+								    
 	
 								    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
 	
