@@ -27,6 +27,4 @@ public class SuprimerUtilisateurServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
-
-
 }

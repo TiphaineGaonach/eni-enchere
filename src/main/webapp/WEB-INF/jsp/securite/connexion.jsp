@@ -37,16 +37,16 @@
 			</div>
 			
 			<div class="row mt-5">
-				<div class="col-4 	col-xxl-2 offset-xxl-2">
+				<div class="col-4 	col-xxl-2 offset-xxl-2 text-center mx-auto">
 					<button type = "submit" class="btn btn-primary mt-3 ">Connexion</button>
 				</div>
-				<div class="col-8 	col-xxl-6 offset-xxl-1">
-					<div class="form-check">
-					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-					        <label class="form-check-label" for="flexCheckDefault"> Se souvenir de moi -> iteration 2</label>
-				     </div>
-				     <div ><a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublier -> iteration 2</a></div>
-				</div>
+<!-- 				<div class="col-8 	col-xxl-6 offset-xxl-1"> -->
+<!-- 					<div class="form-check"> -->
+<!-- 					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+<!-- 					        <label class="form-check-label" for="flexCheckDefault"> Se souvenir de moi -> iteration 2</label> -->
+<!-- 				     </div> -->
+<%-- 				     <div ><a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublier -> iteration 2</a></div> --%>
+<!-- 				</div> -->
 
 			</div>
 			

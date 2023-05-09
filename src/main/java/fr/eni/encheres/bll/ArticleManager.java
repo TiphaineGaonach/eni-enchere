@@ -2,6 +2,7 @@ package fr.eni.encheres.bll;
 
 import java.util.List;
 
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.dal.DaoFactory;
 
@@ -21,7 +22,7 @@ public class ArticleManager {
 		}
 		return instance;
 	}
-/** end Singleton */
+	/** end Singleton */
 	
 	/**  get all ArticleVendus  **/
 	public List<ArticleVendu> getAllArticleVendus(){
@@ -33,7 +34,7 @@ public class ArticleManager {
 		return DaoFactory.getArticleDao().selectOne(id);
 	}	
 	
-	public void addArticleVendu(ArticleVendu ArticleVendu) throws BLLException {
+	public void addArticleVendu(ArticleVendu ArticleVendu) throws BusinessException {
 		checkArticleVendu(ArticleVendu);
 		DaoFactory.getArticleDao().insert(ArticleVendu);
 	}
@@ -42,24 +43,24 @@ public class ArticleManager {
 		DaoFactory.getArticleDao().delete(ArticleVendu);
 		
 	}
-	public void updateArticleVendu(ArticleVendu ArticleVendu) throws BLLException {
+	public void updateArticleVendu(ArticleVendu ArticleVendu) throws BusinessException {
 		checkArticleVendu(ArticleVendu);
 		DaoFactory.getArticleDao().update(ArticleVendu);
 	}
 	
-	public void checkArticleVendu(ArticleVendu ArticleVendu) throws BLLException {
-		BLLException bll = new BLLException();
+	public void checkArticleVendu(ArticleVendu ArticleVendu) throws BusinessException {
+		BusinessException be = new BusinessException();
 //		checkFiled(ArticleVendu.getTitle(), "Titre",bll);
 //		checkFiled(ArticleVendu.getContent(), "Contenu",bll);
 //		checkFiled(ArticleVendu.getAuthor(), "Auteur",bll);
-		if(bll.getErreurs().size()>0) {			
-			throw bll;
+		if(be.getErreurs().size()>0) {			
+			throw be;
 		}
 	}
 	
-	private void checkFiled(String field,String name,BLLException bll ) {
+	private void checkFiled(String field,String name,BusinessException be ) {
 		if(field.isBlank()) {
-			bll.ajouterErreur("Le champs %s ne peut pas etre vide!".formatted(name));
+			be.ajouterErreur("Le champs %s ne peut pas etre vide!".formatted(name));
 		}
 	}
 	
