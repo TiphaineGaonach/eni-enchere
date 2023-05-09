@@ -84,6 +84,16 @@ public class Utilisateur {
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 	}
+
+
+
+
+
+	//constructeur pour le user de l'articleVendur pour la requete selectAllEnchere 
+	public Utilisateur(Integer noUtilisateur) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+	}
 	
 
 	

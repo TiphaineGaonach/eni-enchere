@@ -20,37 +20,37 @@
 	<!----------------------- MAIN ----------------------->
 
 	<main>
-	<div class=" col-8 offset-2 col-md-4 offset-md-4">
-		<h1>Connexion</h1>
+	<div class=" col-8 offset-2 	col-md-6 offset-md-3 	col-ig-4 offset-ig-4 	">
+		<h1 class="mt-5 text-center">Connexion</h1>
 		<form action="" method="post">
 		
-			<div class="row">
+			<div class="row mt-5">
 				<div>
-					<label class="col-4">Pseudo : </label>
-					<input class="col-6" type = "text" name = "pseudo">
+					<label class="col-4 	col-xxl-2 offset-xxl-2 	">Pseudo : </label>
+					<input class="col-6 	col-xxl-4 offset-xxl-1	" type = "text" name = "pseudo">
 				</div>
 				
-				<div>
-					<label class="col-4">Mot de passe : </label>
-					<input class="col-6" type = "password" name = "motDePasse">
+				<div class="mt-2">
+					<label class="col-4 	col-xxl-2 offset-xxl-2">Mot de passe : </label>
+					<input class="col-6		col-xxl-4 offset-xxl-1" type = "password" name = "motDePasse">
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col-4">
+			<div class="row mt-5">
+				<div class="col-4 	col-xxl-2 offset-xxl-2">
 					<button type = "submit" class="btn btn-primary mt-3 ">Connexion</button>
 				</div>
-				<div class="col-8 ">
+				<div class="col-8 	col-xxl-6 offset-xxl-1">
 					<div class="form-check">
 					        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
 					        <label class="form-check-label" for="flexCheckDefault"> Se souvenir de moi -> iteration 2</label>
 				     </div>
-				     <div><a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublier -> iteration 2</a></div>
+				     <div ><a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublier -> iteration 2</a></div>
 				</div>
 
 			</div>
 			
-			<a href="<%= request.getContextPath() %>/ajouterUtilisateur" class="btn btn-primary mt-3 col-12" >Créer un Compte </a>
+			<a class="mt-5 btn btn-primary mt-3 col-12 		col-xl-10 offset-xl-1		col-xxl-8 offset-xxl-2 " href="<%= request.getContextPath() %>/ajouterUtilisateur"  >Créer un Compte </a>
 		
 		
 		
@@ -61,7 +61,7 @@
 		
 			
 				
-				<button type = "submit" class="btn btn-primary mt-3">Connexion</button>
+		
 				
 				
 				
@@ -69,11 +69,7 @@
 			      
 		      
 		  
-		   					<div class=" col-md-5 mx-auto py-5" >
-<!-- 						    	<button type="submit" class="btn btn-primary mt-3">Créer l'utilisateur</button> -->
-<%-- 						    	<a href="<%= request.getContextPath() %>" class="btn btn-primary mt-3" >Mot de passe oublié -> iteration 2</a> --%>
-						    	<a href="<%= request.getContextPath() %>/ajouterUtilisateur" class="btn btn-primary mt-3" >Créer un Compte </a>
-						    </div>
+		   					
 
 		   	
  		   		<%	

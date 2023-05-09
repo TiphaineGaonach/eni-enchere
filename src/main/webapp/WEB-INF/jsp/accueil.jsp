@@ -19,7 +19,7 @@
 <head>
 	<meta charset="UTF-8">
 	<%@ include file ="/WEB-INF/jsp/part/metaLink.jsp" %>
-<title>Accueil</title>
+	<title>Accueil</title>
 </head>
 
 
@@ -60,15 +60,19 @@
 				<% for (Enchere enchere: encheres){%>
 						<div class = "col-4">
 							<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			
-							  <div class="card-header text-center"><h3><a href="<%= request.getContextPath() %>/enchere/detailEnchere/<%= enchere.getNoEnchere() %>"><%= enchere.getArticleVendu().getNomArticle()%></a></h3></div>
-							  <div class="card-body">
-							  	<div class="alert alert-dismissible alert-secondary"><img src="#" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>"></div>
-							    <p class="card-text">prix : <%=enchere.getMontantEnchere()%> points</p>
-
-							    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
-
-							    <p class="card-text">vendeur : <%=enchere.getUtilisateur().getPseudo()%></p>
-							  </div>
+								  <div class="card-header card-header-link text-center">
+								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>&user=<%= enchere.getUtilisateur().getNoUtilisateur()%>">
+								  		<h4><%= enchere.getArticleVendu().getNomArticle()%></h4>
+								  	</a>
+								  </div>
+								  <div class="card-body">
+								  	<div class="alert alert-dismissible alert-secondary"><img src="<%= request.getContextPath()%>/img/article_<%= enchere.getArticleVendu().getNoArticle() %>.png" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>" width="255" height="150"></div>
+								    <p class="card-text">prix : <%= enchere.getMontantEnchere() %> points</p>
+	
+								    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
+	
+								    <p class="card-text">vendeur : <a href="<%= request.getContextPath() %>/utilisateur/mon-compte/<%=enchere.getArticleVendu().getUtilisateur().getNoUtilisateur()%>"><%= enchere.getUtilisateur().getPseudo() %></a></p>
+								  </div>
 							</div>
 						</div>
 				<%}%>

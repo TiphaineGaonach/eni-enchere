@@ -48,10 +48,15 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 			//response.sendRedirect(request.getContextPath()+"/connexion");
 			
 		} catch (BusinessException e) {
-
-			//e.printStackTrace();
-			request.setAttribute("erreur", "Pseudo ou mot de passe invalide");
-			request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
+		    String message = e.getMessage();
+		    if ("[Utilisateur non trouvé]".equals(message)) {
+		        request.setAttribute("erreur", "Utilisateur non trouvé");
+		    } else if ("[Mot de Passe erroné]".equals(message)) {
+		        request.setAttribute("erreur", "Mot de passe invalide");
+		    } else {
+		        request.setAttribute("erreur", "Erreur inconnue");
+		    }
+		    request.getRequestDispatcher("/WEB-INF/jsp/securite/connexion.jsp").forward(request, response);
 
 		}
 	}

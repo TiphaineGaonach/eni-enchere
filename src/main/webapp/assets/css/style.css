@@ -15,5 +15,16 @@ input:invalid + .error {
 
 
 
+.card-header-link {
+  background-color: #95A5A6;
+  color: #2C3E50; 
+  text-decoration: none;
+}
+
+.card-header-link:hover {
+  background-color: white;
+  color: #13967E;
+
+}
 
 

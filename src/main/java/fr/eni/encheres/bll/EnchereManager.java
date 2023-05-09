@@ -31,10 +31,11 @@ public class EnchereManager {
 		
 	}
 
-	public Utilisateur getEnchere(int id) {
+	public Enchere getEnchere(Integer noUtilisateur, Integer noArticle) {
 		// TODO Auto-generated method stub
-		return null;
+		return daoE.selectOneEnchere(noUtilisateur,noArticle);
 	}
+
 
 	
 }

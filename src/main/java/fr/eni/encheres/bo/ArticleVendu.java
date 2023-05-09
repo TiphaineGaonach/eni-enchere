@@ -44,6 +44,16 @@ public class ArticleVendu {
 		this.nomArticle = nomArticle;
 		this.dateFinEncheres = dateFinEncheres;
 	}
+
+
+	//constructeur pour le user de l'articleVendur pour la requete selectAllEnchere
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull LocalDate dateFinEncheres, @NonNull Utilisateur utilisateur) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.dateFinEncheres = dateFinEncheres;
+		this.utilisateur = utilisateur;
+	}
 	
 	
 	
