@@ -54,7 +54,7 @@ public class ArticleManager {
 		
 		
 		
-		return DaoFactory.getArticleDao().selectArticleVendus(recherche);
+		return null;
 	}
 	
 	/** recup un ArticleVendu **/
