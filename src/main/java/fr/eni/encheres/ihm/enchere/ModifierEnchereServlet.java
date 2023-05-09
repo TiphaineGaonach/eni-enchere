@@ -16,7 +16,7 @@ public class ModifierEnchereServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.getRequestDispatcher("/WEB-INF/jsp/enchere/ModifierUneVente.jsp").forward(request, response);
 	}
-
+//jkhsdqg
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
