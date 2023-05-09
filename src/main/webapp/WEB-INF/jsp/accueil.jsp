@@ -35,7 +35,6 @@
 
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >
-		<div><h1 style="color:pink;">BONJOUR GAUTHIER. NOUS TE SURVEILLONS. (merci pour les pains au choc mais on en veut d'autres)</h1></div>
 		<form action="">
 			<div class = "row">  
 				<div class="col-8">
