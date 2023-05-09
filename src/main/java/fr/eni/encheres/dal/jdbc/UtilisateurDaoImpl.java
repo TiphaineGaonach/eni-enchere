@@ -20,10 +20,12 @@ import fr.eni.encheres.dal.UtilisateurDAO;
 public class UtilisateurDaoImpl implements UtilisateurDAO{
 	private final static String SELECT_ALL_UTILISATEUR = "SELECT * FROM UTILISATEURS";
 	private final static String SELECT_ONE_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
+	private final static String UPDATE_UTILISATEUR = "UPDATE UTILISATEURS SET "
+			+ "pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? "
+			+ "WHERE no_utilisateur = ?";
 	private final static String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur  ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
-	private static final String SELECT_BY_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ?";
+	private static final String SELECT_BY_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	
 
 	@Override
@@ -92,6 +94,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 			pStmt.setString(9, utilisateur.getMotDePasse());
 			pStmt.setInt(10, utilisateur.getCredit());
 			pStmt.setBoolean(11, utilisateur.isAdministrateur());
+			pStmt.setInt(12, utilisateur.getNoUtilisateur());
 			
 			pStmt.executeUpdate();
 			
@@ -165,12 +168,13 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	
 	
 	@Override
-	public Utilisateur selectByUser(String username) {
+	public Utilisateur selectByUser(String identifiant) {
 		try(Connection connection = ConnectionProvider.getConnection()){
 			
 			PreparedStatement stmt = connection.prepareStatement(SELECT_BY_UTILISATEUR);
 			
-			stmt.setString(1,username);
+			stmt.setString(1,identifiant);
+			stmt.setString(2,identifiant);
 			ResultSet rs = stmt.executeQuery();
 			
 			if(rs.next()) {
@@ -192,6 +196,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 		}
 		return null;
 	}
+
+
 	
 
 }

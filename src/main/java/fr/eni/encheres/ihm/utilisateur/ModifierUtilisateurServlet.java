@@ -37,10 +37,13 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Utilisateur ancienUtilisateur = (Utilisateur) session.getAttribute("pseudo");
 		int id = ancienUtilisateur.getNoUtilisateur();
+		int credit = ancienUtilisateur.getCredit();
+		boolean administrateur = ancienUtilisateur.isAdministrateur();
+		
 		
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
-		String penom = request.getParameter("prenom");
+		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");
 		String telephone = request.getParameter("telephone");
 		String rue = request.getParameter("rue");
@@ -50,7 +53,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		String confirmation = request.getParameter("confirmation");
 		
 		if (motDePasse.equals(confirmation)) {
-			Utilisateur utilisateur = new Utilisateur(id, pseudo, nom, penom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
+			Utilisateur utilisateur = new Utilisateur(id, pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 			System.out.println(utilisateur);
 			
 			//try {

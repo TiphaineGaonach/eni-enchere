@@ -40,10 +40,8 @@ public class AjouterUtilisateur extends HttpServlet {
 			
 	 
 			if (motDePasse.equals(confirmation)) {
-				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, 0, false);
+				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, 100, false);
 				System.out.println(utilisateur);
-				
-				
 					try {
 						UtilisateurManager.getInstance().addUser(utilisateur);
 					
@@ -52,24 +50,15 @@ public class AjouterUtilisateur extends HttpServlet {
 					    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/creationUtilisateur.jsp");
 					    rd.forward(request, response);
 					}
-					if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
-						HttpSession session = request.getSession();
-						session.setAttribute("pseudo", utilisateur);
-						//		Flash.send("success", "l'utilisateur à bien été créé", request.getSession());
-							response.sendRedirect(request.getContextPath()+"");
+						if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
+							HttpSession session = request.getSession();
+							session.setAttribute("pseudo", utilisateur);
+							//		Flash.send("success", "l'utilisateur à bien été créé", request.getSession());
+								response.sendRedirect(request.getContextPath()+"");
+						}
+					else {
+						 request.setAttribute("erreur", "Les mots de passe ne sont pas identiques");
 					}
-					
-					
-				
-
-		//			else {
-		//				//TODO ajouter erreure mot de passe != de confirmation
-		//			}
-			};
-			
-	
-			
-		
+			};	
 	}
-
 }
