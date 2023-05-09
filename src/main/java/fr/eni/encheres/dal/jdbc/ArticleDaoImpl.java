@@ -9,22 +9,28 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.mysql.cj.exceptions.PasswordExpiredException;
-
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Recherche;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.ArticleDAO;
 
 public class ArticleDaoImpl implements ArticleDAO{
+	
+	private final static String SELECT_ALL_ENCHERE = "SELECT e.no_utilisateur,e.montant_enchere,a.no_article, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,a.etat_vente,a.prix_initial,u.pseudo FROM ENCHERES e "
+			+"RIGHT JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+			+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
+			+"WHERE (e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article) OR e.montant_enchere IS NULL) AND a.etat_vente='C'";
+
+
 
 	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
-	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE noArticle = ?";
+	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE no_article = ?";
 	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  "
 			+ "no_article = ?, nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, etat_vente=? "
 			+ "WHERE id = ?,?,?,?,?,?,?";
@@ -36,7 +42,27 @@ public class ArticleDaoImpl implements ArticleDAO{
 	
 
 	
-	
+	@Override
+	public List<Enchere> selectAllEnchere() {
+		try(Connection connection = ConnectionProvider.getConnection()){
+			List<Enchere> encheres = new ArrayList<>();
+			
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERE);
+			
+			while(rs.next()) {
+				encheres.add(new Enchere(
+						rs.getInt("montant_enchere"),
+						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
+						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
+			}
+			return encheres;
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}	
 	
 	
 	
@@ -87,7 +113,27 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 	@Override
 	public ArticleVendu selectOne(int id) {
-		// TODO Auto-generated method stub
+		try(Connection connection = ConnectionProvider.getConnection()){
+			
+			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ARTICLE);
+			
+			stmt.setInt(1,id);
+			ResultSet rs = stmt.executeQuery();
+			
+			
+			if(rs.next()) {
+						return new ArticleVendu(rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(),
+						rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"),						
+						rs.getString("etat_vente").charAt(0));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
