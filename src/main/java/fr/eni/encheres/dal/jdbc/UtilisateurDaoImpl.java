@@ -27,7 +27,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	
-
+//comm
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException { 
 		try(Connection connection = ConnectionProvider.getConnection()) {
