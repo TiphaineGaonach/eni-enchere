@@ -18,11 +18,16 @@ import fr.eni.encheres.dal.EnchereDAO;
 public class EnchereDaoImpl implements EnchereDAO {
 
 	// requete imbriquée pour recupérer le vendeur et non le dernier qui a enchéri (user de l'article)
-	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,u.pseudo FROM ENCHERES e "
-													+"INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
-													+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
-													+"WHERE e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article)";
+//	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,u.pseudo FROM ENCHERES e "
+//													+"INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+//													+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
+//													+"WHERE e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article)";
 
+	private final static String SELECT_ALL_ENCHERE = "SELECT a.nom_article, a.date_fin_encheres, a.etat_vente, a.no_utilisateur AS no_utilisateur_article, u.pseudo, e.* "
+			+ "FROM ARTICLES_VENDUS a "
+			+ "INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur "
+			+ "LEFT JOIN ENCHERES e ON a.no_article = e.no_article "
+			+ "WHERE etat_vente = 'C'";
 
 	private final static String SELECT_ONE_ENCHERE = "SELECT * FROM ENCHERES e "
 													+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
