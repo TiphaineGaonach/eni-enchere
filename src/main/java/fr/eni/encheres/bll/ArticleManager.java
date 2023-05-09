@@ -5,6 +5,7 @@ import java.util.List;
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Recherche;
 import fr.eni.encheres.dal.DaoFactory;
 
@@ -90,6 +91,11 @@ public class ArticleManager {
 		if(field.isBlank()) {
 			be.ajouterErreur("Le champs %s ne peut pas etre vide!".formatted(name));
 		}
+	}
+	public List<Enchere> getAllEnchere() {
+		DaoFactory.getArticleDao().selectAllEnchere();
+		
+		return null;
 	}
 	
 	
