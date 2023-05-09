@@ -7,12 +7,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
-
 import java.io.IOException;
 import java.util.List;
-
 import org.apache.tomcat.jakartaee.commons.compress.archivers.zip.X0017_StrongEncryptionHeader;
-
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.EnchereManager;
