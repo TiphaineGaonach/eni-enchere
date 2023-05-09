@@ -1,5 +1,9 @@
 package fr.eni.encheres.bll;
 
+import java.util.List;
+
+import fr.eni.encheres.bo.Categorie;
+
 public class CategorieManager {
 
 	/** start Singleton */	
@@ -16,5 +20,12 @@ public class CategorieManager {
 		return instance;
 	}
 	/** end Singleton */
+	
+	
+	
+	public List<Categorie> getAllCategorie() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -10,7 +10,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.exceptions.PasswordExpiredException;
+
+import fr.eni.encheres.bll.CategorieManager;
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
+import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Recherche;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.ArticleDAO;
 
@@ -37,7 +44,44 @@ public class ArticleDaoImpl implements ArticleDAO{
 	
 	@Override
 	public List<ArticleVendu> selectAll() {
-		// TODO Auto-generated method stub
+		try(Connection connection = fr.eni.encheres.config.ConnectionProvider.getConnection()){
+			List<ArticleVendu> articles = new ArrayList<>();
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLE);
+			while(rs.next()) {
+				List<Utilisateur> utilisateurs = UtilisateurManager.getInstance().getAllUtilisateur();
+				Utilisateur utilisateur = new Utilisateur();
+				for (Utilisateur u : utilisateurs) {
+					if (u.getNoUtilisateur()==rs.getInt("no_utilisateur")) {
+						utilisateur = u;
+					}
+				}
+				List<Categorie> categoris = CategorieManager.getInstance().getAllCategorie();
+				Categorie categorie = new Categorie();
+				for (Categorie c : categoris) {
+					if (c.getNoCategorie()==rs.getInt("no_categorie")) {
+						categorie = c;
+					}
+				}
+				
+				articles.add( new ArticleVendu(
+						rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(),
+						rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"),
+						rs.getString("etat_vente").charAt(0),
+						categorie,
+						utilisateur));
+				
+						
+			}
+			return articles;
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}		
 		return null;
 	}
 
@@ -64,6 +108,8 @@ public class ArticleDaoImpl implements ArticleDAO{
 		// TODO Auto-generated method stub
 		
 	}
+
+
 	
 	
 

@@ -46,12 +46,38 @@ public class ArticleVendu {
 	}
 
 
+
 	//constructeur pour le user de l'articleVendur pour la requete selectAllEnchere
 	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull LocalDate dateFinEncheres, @NonNull Utilisateur utilisateur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.dateFinEncheres = dateFinEncheres;
+		this.utilisateur = utilisateur;
+	}
+
+	/**
+	 * Pour extraction de la BDD de l'article avec sa categorie et son utilisateur; return un utilisateur
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 */
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull String description,
+			@NonNull LocalDate dateDebutEncheres, @NonNull LocalDate dateFinEncheres, Integer miseAPrix,
+			Integer prixVente, char etatVente, @NonNull Categorie categorie, @NonNull Utilisateur utilisateur) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.categorie = categorie;
 		this.utilisateur = utilisateur;
 	}
 	
