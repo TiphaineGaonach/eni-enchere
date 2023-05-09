@@ -20,7 +20,8 @@ public interface UtilisateurDAO {
 
 	void update(Utilisateur utilisateur);
 
-	Utilisateur selectByUser(String username);
+	Utilisateur selectByUser(String identifiant);
+
 
 	
 

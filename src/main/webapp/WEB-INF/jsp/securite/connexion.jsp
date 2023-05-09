@@ -26,7 +26,7 @@
 		
 			<div class="row mt-5">
 				<div>
-					<label class="col-4 	col-xxl-2 offset-xxl-2 	">Pseudo : </label>
+					<label class="col-4 	col-xxl-2 offset-xxl-2 	">Pseudo ou email : </label>
 					<input class="col-6 	col-xxl-4 offset-xxl-1	" type = "text" name = "pseudo">
 				</div>
 				
