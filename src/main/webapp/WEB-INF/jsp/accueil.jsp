@@ -36,6 +36,7 @@
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >
 			<div class = "col-8 offset-2">
+
 				<form action="" method="POST">
 					<div class = "row container">
 						<h2>Filtres</h2> 
@@ -45,6 +46,22 @@
 								id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" 
 								value=""  placeholder=" le nom de l'article contien "
 								>
+				<form action="">
+					<div class = "row">  
+						<div class="col-8">
+							<h2>Filtres</h2>
+							<input type="text" class="form-control" 
+							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contient ">
+							<div class="col-4">
+									Catégorie : 				
+							</div>						
+							<div class="form-group col-8">
+							    <select class="form-select" id="categorie" name="categorie">
+							    	
+							    <% for (Categorie categorie: categories){%>
+							        <option><%=categorie.getLibelle() %></option>
+							    <%}%>	
+							    </select>
 							</div>
 							<div class= "row mt-3">
 								<div class="col-2">
