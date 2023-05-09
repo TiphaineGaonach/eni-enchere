@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+/* Erreur alphanumérique  */
 input:invalid {
   border: 1px solid red;
 }
@@ -14,7 +16,7 @@ input:invalid + .error {
 }
 
 
-
+/* liens entete des vignettes sur la liste des enchères  */
 .card-header-link {
   background-color: #95A5A6;
   color: #2C3E50; 

@@ -26,9 +26,10 @@ public class AccueilServlet extends HttpServlet {
  
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Enchere> encheres=EnchereManager.getInstance().getAllEnchere();
-	
-		request.setAttribute("encheres", encheres);
+		List<ArticleVendu> articleVendus=ArticleManager.getInstance().getAllArticleVendus();
+		List<Categorie> categories = CategorieManager.getInstance().getAllCategorie();
+		request.setAttribute("articleVendus", articleVendus);
+		request.setAttribute("categories", categories);
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
@@ -58,18 +59,12 @@ public class AccueilServlet extends HttpServlet {
 		Recherche recherche =  new Recherche(motClef, categorie, utilisateur, boutonActif);
 		
 		
+		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
 		 
 		
 		
-		String nom = request.getParameter("nom");
-		String penom = request.getParameter("prenom");
-		
-		
-		
-		
-		
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }
