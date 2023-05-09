@@ -12,6 +12,7 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.CategorieDao;
 
 public class CategorieDaoImpl implements CategorieDao{
@@ -23,7 +24,7 @@ public class CategorieDaoImpl implements CategorieDao{
 	 * retourne la liste des catégorie de la table catégorie de la BDD
 	 */
 	public List<Categorie> selectAll() {
-		try(Connection connection = fr.eni.encheres.config.ConnectionProvider.getConnection()){
+		try(Connection connection = ConnectionProvider.getConnection()){
 			List<Categorie> categories = new ArrayList<>();
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_CATEGORIE);

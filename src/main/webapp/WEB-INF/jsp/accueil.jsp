@@ -41,7 +41,7 @@
 						<div class="col-8">
 							<h2>Filtres</h2>
 							<input type="text" class="form-control" 
-							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contien ">
+							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contient ">
 							<div class="col-4">
 									Catégorie : 				
 							</div>						
