@@ -59,18 +59,12 @@ public class AccueilServlet extends HttpServlet {
 		Recherche recherche =  new Recherche(motClef, categorie, utilisateur, boutonActif);
 		
 		
+		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
 		 
 		
 		
-		String nom = request.getParameter("nom");
-		String penom = request.getParameter("prenom");
-		
-		
-		
-		
-		
-		doGet(request, response);
+		//doGet(request, response);
 	}
 
 }

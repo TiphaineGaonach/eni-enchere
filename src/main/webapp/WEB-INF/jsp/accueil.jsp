@@ -36,24 +36,90 @@
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >
 			<div class = "col-8 offset-2">
-				<form action="">
-					<div class = "row">  
-						<div class="col-8">
-							<h2>Filtres</h2>
-							<input type="text" class="form-control" 
-							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contien ">
-							<div class="col-4">
-									Catégorie : 				
-							</div>						
-							<div class="form-group col-8">
-							    <select class="form-select" id="categorie" name="categorie">
-							    	
-							    <% for (Categorie categorie: categories){%>
-							        <option><%=categorie.getLibelle() %></option>
-							    <%}%>	
-							    </select>
+				<form action="" method="POST">
+					<div class = "row container">
+						<h2>Filtres</h2> 
+						<div class="col-8 ">
+							<div class="col-10">
+								<input type="text" class="form-control" 
+								id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" 
+								value=""  placeholder=" le nom de l'article contien "
+								>
 							</div>
-						
+							<div class= "row mt-3">
+								<div class="col-2">
+										Catégorie : 				
+								</div>						
+								<div class="form-group col-6 ">
+								    <select class="form-select" id="categorie" name="categorie">
+								    	
+								    <% for (Categorie categorie: categories){%>
+								        <option><%=categorie.getLibelle() %></option>
+								    <%}%>	
+								    </select>
+								</div>
+							</div>
+							<div class= "row mt-3">
+								<div class="col">
+									<h5>Achats :</h5>
+									<div class="row ">
+										<div class="col-8">
+											Enchère ouverte : 				
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="achatOuverte">				
+										</div>
+									</div>	
+									<div class="row ">
+										<div class="col-8">
+											Mes enchères en cours :				
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="achatEnCours">				
+										</div>
+									</div>
+									<div class="row ">
+										<div class="col-8">
+											Mes enchères reportées :				
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="achatRemporter">				
+										</div>
+									</div>
+								</div>
+								<div class="col">
+									<h5>Mes Ventes :</h5>
+									<div class="row ">
+										<div class="col-8">
+											Mes ventes en cours :			
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="VenteEnCours">				
+										</div>
+									</div>	
+									<div class="row ">
+										<div class="col-8">
+											Mes ventes non débutées :			
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="VenteNonDebuter">				
+										</div>
+									</div>
+									<div class="row ">
+										<div class="col-8">
+											Mes ventes terminée : 				
+										</div>
+										<div class="col-2">
+											<input type="radio" name="filtre" value="Venteterminer">				
+										</div>
+									</div>
+								</div>				
+							</div> 
+							
+							
+						</div>
+						<div class="col-4">
+							<button type="submit" class="btn btn-primary mt-3 col-4" >Rechercher</button>
 						</div>
 					</div>
 				</form>

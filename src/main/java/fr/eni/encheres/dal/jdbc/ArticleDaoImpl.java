@@ -24,6 +24,7 @@ import fr.eni.encheres.dal.ArticleDAO;
 public class ArticleDaoImpl implements ArticleDAO{
 
 	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	
 	private final static String SELECT_ONE_ARTICLE = "SELECT * FROM ARTICLES_VENDUS WHERE noArticle = ?";
 	private final static String UPDATE_ARTICLE = "UPDATE ARTICLES_VENDUS SET  "
 			+ "no_article = ?, nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, etat_vente=? "
