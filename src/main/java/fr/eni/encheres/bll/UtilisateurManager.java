@@ -4,6 +4,7 @@ import java.util.List;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -46,20 +47,15 @@ public class UtilisateurManager {
 		
 	}
 	
-	
+	/** Ajout utilisateur **/
 	public void addUser(Utilisateur utilisateur) throws BusinessException {
-		
 		//cryper le mot de passe
 //		user.setPassword(
 //				BCrypt.withDefaults().hashToString(12, user.getPassword().toCharArray()));
 		checkUtilisateur(utilisateur);
 		daoU.insert(utilisateur);
-		
 	}
 	
-	
-
-
 	//Afficher tous les utilisateurs
 	public List<Utilisateur> getAllUtilisateur(){
 		return daoU.selectAll();
@@ -72,12 +68,17 @@ public class UtilisateurManager {
 		return daoU.selectOne(id);
 	}
 	
-	/** Modifier Utilisateur **/
-	public void updateUtilisateur(Utilisateur utilisateur){
-		//checkUtilisateur(utilisateur);
+	/** Modifier Utilisateur 
+	 * @throws BusinessException **/
+	public void updateUtilisateur(Utilisateur utilisateur) throws BusinessException{
+		checkUtilisateur(utilisateur);
 		daoU.update(utilisateur);
+		
 	}
 	
+	
+	
+	/** Delete Utilisateur **/
 	public void deleteUtilisateur(Utilisateur utilisateur) {
 		daoU.delete(utilisateur);
 	}
@@ -112,6 +113,17 @@ public class UtilisateurManager {
 			be.ajouterErreur("Le champ %s ne peut pas être vide!".formatted(name));
 		}
 	}
+	
+	/** checkDelete **/
+//	private void checkDelete (Utilisateur utilisateur) {
+//		if () {
+//			
+//		}
+//		
+//	}
+	
+	
+	
 	
 	
 }

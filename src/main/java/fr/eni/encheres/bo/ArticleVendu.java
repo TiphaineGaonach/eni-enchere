@@ -25,7 +25,7 @@ public class ArticleVendu {
 	@NonNull private LocalDate dateFinEncheres;
 	private Integer miseAPrix;
 	private Integer prixVente;
-	private char etatVente; //TODO à vérifier Char ou Integer...
+	private char etatVente; 
 	@NonNull private Categorie categorie;
 	@NonNull private Utilisateur utilisateur;
 	private List<Enchere> encheres;
