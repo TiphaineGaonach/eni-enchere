@@ -3,12 +3,15 @@
 <%@page import="fr.eni.encheres.bll.EnchereManager"%>
 <%@page import="fr.eni.encheres.bo.Enchere"%>
 <%@page import="fr.eni.encheres.bo.ArticleVendu"%>
+<%@page import="fr.eni.encheres.bo.Categorie"%>
 <%@page import = "java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <% List<Enchere> encheres = (List<Enchere>) request.getAttribute("encheres"); %> 
+<% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); %>  
+
 
 <% // Extraction du code de formatage de date en dehors de la boucle
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");%>
@@ -32,29 +35,29 @@
 
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >
-		
+		<div><h1 style="color:pink;">BONJOUR GAUTHIER. NOUS TE SURVEILLONS. (merci pour les pains au choc mais on en veut d'autres)</h1></div>
 		<form action="">
-			<div class = "">  
-				<h2>Filtres</h2>
-			</div>
-			<div class="form-group">
-			  <fieldset>
-			    <label class="form-label mt-4" for="readOnlyInput"></label>
-			    <input class="form-control" id="readOnlyInput" type="text" placeholder="Le nom de l'article contient" readonly="">
-			  </fieldset>
-			</div>
-			<div class = "">  			
-				<div class="form-group">
-			      <label for="exampleSelect1" class="form-label mt-4">Catégorie</label>
-			      <select class="form-select" id="exampleSelect1">
-			        <option>Informatique</option>
-			        <option>Ameublement</option>
-			        <option>Vêtement</option>
-			        <option>Sport&Loisirs</option>
-			      </select>
-		   		</div>
-			</div>
-			
+			<div class = "row">  
+				<div class="col-8">
+					<h2>Filtres</h2>
+					<input type="text" class="form-control" 
+					id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contien ">
+					<div class="col-4">
+							Catégorie : 				
+					</div>						
+					<div class="form-group col-8">
+					    <select class="form-select" id="categorie" name="categorie">
+					    	<option>test</option>
+					    <% for (Categorie categorie: categories){%>
+					        <option><%=categorie.getLibelle() %></option>
+					    <%}%>	
+					    </select>
+					</div>
+				
+				</div>
+
+		</form>
+		
 			<div class = "col-8 offset-2"> 
 				<div class = "row mt-5">
 				<% for (Enchere enchere: encheres){%>
@@ -67,7 +70,7 @@
 								  </div>
 								  <div class="card-body">
 								  	<div class="alert alert-dismissible alert-secondary"><img src="<%= request.getContextPath()%>/img/article_<%= enchere.getArticleVendu().getNoArticle() %>.png" alt="Image de l'article <%=enchere.getArticleVendu().getNoArticle()%>" width="255" height="150"></div>
-								    <p class="card-text">prix : <%=enchere.getMontantEnchere()%> points</p>
+								    <p class="card-text">prix : <%= enchere.getMontantEnchere() %> points</p>
 	
 								    <p class="card-text">Fin de l'enchère : <%=enchere.getArticleVendu().getDateFinEncheres().format(formatter)%></p>					    
 	
@@ -78,7 +81,7 @@
 				<%}%>
 				</div>
 			</div>
-		</form>
+		
 			
 		</main>
 	<!----------------------- FOOTER ----------------------->
