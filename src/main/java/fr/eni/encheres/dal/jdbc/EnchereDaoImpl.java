@@ -17,17 +17,17 @@ import fr.eni.encheres.dal.EnchereDAO;
 //commentaire
 public class EnchereDaoImpl implements EnchereDAO {
 
-	// requete imbriquée pour recupéré le vendeur et non l'user qui a enchéri (user de l'article)
-	private final static String SELECT_ALL_ENCHERE = "SELECT e.*, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,u.pseudo FROM ENCHERES e "
-													+"INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+	// requete imbriquée pour recupérer le vendeur et non le dernier qui a enchéri (user de l'article)
+	private final static String SELECT_ALL_ENCHERE = "SELECT e.no_utilisateur,e.montant_enchere,a.no_article, a.nom_article , a.date_fin_encheres, a.no_utilisateur AS no_utilisateur_article,a.etat_vente,a.prix_initial,u.pseudo FROM ENCHERES e "
+													+"RIGHT JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
 													+"INNER JOIN UTILISATEURS u ON a.no_utilisateur=u.no_utilisateur " 
-													+"WHERE e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article)";
+													+"WHERE (e.montant_enchere = ( SELECT MAX(montant_enchere) FROM ENCHERES WHERE no_article = e.no_article) OR e.montant_enchere IS NULL) AND a.etat_vente='C'";
 
 
 	private final static String SELECT_ONE_ENCHERE = "SELECT * FROM ENCHERES e "
-			+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
-			+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
-			+ "where e.no_utilisateur = ? AND e.no_article = ?";
+													+ "INNER JOIN UTILISATEURS u ON e.no_utilisateur=u.no_utilisateur "
+													+ "INNER JOIN ARTICLES_VENDUS a ON e.no_article=a.no_article "
+													+ "where e.no_utilisateur = ? AND e.no_article = ?";
 	
 	@Override
 	public List<Enchere> selectAllEnchere() {
@@ -41,7 +41,7 @@ public class EnchereDaoImpl implements EnchereDAO {
 				encheres.add(new Enchere(
 						rs.getInt("montant_enchere"),
 						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
-						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),new Utilisateur(rs.getInt("no_utilisateur_article")))));
+						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
 			}
 			return encheres;
 			

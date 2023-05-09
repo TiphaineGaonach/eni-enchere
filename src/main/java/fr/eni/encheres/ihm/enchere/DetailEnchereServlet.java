@@ -9,9 +9,11 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.EnchereManager;
 
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -22,10 +24,12 @@ public class DetailEnchereServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    Integer noArticle =Integer.parseInt(request.getParameter("article"));
-	    Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
-	    
-	    Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
-	    request.setAttribute("enchere", enchere);
+	    //Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
+	    System.out.println("article = " + noArticle);
+	    //Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
+	    ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
+	    System.out.println("article :" + article);
+	    request.setAttribute("article", article);
 	    request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
 
 
