@@ -22,4 +22,11 @@ public class Categorie {
 	// Comm
 	
 	
+	public Categorie(Integer noCategorie, @NonNull String libelle) {
+		super();
+		this.noCategorie = noCategorie;
+		this.libelle = libelle;
+	}
+	
+	
 }

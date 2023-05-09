@@ -35,29 +35,30 @@
 
 		<!----------------------- MAIN ----------------------->
 		<main class= "row mt-5" >
-		<form action="">
-			<div class = "row">  
-				<div class="col-8">
-					<h2>Filtres</h2>
-					<input type="text" class="form-control" 
-					id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contien ">
-					<div class="col-4">
-							Catégorie : 				
-					</div>						
-					<div class="form-group col-8">
-					    <select class="form-select" id="categorie" name="categorie">
-					    	<option>test</option>
-					    <% for (Categorie categorie: categories){%>
-					        <option><%=categorie.getLibelle() %></option>
-					    <%}%>	
-					    </select>
+			<div class = "col-8 offset-2">
+				<form action="">
+					<div class = "row">  
+						<div class="col-8">
+							<h2>Filtres</h2>
+							<input type="text" class="form-control" 
+							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contien ">
+							<div class="col-4">
+									Catégorie : 				
+							</div>						
+							<div class="form-group col-8">
+							    <select class="form-select" id="categorie" name="categorie">
+							    	
+							    <% for (Categorie categorie: categories){%>
+							        <option><%=categorie.getLibelle() %></option>
+							    <%}%>	
+							    </select>
+							</div>
+						
+						</div>
 					</div>
-				
-				</div>
-
-		</form>
+				</form>
 		
-			<div class = "col-8 offset-2"> 
+			 
 				<div class = "row mt-5">
 				<% for (Enchere enchere: encheres){%>
 						<div class = "col-4">

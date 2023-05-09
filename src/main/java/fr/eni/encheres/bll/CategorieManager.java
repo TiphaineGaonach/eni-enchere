@@ -3,6 +3,7 @@ package fr.eni.encheres.bll;
 import java.util.List;
 
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.dal.DaoFactory;
 
 public class CategorieManager {
 
@@ -25,7 +26,7 @@ public class CategorieManager {
 	
 	public List<Categorie> getAllCategorie() {
 		// TODO Auto-generated method stub
-		return null;
+		return DaoFactory.getCategorieDao().selectAll();
 	}
 
 }

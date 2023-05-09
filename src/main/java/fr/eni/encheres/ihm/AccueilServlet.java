@@ -27,8 +27,9 @@ public class AccueilServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Enchere> encheres=EnchereManager.getInstance().getAllEnchere();
-	
+		List<Categorie> categories = CategorieManager.getInstance().getAllCategorie();
 		request.setAttribute("encheres", encheres);
+		request.setAttribute("categories", categories);
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
 	}
 
