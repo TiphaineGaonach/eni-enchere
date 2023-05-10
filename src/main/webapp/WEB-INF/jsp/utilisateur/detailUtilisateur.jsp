@@ -103,7 +103,7 @@
 											${empty utilisateur ? pseudo.ville : utilisateur.ville}
 										</div>
 									</div>
-									
+			<!-------------- BOUTONS -------------->									
 									<c:if test="${empty utilisateur}">
 										<div class=" ">
 											<a href="<%= request.getContextPath() %>/utilisateur/modifierMonCompte" class="btn btn-primary mt-3 col-12 " >Modifier l'utilisateur</a>
@@ -112,13 +112,7 @@
 								    
 								    
 								</div>
-								
-			
-			<!-------------- BOUTONS -------------->
-						
 
-				
-				
 				
 			</div>
 	

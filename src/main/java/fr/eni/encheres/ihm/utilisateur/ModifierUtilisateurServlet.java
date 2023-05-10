@@ -55,21 +55,22 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		if (motDePasse.equals(confirmation)) {
 			Utilisateur utilisateur = new Utilisateur(id, pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
 			System.out.println(utilisateur);
-			
-			//try {
-				UtilisateurManager.getInstance().updateUtilisateur(utilisateur);
-				//TODO ajoute messega de réussite si utilisateur modifier + modifie la session
-				session.setAttribute("pseudo", utilisateur);
-//			} catch (BusinessException e) {
-//				// TODO message d'erreur + retour à la modification
-//				request.setAttribute("erreurs", e.getErreurs());
-//				doGet(request, response);
-//			}
-			
-			
+				try {
+					UtilisateurManager.getInstance().updateUtilisateur(utilisateur);
+					//TODO ajoute message de réussite si utilisateur modifier + modifie la session
+					session.setAttribute("pseudo", utilisateur);
+					
+				} catch (BusinessException e) {
+					// TODO message d'erreur + retour à la modification
+					request.setAttribute("erreur", "Le pseudo ou l'email est déjà utilisé. Veuillez en choisir un autre");
+					request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/modifierUtilisateur.jsp")
+					.forward(request, response);
+					return;
+					//e.printStackTrace();
+				}
+		}else {
+			 request.setAttribute("erreur", "Les mots de passe ne sont pas identiques");
 		}
-		
-		
 		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/detailUtilisateur.jsp")
 		.forward(request, response);
 	}

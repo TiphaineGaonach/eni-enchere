@@ -27,7 +27,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
 	
-//comm
+
 	@Override
 	public void insert(Utilisateur utilisateur) throws BusinessException { 
 		try(Connection connection = ConnectionProvider.getConnection()) {
@@ -79,7 +79,7 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	
 
 	@Override
-	public void update(Utilisateur utilisateur) {
+	public void update(Utilisateur utilisateur) throws BusinessException { 
 		try(Connection connection = ConnectionProvider.getConnection()) {
 			
 			PreparedStatement pStmt = connection.prepareStatement(UPDATE_UTILISATEUR);
@@ -99,13 +99,11 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 			pStmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			throw new BusinessException ("Erreur update");
 		}	
 		
 	}
-
-	
-	
 	
 	@Override
 	public List<Utilisateur> selectAll() {

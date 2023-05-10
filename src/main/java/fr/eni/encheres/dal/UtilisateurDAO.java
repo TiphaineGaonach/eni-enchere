@@ -18,7 +18,7 @@ public interface UtilisateurDAO {
 
 	void delete(Utilisateur utilisateur);
 
-	void update(Utilisateur utilisateur);
+	void update(Utilisateur utilisateur) throws BusinessException;
 
 	Utilisateur selectByUser(String identifiant);
 
