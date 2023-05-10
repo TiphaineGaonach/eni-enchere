@@ -3,6 +3,7 @@ package fr.eni.encheres.bll;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
@@ -49,6 +50,36 @@ public class EnchereManager {
 	}
 
 
-
+	/* Methode surenchere
+	 *  On compare l'enchere avec la liste des encheres en BDD
+	 *  Si une enchere existe deja en BDD avec l'user et l'article
+	 *  On fait un update
+	 *  sinon on créé une nouvelle enchère
+	 */
+	public void surenchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) {
+		Enchere enchere = new Enchere(surenchere,utilisateur,article);		
+		
+		List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
+		
+		boolean enchereTrouvee = false;
+		
+		for (Enchere enchereBDD : encheres) {
+			if ((enchere.getArticleVendu().getNoArticle() == enchereBDD.getArticleVendu().getNoArticle())
+				&& (enchere.getUtilisateur().getNoUtilisateur() == enchereBDD.getUtilisateur().getNoUtilisateur())) {
+				
+	
+				EnchereManager.getInstance().updateEnchere(enchere) ;
+				
+				// on passe le parametre à true pour ne pas executer l'addEnchere
+				enchereTrouvee = true; 
+				break;
+			}
+		}
+		// s'il n'y a pas d'enchere existante en BDD
+		if (!enchereTrouvee) {  
+			EnchereManager.getInstance().addEnchere(enchere) ;
+			System.out.println(" JE SUIS SORTI DU FOR !!!!!!");
+		}
+	}
 	
 }

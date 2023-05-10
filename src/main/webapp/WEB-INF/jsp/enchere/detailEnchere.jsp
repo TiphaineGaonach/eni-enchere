@@ -132,6 +132,7 @@
 											<label for="enchere" >Ma proposition :</label>				
 										</div>
 										<div class="form-group col-2">
+											<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
 									    	<select  id="enchere" name="enchere">			
 									    		<option  value="<%= surenchere %>"><%= surenchere %></option>
 									    			<% for (int i = surenchere; i <= 9989; i += 10) { %>
@@ -162,47 +163,6 @@
 	
 	</main>
 	
-	
-	
-	
-<div class="row mt-5">
-  <div class="col-md-3 offset-md-1">
-    <img src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
-  </div>
-  <div class="col-md-7">
-    <div class="text-center">
-      <h3><span style="color:red; font-weight:bold;">Formulaire à créer</span></h3>
-      <p><%= article.getNomArticle() %></p>
-      <p>Description : <%= article.getDescription() %> </p>
-      <p>Catégorie : <span style="color:red; font-weight:bold;">A CREER </span></p>
-
-      <p>Retrait: <span style="color:red; font-weight:bold;">A CREER </span> </p>
-      <%-- <p>Vendeur: <%= enchere.getArticleVendu().getUtilisateur().getPseudo() %><span style="color:red; font-weight:bold;"> REQUETE A CREER</span> </p> --%>
-      
-	  	<form action="" method ="POST">
-	  				<p> champ caché ! il y a cet id dedans ! <%= article.getNoArticle() %></p>
-		 				<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
-		 			<p> fin champ caché</p>
-		 	<label for="enchere">Ma proposition :</label>		 		
-		 		<select id="enchere" name="enchere">
-
-		    		<option value="<%= surenchere %>"><%= surenchere %></option>
-		    			<% for (int i = surenchere; i <= 9989; i += 10) { %>
-		      				<option value="<%= i +10 %>"><%= i +10 %></option>
-		    			<% } %>
-		  		</select>
-		  		  		
-		  	<button type="submit">Enchérir</button>
-		  
-		</form>
-
-
-
-      
-      <p></p>
-    </div>
-  </div>
-</div>
 	
 
 </body>

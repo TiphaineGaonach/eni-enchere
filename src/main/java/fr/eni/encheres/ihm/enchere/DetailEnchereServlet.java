@@ -43,46 +43,22 @@ public class DetailEnchereServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer surenchere =   Integer.parseInt(request.getParameter("enchere"));
-		Integer noArticle = Integer.parseInt(request.getParameter("nom_article"));		
+		Integer noArticle = Integer.parseInt(request.getParameter("no_article"));		
 		Utilisateur session = (Utilisateur) request.getSession().getAttribute("pseudo");
 		Integer noUtilisateur = session.getNoUtilisateur();
 		
+		
 		ArticleVendu article = new ArticleVendu(noArticle);
-		Utilisateur utilisateur = new Utilisateur(noUtilisateur);
-		
-		
-		
-		/*
-		 *  On compare l'enchere avec la liste des encheres en BDD
-		 *  Si une enchere existe deja en BDD avec l'user et l'article
-		 *  On fait un update
-		 *  sinon on créé une nouvelle enchère
-		 */
-		
-		Enchere enchere = new Enchere(surenchere,utilisateur,article);
-		
-		
-		List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
-		
-		for (Enchere enchereBDD : encheres) {
-			if ((enchere.getArticleVendu().getNoArticle() == enchereBDD.getArticleVendu().getNoArticle())
-				&& (enchere.getUtilisateur().getNoUtilisateur() == enchereBDD.getUtilisateur().getNoUtilisateur())) {
-				System.out.println(" JE SUIS DANS LE IF DONC J'UPDATE !!!!!!");
-				System.out.println(" ENCHERE " + enchere);
-				EnchereManager.getInstance().updateEnchere(enchere) ;
-				break;
-			}
-				//EnchereManager.getInstance().addEnchere(enchere) ;
-			
-			System.out.println(" JE SUIS DANS LE IF MAIS SORTI DU FOR : BREAK ?");
-			EnchereManager.getInstance().addEnchere(enchere) ;
-			
-		}
-		
-		System.out.println(" JE SUIS SORTI DU FOR !!!!!!");
+		Utilisateur utilisateur = new Utilisateur(noUtilisateur);		
+
+		//Mise à jour d'une enchère
+		EnchereManager.getInstance().surenchere(surenchere, article, utilisateur);
 		
 		
 		doGet(request, response);
 	}
+
+
+
 
 }
