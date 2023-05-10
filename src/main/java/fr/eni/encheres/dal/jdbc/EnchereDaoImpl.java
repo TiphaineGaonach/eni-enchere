@@ -31,23 +31,23 @@ public class EnchereDaoImpl implements EnchereDAO {
 	
 	@Override
 	public List<Enchere> selectAllEnchere() {
-		try(Connection connection = ConnectionProvider.getConnection()){
-			List<Enchere> encheres = new ArrayList<>();
-			
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERE);
-			
-			while(rs.next()) {
-				encheres.add(new Enchere(
-						rs.getInt("montant_enchere"),
-						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
-						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
-			}
-			return encheres;
-			
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		try(Connection connection = ConnectionProvider.getConnection()){
+//			List<Enchere> encheres = new ArrayList<>();
+//			
+//			Statement stmt = connection.createStatement();
+//			ResultSet rs = stmt.executeQuery(SELECT_ALL_ENCHERE);
+//			
+//			while(rs.next()) {
+//				encheres.add(new Enchere(
+//						rs.getInt("montant_enchere"),
+//						new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
+//						new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate(),rs.getInt("prix_initial"),new Utilisateur(rs.getInt("no_utilisateur_article")))));
+//			}
+//			return encheres;
+//			
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 

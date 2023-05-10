@@ -62,7 +62,7 @@ public class AccueilServlet extends HttpServlet {
 		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
 		 
-		
+		System.out.println("articles : "+articlesAfficher);
 		
 		//doGet(request, response);
 	}
