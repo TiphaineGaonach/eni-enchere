@@ -20,4 +20,21 @@ public class Retrait {
 	//comm
 	
 	
+	/**
+	 * contructeur du point de retrain pour le DoPodt du Servlet créer une nouvelle vente
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+	public Retrait(@NonNull String rue, @NonNull String codePostal, @NonNull String ville) {
+		super();
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
+	
+	
+	
+	
+	
 }

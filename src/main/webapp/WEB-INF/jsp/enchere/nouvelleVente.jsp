@@ -49,7 +49,7 @@
 							</div>						
 							<div class="form-group col-8">
 						    	<select class="form-select" id="categorie" name="categorie">
-						    		<option>test</option>
+						    		
 						    	<% for (Categorie categorie: categories){%>
 						        	<option><%=categorie.getLibelle() %></option>
 						        <%}%>	
@@ -68,14 +68,18 @@
 							<div class="col-4">
 								Mise à prix : 				
 							</div>
-							<div class="form-group col-8">
-						    	<select class="form-select " id="miseAPrix" name ="miseAPrix" size="4">
-						    		<% for (int i = 0; i < 100; i++) {%>
-						        	<option><%=i %></option>
-						        	<%}%>
+							<div class="col-8">
+								<input type="text" class="form-control" 
+								id="miseAPrix" name="miseAPrix" pattern="[a-zA-Z0-9]+" value=""  placeholder="">						
+							</div>
+<!-- 							<div class="form-group col-8"> -->
+<!-- 						    	<select class="form-select " id="miseAPrix" name ="miseAPrix" size="4"> -->
+<%-- 						    		<% for (int i = 0; i < 100; i++) {%> --%>
+<%-- 						        	<option><%=i %></option> --%>
+<%-- 						        	<%}%> --%>
 						        	
-						    	</select>
-						    </div>
+<!-- 						    	</select> -->
+<!-- 						    </div> -->
 						</div>
 						<div class=" row mt-4">
 							<div class="col-4">
@@ -83,7 +87,7 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="dateDebutEncheres" name="dateDebutEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="jj/mm/aaaa">						
+								id="dateDebutEncheres" name="dateDebutEncheres" pattern="[0-9/]+" value=""  placeholder="jj/mm/aaaa">						
 							</div>
 						</div>
 						<div class=" row mt-4">
@@ -92,7 +96,7 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="dateFinEncheres" name="dateFinEncheres" pattern="[a-zA-Z0-9]+" value=""  placeholder="jj/mm/aaaa">						
+								id="dateFinEncheres" name="dateFinEncheres" pattern="[0-9/]+" value=""  placeholder="jj/mm/aaaa">						
 							</div>
 						</div>
 						
@@ -105,7 +109,7 @@
 										</div>
 										<div class="col-8">
 											<input type="text" class="form-control" 
-											id="rue" name="rue" pattern="[a-zA-Z0-9]+" value="${pseudo.rue }"  placeholder="">						
+											id="rue" name="rue" pattern="[a-zA-Z0-9 ]+" value="${pseudo.rue }"  placeholder="">						
 										</div>
 									</div>
 									<div class=" row mt-4">

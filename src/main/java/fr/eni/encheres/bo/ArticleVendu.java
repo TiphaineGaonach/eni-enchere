@@ -98,8 +98,37 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 	}
 
+	/**
+	 * Contructeur des articles à vendre pour la servlet Nouvelle Article DoPost
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param categorie
+	 * @param utilisateur
+	 * @param retrait
+	 */
+	public ArticleVendu(@NonNull String nomArticle, @NonNull String description, @NonNull LocalDate dateDebutEncheres,
+			@NonNull LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, char etatVente,
+			@NonNull Categorie categorie, @NonNull Utilisateur utilisateur) {
+		super();
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.categorie = categorie;
+		this.utilisateur = utilisateur;
+		
+	}
 
 
+	
 
 	
 	

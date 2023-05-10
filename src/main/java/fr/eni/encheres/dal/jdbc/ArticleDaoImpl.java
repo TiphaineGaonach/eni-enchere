@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.mysql.cj.exceptions.PasswordExpiredException;
+
+
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
@@ -65,7 +67,11 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ "no_article = ?, nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, etat_vente=? "
 			+ "WHERE id = ?,?,?,?,?,?,?";
 	private final static String INSERT_ARTICLE = "INSERT INTO ARTICLES_VENDUS ("
-			+ "nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, ) VALUES (?,?,?,?,?)";
+			+ "nom_article, description,"
+			+ " date_debut_encheres, date_fin_encheres,"
+			+ " prix_initial,prix_vente, "
+			+ "no_utilisateur, no_categorie, "
+			+ "etat_vente  ) VALUES (?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
 	
 	
@@ -80,8 +86,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLES);
 			
-			while(rs.next()) {
-				System.out.println("test ici");
+			while(rs.next()) {				
 				Categorie categorie= new Categorie(
 						rs.getInt("no_categorie"),
 						
@@ -210,7 +215,25 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 	@Override
 	public void insert(ArticleVendu articleVendu) {
-		// TODO Auto-generated method stub
+		
+		try(Connection connection = ConnectionProvider.getConnection()){
+			
+			PreparedStatement  stmt = connection.prepareStatement(
+											INSERT_ARTICLE,
+											PreparedStatement.RETURN_GENERATED_KEYS
+										);
+			prepareArticleSQL(articleVendu, stmt);// Extrait les info de l'objet Truc pour le stmt
+			
+			
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next()) {
+				articleVendu.setNoArticle(rs.getInt(1));// Récup de l'ID pour redirection ou complesion de l'objet Truc
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -223,6 +246,20 @@ public class ArticleDaoImpl implements ArticleDAO{
 	@Override
 	public void update(ArticleVendu articleVendu) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	private void prepareArticleSQL(ArticleVendu articleVendu, PreparedStatement stmt) throws SQLException {
+		stmt.setString(1, articleVendu.getNomArticle());// pour ajouter un String
+		stmt.setString(2, articleVendu.getDescription());
+		stmt.setDate(3,Date.valueOf(articleVendu.getDateDebutEncheres()));
+		stmt.setDate(4,Date.valueOf(articleVendu.getDateFinEncheres()));
+		stmt.setInt(5, articleVendu.getMiseAPrix());
+		stmt.setInt(6, articleVendu.getPrixVente());
+		stmt.setInt(7, articleVendu.getUtilisateur().getNoUtilisateur());
+		stmt.setInt(8, articleVendu.getCategorie().getNoCategorie());
+		stmt.setString(9, Character.toString(articleVendu.getEtatVente()));
+		
 		
 	}
 
