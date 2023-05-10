@@ -24,7 +24,8 @@ public class SuprimerUtilisateurServlet extends HttpServlet {
 		UtilisateurManager.getInstance().deleteUtilisateur(utilisateur);
 		session.removeAttribute("pseudo");
 		System.out.println("servlet suprimer le compte");
-		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+		//request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/");
 	}
 
 }
