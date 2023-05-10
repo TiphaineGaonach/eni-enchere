@@ -28,7 +28,7 @@ public class ArticleVendu {
 	private char etatVente; 
 	@NonNull private Categorie categorie;
 	@NonNull private Utilisateur utilisateur;
-	private List<Enchere> encheres;
+	private Enchere enchereMax;
 	private Retrait retrait;
 	
 	public ArticleVendu(Integer noArticle) {
@@ -98,19 +98,33 @@ public class ArticleVendu {
 	}
 
 
-
+	/**
+	 * Contructeur article à afficher pour servlet détaille article 
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param description
+	 * @param dateDebutEncheres
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 */
 	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull String description,
-			@NonNull LocalDate dateDebutEncheres, @NonNull LocalDate dateFinEncheres, Integer miseAPrix,
-			Integer prixVente, char etatVente) {
+			 @NonNull LocalDate dateFinEncheres, Integer miseAPrix,
+			Integer prixVente, char etatVente, 
+			Categorie categorie, Utilisateur utilisateur, Enchere enchereMax, Retrait retrait) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
-		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.categorie = categorie;
+		this.utilisateur = utilisateur;
+		this.enchereMax = enchereMax;
+		this.retrait = retrait;
 	}
 
 	/**

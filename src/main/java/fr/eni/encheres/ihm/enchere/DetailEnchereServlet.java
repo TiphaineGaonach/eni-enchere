@@ -27,6 +27,7 @@ public class DetailEnchereServlet extends HttpServlet {
 	    //Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
 	    //Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
 	    ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
+	    System.out.println("article à détailler : "+article);
 	    request.setAttribute("article", article);
 	    
 	    //on definit le montant minimum de surenchère (montant max de l'enchere +10)

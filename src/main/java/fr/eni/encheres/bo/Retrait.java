@@ -32,6 +32,9 @@ public class Retrait {
 		this.codePostal = codePostal;
 		this.ville = ville;
 	}
+
+
+	
 	
 	
 	

@@ -25,13 +25,20 @@ public class Enchere {
 	@NonNull private ArticleVendu articleVendu;
 	
 	
-	//*** SYLVAIN -> constructeur pour le selectAllEnchere de EnchereDaoImpl 
+	//*** SYLVAIN -> constructeur pour le selectAllEnchere de EnchereDaoImpl -> encore utilisée ?
 	public Enchere(@NonNull Integer montantEnchere, @NonNull Utilisateur utilisateur,
 			@NonNull ArticleVendu articleVendu) {
 		super();
 		this.montantEnchere = montantEnchere;
 		this.utilisateur = utilisateur;
 		this.articleVendu = articleVendu;
+	}
+
+
+	public Enchere(@NonNull Integer montantEnchere, @NonNull Utilisateur utilisateur) {
+		super();
+		this.montantEnchere = montantEnchere;
+		this.utilisateur = utilisateur;
 	}
 	
 	

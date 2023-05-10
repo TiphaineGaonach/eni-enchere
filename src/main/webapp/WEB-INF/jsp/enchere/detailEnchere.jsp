@@ -18,9 +18,124 @@
 		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
 	</header>
 	
-		<div class="row text-center">
-		<h1>Détail Vente </h1>
-	</div>
+	<main>
+		<h1 class="text-center"> Détail Vente</h1>
+		
+		<div class="container	col-12  		col-xxl-8 offset-xxl-2">
+			<div class="row">
+				<div class="col-4">
+				<div class="alert alert-dismissible alert-secondary"><img src="#" alt="Image de l'article "></div>
+				
+				</div>
+				<form action="" method="POST" >
+					<div class=" col-8">
+						<div class=" row mt-4">
+							<div class="col-4">
+								Article : 				
+							</div>
+							<div class="col-8">
+								${article.nomArticle}
+							</div>
+						</div>
+						<div class=" row mt-4">
+							<div class="col-4">
+								Description : 				
+							</div>
+							<div class="col-8">
+								${article.description}
+							</div>
+						</div>
+						<div class=" row mt-4">
+							<div class="col-4">
+								Catégorie : 				
+							</div>						
+							<div class="form-group col-8">
+						    	${article.categorie.libelle}
+						    </div>	
+						</div>
+						
+						<div class=" row mt-4">
+							<div class="col-4">
+								Meilleur Offre : 				
+							</div>
+							<div class="form-group col-8">
+						    	${article.prixVente} par ${article.enchereMax.utilisateur.pseudo }
+						    </div>
+							
+						</div>
+						<div class=" row mt-4">
+							<div class="col-4">
+								Mise à prix : 				
+							</div>
+							<div class="form-group col-8">
+						    	${article.miseAPrix} 
+						    </div>
+							
+						</div>
+						
+						<div class=" row mt-4">
+							<div class="col-4">
+								Fin de l'enchère : 				
+							</div>
+							<div class="form-group col-8">
+						    	${article.dateFinEncheres}
+						    </div>
+						</div>
+						
+						<div class="card text-white bg-primary mb-3 mt-4 col-12" >			
+								<div class="card-header text-center"><h3>Retrait</h3></div>
+								<div class="card-body">	
+									<div class=" row mt-4">
+										<div class="col-4">
+											Rue : 				
+										</div>
+										<div class="form-group col-8">
+									    	${article.retrait.rue}
+									    </div>
+									</div>
+									<div class=" row mt-4">
+										<div class="col-4">
+											Code postal :			
+										</div>
+										<div class="form-group col-8">
+									    	${article.retrait.codePostal}
+									    </div>
+									</div>
+									<div class=" row mt-4">
+										<div class="col-4">
+											Ville :			
+										</div>
+										<div class="form-group col-8">
+									    	${article.retrait.ville}
+									    </div>
+									</div>			
+						 		</div>
+						</div>	
+						
+						
+						<div class=" row mt-4">
+							<div class="col-4">
+								Vendeur : 				
+							</div>
+							<div class="form-group col-8">
+						    	${article.utilisateur.pseudo}
+						    </div>
+						</div>
+											
+					</div>
+				</form>	
+			</div>	
+		
+		
+		
+		</div>
+		
+		
+	
+	</main>
+	
+	
+	
 	
 <div class="row">
   <div class="col-md-3 offset-md-1">
@@ -38,7 +153,7 @@
       
 	  	<form action="" method ="POST">
 	  				<p> champ caché ! il y a cet id dedans ! <%= article.getNoArticle() %></p>
-		 				<input type="hidden" name="nom_article" value="<%= article.getNoArticle() %>">
+		 				<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
 		 			<p> fin champ caché</p>
 		 	<label for="enchere">Ma proposition :</label>		 		
 		 		<select id="enchere" name="enchere">
