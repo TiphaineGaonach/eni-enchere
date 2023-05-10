@@ -33,8 +33,9 @@ public class Enchere {
 		this.utilisateur = utilisateur;
 		this.articleVendu = articleVendu;
 	}
-	
-	
+
+
+
 	
 	
 	

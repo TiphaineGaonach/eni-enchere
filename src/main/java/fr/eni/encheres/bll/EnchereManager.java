@@ -1,5 +1,6 @@
 package fr.eni.encheres.bll;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import fr.eni.encheres.bo.Enchere;
@@ -35,6 +36,18 @@ public class EnchereManager {
 		// TODO Auto-generated method stub
 		return daoE.selectOneEnchere(noUtilisateur,noArticle);
 	}
+	
+	
+	public void addEnchere(Enchere enchere) {
+		
+		daoE.insertEnchere(enchere);
+	}
+
+	public void updateEnchere(Enchere enchere) {
+		daoE.updateEnchere(enchere);
+		
+	}
+
 
 
 	
