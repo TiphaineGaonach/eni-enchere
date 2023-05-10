@@ -88,7 +88,7 @@ public class UtilisateurManager {
 	
 	/************************* Check *************************/
 	
-	
+	/** checkUtilisateur **/
 	private void checkUtilisateur(Utilisateur utilisateur) throws BusinessException {
 		BusinessException be = new BusinessException();
 		checkField(utilisateur.getPseudo(), "pseudo", be);
