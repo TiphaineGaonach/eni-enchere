@@ -77,6 +77,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 			ResultSet rs = stmt.executeQuery(SELECT_ALL_ARTICLES);
 			
 			while(rs.next()) {				
+
 				Categorie categorie= new Categorie(
 						rs.getInt("no_categorie"),
 						
@@ -110,7 +111,31 @@ public class ArticleDaoImpl implements ArticleDAO{
 	}	
 	
 	
-	
+	@Override
+	public ArticleVendu selectOne(int id) {
+		try(Connection connection = ConnectionProvider.getConnection()){
+			
+			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ARTICLE);
+			
+			stmt.setInt(1,id);
+			ResultSet rs = stmt.executeQuery();
+			
+			
+			if(rs.next()) {
+						return new ArticleVendu(rs.getInt("no_article"),
+						rs.getString("nom_article"),
+						rs.getString("description"),
+						rs.getDate("date_debut_encheres").toLocalDate(),
+						rs.getDate("date_fin_encheres").toLocalDate(),
+						rs.getInt("prix_initial"),
+						rs.getInt("prix_vente"),						
+						rs.getString("etat_vente").charAt(0));
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	
 //	@Override
@@ -156,31 +181,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 //		return null;
 //	}
 
-	@Override
-	public ArticleVendu selectOne(int id) {
-		try(Connection connection = ConnectionProvider.getConnection()){
-			
-			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ARTICLE);
-			
-			stmt.setInt(1,id);
-			ResultSet rs = stmt.executeQuery();
-			
-			
-			if(rs.next()) {
-						return new ArticleVendu(rs.getInt("no_article"),
-						rs.getString("nom_article"),
-						rs.getString("description"),
-						rs.getDate("date_debut_encheres").toLocalDate(),
-						rs.getDate("date_fin_encheres").toLocalDate(),
-						rs.getInt("prix_initial"),
-						rs.getInt("prix_vente"),						
-						rs.getString("etat_vente").charAt(0));
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+
 
 	@Override
 	public void insert(ArticleVendu articleVendu) {

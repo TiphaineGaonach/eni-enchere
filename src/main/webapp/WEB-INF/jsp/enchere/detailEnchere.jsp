@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <% ArticleVendu article = (ArticleVendu) request.getAttribute("article"); %>
+<%int surenchere = (int) request.getAttribute("surenchere"); %>
     
     
 <!DOCTYPE html>
@@ -34,7 +35,27 @@
 
       <p>Retrait: <span style="color:red; font-weight:bold;">A CREER </span> </p>
       <%-- <p>Vendeur: <%= enchere.getArticleVendu().getUtilisateur().getPseudo() %><span style="color:red; font-weight:bold;"> REQUETE A CREER</span> </p> --%>
-      <p>Ma Proposition : <span style="color:red; font-weight:bold;">A CREER : liste déroulante    </span> <button type="submit">Enchérir</button></p>
+      
+	  	<form action="" method ="POST">
+	  				<p> champ caché ! il y a cet id dedans ! <%= article.getNoArticle() %></p>
+		 				<input type="hidden" name="nom_article" value="<%= article.getNoArticle() %>">
+		 			<p> fin champ caché</p>
+		 	<label for="enchere">Ma proposition :</label>		 		
+		 		<select id="enchere" name="enchere">
+
+		    		<option value="<%= surenchere %>"><%= surenchere %></option>
+		    			<% for (int i = surenchere; i <= 9989; i += 10) { %>
+		      				<option value="<%= i +10 %>"><%= i +10 %></option>
+		    			<% } %>
+		  		</select>
+		  		  		
+		  	<button type="submit">Enchérir</button>
+		  
+		</form>
+
+
+
+      
       <p></p>
     </div>
   </div>

@@ -25,11 +25,13 @@ public class DetailEnchereServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    Integer noArticle =Integer.parseInt(request.getParameter("article"));
 	    //Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
-	    System.out.println("article = " + noArticle);
 	    //Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
 	    ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
-	    System.out.println("article :" + article);
 	    request.setAttribute("article", article);
+	    
+	    //on definit le montant minimum de surenchère (montant max de l'enchere +10)
+	    request.setAttribute("surenchere", article.getPrixVente()+10);
+	    
 	    request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
 
 
@@ -37,7 +39,8 @@ public class DetailEnchereServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		String surenchere = request.getParameter("enchere");
+		System.out.println(" JE SUIS DANS LE POST ET J'AI UNE VARIABLE : " + surenchere);
 		doGet(request, response);
 	}
 
