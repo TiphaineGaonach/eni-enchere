@@ -13,6 +13,9 @@
 <title>Detail Vente</title>
 </head>
 <body>
+	
+	<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
+						 			
 
 	<header class="row">
 		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
@@ -21,16 +24,18 @@
 	<main>
 		<h1 class="text-center"> Détail Vente</h1>
 		
-		<div class="container	col-12  		col-xxl-8 offset-xxl-2">
-			<div class="row">
-				<div class="col-4">
-				<div class="alert alert-dismissible alert-secondary"><img src="#" alt="Image de l'article "></div>
+		<div >
+<!-- 		//col-l-10 offset-l-1	col-xl-8 offset-xl-2	col-xxl-6 offset-xxl-3 mt-4 -->
+			
+
 				
-				</div>
-				<form action="" method="POST" >
-					<div class=" col-8">
+				<div class="row ">
+					<div class="col-3 offset-1 ">
+				    	<img class="img-thumbnail" src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
+				 	</div>
+					<div class=" col-6 offset-1 ">
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Article : 				
 							</div>
 							<div class="col-8">
@@ -38,7 +43,7 @@
 							</div>
 						</div>
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Description : 				
 							</div>
 							<div class="col-8">
@@ -46,7 +51,7 @@
 							</div>
 						</div>
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Catégorie : 				
 							</div>						
 							<div class="form-group col-8">
@@ -55,7 +60,7 @@
 						</div>
 						
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Meilleur Offre : 				
 							</div>
 							<div class="form-group col-8">
@@ -64,7 +69,7 @@
 							
 						</div>
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Mise à prix : 				
 							</div>
 							<div class="form-group col-8">
@@ -74,7 +79,7 @@
 						</div>
 						
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Fin de l'enchère : 				
 							</div>
 							<div class="form-group col-8">
@@ -82,11 +87,11 @@
 						    </div>
 						</div>
 						
-						<div class="card text-white bg-primary mb-3 mt-4 col-12" >			
+						<div class="card text-white bg-primary mb-3 mt-4 col-12 col-xxl-8" >			
 								<div class="card-header text-center"><h3>Retrait</h3></div>
 								<div class="card-body">	
 									<div class=" row mt-4">
-										<div class="col-4">
+										<div class="col-4 col-xxl-3">
 											Rue : 				
 										</div>
 										<div class="form-group col-8">
@@ -94,7 +99,7 @@
 									    </div>
 									</div>
 									<div class=" row mt-4">
-										<div class="col-4">
+										<div class="col-4 col-xxl-3" >
 											Code postal :			
 										</div>
 										<div class="form-group col-8">
@@ -102,7 +107,7 @@
 									    </div>
 									</div>
 									<div class=" row mt-4">
-										<div class="col-4">
+										<div class="col-4 col-xxl-3">
 											Ville :			
 										</div>
 										<div class="form-group col-8">
@@ -114,17 +119,40 @@
 						
 						
 						<div class=" row mt-4">
-							<div class="col-4">
+							<div class="col-4 col-xxl-2">
 								Vendeur : 				
 							</div>
 							<div class="form-group col-8">
 						    	${article.utilisateur.pseudo}
 						    </div>
 						</div>
+						<form action="" method ="POST" class="mt-4 row ">
+									<div class=" row mt-4">
+										<div class="col-4 col-xxl-2">
+											<label for="enchere" >Ma proposition :</label>				
+										</div>
+										<div class="form-group col-2">
+									    	<select  id="enchere" name="enchere">			
+									    		<option  value="<%= surenchere %>"><%= surenchere %></option>
+									    			<% for (int i = surenchere; i <= 9989; i += 10) { %>
+									      				<option value="<%= i +10 %>"><%= i +10 %></option>
+									    			<% } %>
+									  		</select>
+									    </div>
+									    <div class="form-group col-4">
+									    	<button type="submit">Enchérir</button>
+									    </div>
+									</div>	
+						
+						
+						 	
+						  
+						</form>
 											
 					</div>
-				</form>	
-			</div>	
+				</div>	
+					
+				
 		
 		
 		
@@ -137,7 +165,7 @@
 	
 	
 	
-<div class="row">
+<div class="row mt-5">
   <div class="col-md-3 offset-md-1">
     <img src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
   </div>

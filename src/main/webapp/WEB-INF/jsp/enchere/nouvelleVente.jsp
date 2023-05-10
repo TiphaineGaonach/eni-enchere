@@ -15,16 +15,13 @@
 		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
 	</header>
 	<main>
-		<h1 class="text-center"> Nouvelle vente</h1>
+		<h1 class="text-center mt-4"> Nouvelle vente</h1>
 		
-		<div class="container	col-12  		col-xxl-8 offset-xxl-2">
+		<div class="container	col-12  col-l-10 offset-l-1	col-xl-8 offset-xl-2	col-xxl-6 offset-xxl-3 mt-4">
 			<div class="row">
-				<div class="col-4">
-				<div class="alert alert-dismissible alert-secondary"><img src="#" alt="Image de l'article "></div>
-				
-				</div>
+			
 				<form action="" method="POST" >
-					<div class=" col-8">
+					<div class=" col-12">
 						<div class=" row mt-4">
 							<div class="col-4">
 								Article : 				
