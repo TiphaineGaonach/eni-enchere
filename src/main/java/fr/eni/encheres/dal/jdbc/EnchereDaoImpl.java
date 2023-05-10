@@ -53,23 +53,23 @@ public class EnchereDaoImpl implements EnchereDAO {
 
 	@Override
 	public Enchere selectOneEnchere(Integer noUtilisateur, Integer noArticle) {
-		try(Connection connection = ConnectionProvider.getConnection()){
-			
-			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ENCHERE);
-			
-			stmt.setInt(1,noUtilisateur);
-			stmt.setInt(2,noArticle);
-			ResultSet rs = stmt.executeQuery();
-			
-			if(rs.next()) {
-						return new Enchere(rs.getObject("date_enchere", LocalDateTime.class),
-								rs.getInt("montant_enchere"),
-								new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
-								new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate()));
-			}
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		try(Connection connection = ConnectionProvider.getConnection()){
+//			
+//			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ENCHERE);
+//			
+//			stmt.setInt(1,noUtilisateur);
+//			stmt.setInt(2,noArticle);
+//			ResultSet rs = stmt.executeQuery();
+//			
+//			if(rs.next()) {
+//						return new Enchere(rs.getObject("date_enchere", LocalDateTime.class),
+//								rs.getInt("montant_enchere"),
+//								new Utilisateur(rs.getInt("no_utilisateur"),rs.getString("pseudo")),
+//								new ArticleVendu(rs.getInt("no_article"),rs.getString("nom_article"),rs.getDate("date_fin_encheres").toLocalDate()));
+//			}
+//		}catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 		return null;
 	}
 	
