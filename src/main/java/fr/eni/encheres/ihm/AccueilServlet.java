@@ -61,10 +61,12 @@ public class AccueilServlet extends HttpServlet {
 		
 		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
-		 
-		System.out.println("articles : "+articlesAfficher);
+
+		 System.out.println("servlet accueil list article vendu " + articlesAfficher);
+		request.setAttribute("articleVendus", articlesAfficher);
 		
-		//doGet(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
+
 	}
 
 }

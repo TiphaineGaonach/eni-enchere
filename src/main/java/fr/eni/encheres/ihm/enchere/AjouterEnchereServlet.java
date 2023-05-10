@@ -51,12 +51,15 @@ public class AjouterEnchereServlet extends HttpServlet {
 		// recup de la categorie
 		List<Categorie> categories= CategorieManager.getInstance().getAllCategorie();		
 		String categorieVente = request.getParameter("categorie");// extraire la catégorie de l'article
+		System.out.println("catégiroe à vendre : "+ categorieVente );
 		Categorie categorie = new Categorie(); 
 		for (Categorie c : categories) {
-				if (c.equals(categorieVente)) {
+			System.out.println(" catégorie tester : "+c);
+				if (c.getLibelle().equals(categorieVente)) {
 					categorie=c;
 				}
 		}
+		System.out.println("la categorie créé est : " + categorie);
 		
 		
 		// recup des dates
@@ -66,13 +69,18 @@ public class AjouterEnchereServlet extends HttpServlet {
 		
 		date = request.getParameter("dateFinEncheres");
 		 dates = date.split("/");
-		LocalDate dateFinEncheres =LocalDate.of(Integer.parseInt(dates[2]), Integer.parseInt(dates[1]), Integer.parseInt(dates[0]));
-		// creation de l'article et recup de l'id
-		ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, categorie, (Utilisateur)session.getAttribute("pseudo") );
+		 LocalDate dateFinEncheres =LocalDate.of(Integer.parseInt(dates[2]), Integer.parseInt(dates[1]), Integer.parseInt(dates[0]));
+
+		 // creation de l'article et recup de l'id
+		ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, miseAPrix, 'N', categorie, (Utilisateur)session.getAttribute("pseudo"));
+		//ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, categorie, (Utilisateur)session.getAttribute("pseudo") );
+		System.out.println(" l'article créer est : "+ article);
 		try {
+			
 			ArticleManager.getInstance().addArticleVendu(article);
 		
 			if(article.getNoArticle()>0) {
+				System.out.println(" l'id de l'article créer est : " + article.getNoArticle());
 				// l'article à bien un id ( et donc a été enregistré, ) création du retrait
 				
 				String rue = request.getParameter("rue");
@@ -81,9 +89,7 @@ public class AjouterEnchereServlet extends HttpServlet {
 				Retrait retrait = new Retrait(rue, codePostal, ville, article);
 				// enregistre le retrait
 				RetraitManager.getInstance().addRetrait(retrait);
-				//misse à jour de l'article avec le retrait.
-				article.setRetrait(retrait);
-				ArticleManager.getInstance().updateArticleVendu(article);
+				
 			}
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block

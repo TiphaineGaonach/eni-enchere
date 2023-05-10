@@ -36,10 +36,12 @@ public class ArticleManager {
 		// TODO Auto-generated method stub
 		List<ArticleVendu> articlesRechercher = getAllArticleVendus();
 		
-		
+		System.out.println(" article manager,getRechercheArticleVendus, liste à filtrer"+ articlesRechercher);
 			for (ArticleVendu articleVendu : articlesRechercher) {
 				// vire ce qui n'est pas de la bonne catégorie
+				System.out.println(recherche.getCategorie());
 				if (recherche.getCategorie()!=null && recherche.getCategorie()!=articleVendu.getCategorie()) {
+					System.out.println("l'article retirer est : "+articleVendu);
 					articlesRechercher.remove(articleVendu);
 				}
 				// vire ce qui ne comtien pas le mot clef
@@ -53,9 +55,9 @@ public class ArticleManager {
 			}
 		
 		
+		System.out.println("article manager, getRechercheArticleVendus, liste à rendre: " + articlesRechercher);
 		
-		
-		return null;
+		return articlesRechercher;
 	}
 	
 	/** recup un ArticleVendu **/
