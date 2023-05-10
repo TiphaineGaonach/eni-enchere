@@ -10,8 +10,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
@@ -32,8 +34,13 @@ public class AjouterEnchereServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//request.setAttribute("categories", CategorieManager.getInstance().getAll());
 		List<Categorie> categories = CategorieManager.getInstance().getAllCategorie();
-		
 		request.setAttribute("categories", categories);
+		
+        Date date = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = formatter.format(date);
+        request.setAttribute("currentDate", currentDate);
+		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/enchere/nouvelleVente.jsp") // on délégue a la jsp
 		.forward(request, response);

@@ -30,7 +30,7 @@
 		
 };
 %>
-			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="padding-right: 20px; padding-left: 20px;">
 			  <div class="container-fluid">
 			    <a class="navbar-brand" href="<%=request.getContextPath()%>">
 			    <img alt="Trocencheres.fr" width="60" src="<%=request.getContextPath() %>/img/logoMarteau.png">
@@ -40,7 +40,7 @@
 			    </button>
 			    
 			    <div class="collapse navbar-collapse" id="navbarColor01">
-			      <ul class="navbar-nav me-auto">
+			      <ul class="navbar-nav ms-auto" style="font-size: 20px;">
 			        
 			        
 			        <% for(String[] item : menu ){%>
@@ -67,10 +67,6 @@
 			       <% } } %>
 			        
 			      </ul>
-			      <form class="d-flex">
-			        <input class="form-control me-sm-2" type="search" placeholder="Search">
-			        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-			      </form>
 			    </div>
 			  </div>
 			</nav>

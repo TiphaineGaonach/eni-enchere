@@ -28,7 +28,7 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="nomArticle" name="nomArticle" pattern="[a-zA-Z0-9]+" value=""  placeholder="">						
+								id="nomArticle" name="nomArticle" value=""  placeholder="">						
 							</div>
 						</div>
 						<div class=" row mt-4">
@@ -37,7 +37,7 @@
 							</div>
 							<div class="col-8">
 								<textarea type="text" class="form-control" 
-								id="description" name="description" pattern="[a-zA-Z0-9]+" value=""  placeholder=""></textarea>						
+								id="description" name="description" value=""  placeholder=""></textarea>						
 							</div>
 						</div>
 						<div class=" row mt-4">
@@ -67,7 +67,8 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="miseAPrix" name="miseAPrix" pattern="[a-zA-Z0-9]+" value=""  placeholder="">						
+								id="miseAPrix" name="miseAPrix" pattern="[0-9]+" value=""  placeholder="">
+								<span class="error">Le prix ne peut être composé que de chiffres</span>						
 							</div>
 <!-- 							<div class="form-group col-8"> -->
 <!-- 						    	<select class="form-select " id="miseAPrix" name ="miseAPrix" size="4"> -->
@@ -84,7 +85,8 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="dateDebutEncheres" name="dateDebutEncheres" pattern="[0-9/]+" value=""  placeholder="jj/mm/aaaa">						
+								id="dateDebutEncheres" name="dateDebutEncheres" pattern="[0-9/]+" value="${currentDate}"  placeholder="jj/mm/aaaa">
+								<span class="error">Format date : jj/mm/aaaa</span>							
 							</div>
 						</div>
 						<div class=" row mt-4">
@@ -93,7 +95,8 @@
 							</div>
 							<div class="col-8">
 								<input type="text" class="form-control" 
-								id="dateFinEncheres" name="dateFinEncheres" pattern="[0-9/]+" value=""  placeholder="jj/mm/aaaa">						
+								id="dateFinEncheres" name="dateFinEncheres" pattern="[0-9/]+" value=""  placeholder="jj/mm/aaaa">	
+								<span class="error">Format date : jj/mm/aaaa</span>					
 							</div>
 						</div>
 						

@@ -42,6 +42,7 @@
 					<div class = "row">  
 						<div class="col-8">
 							<h2>Filtres</h2>
+							
 							<input type="text" class="form-control" 
 							id="motClef" name="motClef" pattern="[a-zA-Z0-9]+" value=""  placeholder=" le nom de l'article contient ">
 
@@ -117,7 +118,7 @@
 							
 							
 						</div>
-						<div class="col-4">
+						<div class="col-4" style= "margin-top: 40px;">
 							<button type="submit" class="btn btn-primary mt-3 col-4" >Rechercher</button>
 						</div>
 					</div>

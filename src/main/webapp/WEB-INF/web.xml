@@ -3,7 +3,7 @@
 
  <error-page>
     <error-code>500</error-code>
-    <location>/WEB-INF/errors/error500.html</location>
+    <location>/WEB-INF/errors/error500.jsp</location>
  </error-page>
 
 <error-page>
