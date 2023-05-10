@@ -32,7 +32,9 @@
 %>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			  <div class="container-fluid">
-			    <a class="navbar-brand" href="<%=request.getContextPath()%>">Projet eni-Enchères</a>
+			    <a class="navbar-brand" href="<%=request.getContextPath()%>">
+			    <img alt="Trocencheres.fr" width="60" src="<%=request.getContextPath() %>/img/logoMarteau.png">
+			    </a>
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
