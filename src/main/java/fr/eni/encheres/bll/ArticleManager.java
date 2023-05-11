@@ -2,6 +2,7 @@ package fr.eni.encheres.bll;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
@@ -37,29 +38,52 @@ public class ArticleManager {
 	
 	public List<ArticleVendu> getRechercheArticleVendus(Recherche recherche) {
 		// TODO Auto-generated method stub
+		
 		List<ArticleVendu> articlesRechercher = getAllArticleVendus();
+		List<ArticleVendu> articlesAfficher = new ArrayList<>();
 		
-		System.out.println(" article manager,getRechercheArticleVendus, liste à filtrer"+ articlesRechercher);
-			for (ArticleVendu articleVendu : articlesRechercher) {
-				// vire ce qui n'est pas de la bonne catégorie
-				System.out.println(recherche.getCategorie());
-				if (recherche.getCategorie()!=null && recherche.getCategorie()!=articleVendu.getCategorie()) {
-					System.out.println("l'article retirer est : "+articleVendu);
-					articlesRechercher.remove(articleVendu);
-				}
-				// vire ce qui ne comtien pas le mot clef
-				if (recherche.getMotClef()!=null && (!articleVendu.getDescription().contains(recherche.getMotClef()) || !articleVendu.getNomArticle().contains(recherche.getMotClef() ))) {
-					articlesRechercher.remove(articleVendu);
-				}
-				// Vire les article ne corespondant pas à l'utilisateur si un bouton est cocher.
-//				if (recherche.getBoutonActif()!=null ) {
-//					
-//				}
+		//System.out.println("Article manager,getRechercheArticleVendus, liste à filtrer"+ articlesRechercher);
+		//System.out.println(" categorie à tester est : " + recherche.getCategorie());
+		System.out.println("entrer dans la boucle for");
+		for (ArticleVendu articleVendu : articlesRechercher) {
+			System.out.println("test d'un article" +articleVendu.getAfficherBoolean());
+		    
+		    if (recherche.getCategorie().getNoCategorie() != articleVendu.getCategorie().getNoCategorie()) {
+		        //System.out.println("l'article retirer est : " + articleVendu);
+		        articleVendu.setAfficherBoolean(false);
+		        //System.out.println("l'article retirer est : " + articleVendu);
+		        continue;
+		    }
+		    System.out.println(articleVendu.getDescription());
+		    if (recherche.getMotClef() != null && (
+		    		!articleVendu.getDescription().toLowerCase().contains(recherche.getMotClef().toLowerCase())
+		    		&& 
+		    		!articleVendu.getNomArticle().toLowerCase().contains(recherche.getMotClef().toLowerCase())
+		    		
+		            )) {
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		   System.out.println(" article gardé ");
+		}
+		System.out.println(" je suis sorti de la boucle for");
+		
+		System.out.println(" la liste à affiché est : ");
+		for (ArticleVendu articleVendu : articlesRechercher) {
+			if (articleVendu.getAfficherBoolean()) {
+				System.out.println(articleVendu);
+				articlesAfficher.add(articleVendu);
 			}
+		}
 		
-		System.out.println("article manager, getRechercheArticleVendus, liste à rendre: " + articlesRechercher);
 		
-		return articlesRechercher;
+		
+//		if (recherche.getMotClef() != null && (!articleVendu.getDescription().contains(recherche.getMotClef())
+//	            || !articleVendu.getNomArticle().contains(recherche.getMotClef()))) {
+//	        articlesRechercher.remove(i);
+//	    }
+
+		return articlesAfficher;
 	}
 	
 	/** recup un ArticleVendu **/

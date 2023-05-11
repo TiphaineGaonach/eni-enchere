@@ -29,6 +29,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ "    e.montant_enchere AS prix_enchere_max, " // prix le plus haut de l'enchere
 			+ "    a.no_article, "
 			+ "    a.nom_article, "
+			+ "    a.description, "
 			+ "    a.date_fin_encheres, "
 			+ "    a.no_utilisateur, "
 			+ "    a.etat_vente, "
@@ -145,6 +146,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 				articleVendus.add( new ArticleVendu(
 						rs.getInt("no_article"),
 						rs.getString("nom_article"),
+						rs.getString("description"),
 						rs.getDate("date_fin_encheres").toLocalDate(),
 						rs.getInt("prix_initial"),
 						rs.getInt("prix_enchere_max"),   // on remplace le prix de vente par le prix enchere le plus haut

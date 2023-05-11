@@ -30,6 +30,7 @@ public class ArticleVendu {
 	@NonNull private Utilisateur utilisateur;
 	private Enchere enchereMax;
 	private Retrait retrait;
+	private Boolean afficherBoolean = true;
 	
 	public ArticleVendu(Integer noArticle) {
 		super();
@@ -57,12 +58,24 @@ public class ArticleVendu {
 //		this.miseAPrix = miseAPrix;
 //	}
 
-	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull LocalDate dateFinEncheres,
+	/**
+	 * Constructeur pour le Select_ALL d'ArticleDaoImpl
+	 * @param noArticle
+	 * @param nomArticle
+	 * @param dateFinEncheres
+	 * @param miseAPrix
+	 * @param prixVente
+	 * @param etatVente
+	 * @param categorie
+	 * @param utilisateur
+	 */
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle,String description, @NonNull LocalDate dateFinEncheres,
 			Integer miseAPrix, Integer prixVente, char etatVente, @NonNull Categorie categorie,
 			@NonNull Utilisateur utilisateur) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
+		this.description = description;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
