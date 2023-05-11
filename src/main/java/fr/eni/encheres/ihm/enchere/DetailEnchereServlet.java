@@ -26,6 +26,7 @@ public class DetailEnchereServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    Integer noArticle =Integer.parseInt(request.getParameter("article"));
+	    System.out.println("*******************no Article "+ noArticle);
 	    //Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
 	    //Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
 	    ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);

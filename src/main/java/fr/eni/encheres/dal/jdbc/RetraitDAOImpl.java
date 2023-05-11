@@ -45,7 +45,7 @@ public class RetraitDAOImpl implements RetraitDAO{
 			
 			
 			stmt.executeUpdate();
-			ResultSet rs = stmt.getGeneratedKeys();
+			//ResultSet rs = stmt.getGeneratedKeys();
 			
 			
 		}catch (SQLException e) {
