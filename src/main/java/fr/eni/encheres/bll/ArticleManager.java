@@ -69,72 +69,75 @@ public class ArticleManager {
 		    	continue;
 		    }
 		    
-		    if (recherche.getBoutonActif().equals("achatOuvert")
-		    		&&articleVendu.getEtatVente()!='C'
-		            ) {
-		    		
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
+		    if (recherche.getBoutonActif()!=null) {
+
+		    
+			    if (recherche.getBoutonActif().equals("achatOuvert")
+			    		&&articleVendu.getEtatVente()!='C'
+			            ) {
+			    		
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    }
+			    
+			    if (recherche.getBoutonActif().equals("achatEnCours")	
+			    		&&(
+			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
+			    				||
+			    				articleVendu.getEtatVente()!='C'
+					    )) {
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    }
+			    	System.out.println("article à tester dans les achat " + articleVendu);
+			    if (recherche.getBoutonActif().equals("achatRemporter")	
+			    		&&(
+			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
+			    				||(
+				    				articleVendu.getEtatVente()!='T'
+				    				&&
+				    				articleVendu.getEtatVente()!='R'
+				    			)
+					    )) {
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    }
+			    
+			    if (recherche.getBoutonActif().equals("VenteEnCours")
+			    	&& (
+	    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
+	    				||(articleVendu.getEtatVente()!='C')
+			    )){
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    };
+		
+			    
+			    if (recherche.getBoutonActif().equals("VenteNonDebuter")	
+			    		&&(
+			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				||
+			    				articleVendu.getEtatVente()!='N'
+					    )) {
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    }
+			    
+			    if (recherche.getBoutonActif().equals("VenteTerminer")	
+			    		&&(
+			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				||(
+				    				articleVendu.getEtatVente()!='T'
+				    				&&
+				    				articleVendu.getEtatVente()!='R'
+				    			)
+					    )) {
+			    	articleVendu.setAfficherBoolean(false);
+			    	continue;
+			    }
+		    
+		    
 		    }
-		    
-		    if (recherche.getBoutonActif().equals("achatEnCours")	
-		    		&&(
-		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
-		    				||
-		    				articleVendu.getEtatVente()!='C'
-				    )) {
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
-		    }
-		    	System.out.println("article à tester dans les achat " + articleVendu);
-		    if (recherche.getBoutonActif().equals("achatRemporter")	
-		    		&&(
-		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
-		    				||(
-			    				articleVendu.getEtatVente()!='T'
-			    				&&
-			    				articleVendu.getEtatVente()!='R'
-			    			)
-				    )) {
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
-		    }
-		    
-		    if (recherche.getBoutonActif().equals("VenteEnCours")
-		    	&& (
-    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
-    				||(articleVendu.getEtatVente()!='C')
-		    )){
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
-		    };
-	
-		    
-		    if (recherche.getBoutonActif().equals("VenteNonDebuter")	
-		    		&&(
-		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
-		    				||
-		    				articleVendu.getEtatVente()!='N'
-				    )) {
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
-		    }
-		    
-		    if (recherche.getBoutonActif().equals("VenteTerminer")	
-		    		&&(
-		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
-		    				||(
-			    				articleVendu.getEtatVente()!='T'
-			    				&&
-			    				articleVendu.getEtatVente()!='R'
-			    			)
-				    )) {
-		    	articleVendu.setAfficherBoolean(false);
-		    	continue;
-		    }
-		    
-		    
-		    
 		    
 		    
 		   System.out.println(" article gardé ");

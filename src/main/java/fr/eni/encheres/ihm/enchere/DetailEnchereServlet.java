@@ -28,6 +28,7 @@ public class DetailEnchereServlet extends HttpServlet {
 
 		//on recupere tout ce qui est à la place de * (l'id)
 		String params = request.getPathInfo();
+		System.out.println(" le param est :  "+ params);
 		Integer noArticle = Integer.parseInt(params.substring(1));		
 		
 				
