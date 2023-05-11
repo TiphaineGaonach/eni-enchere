@@ -38,7 +38,7 @@
 			<div class = "col-8 offset-2">
 
 
-				<form action="">
+				<form action="" method="POST">
 					<div class = "row">  
 						<div class="col-8">
 							<h2>Filtres</h2>
