@@ -1,7 +1,9 @@
 <%@page import="fr.eni.encheres.bo.ArticleVendu"%>
+<%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <% ArticleVendu article = (ArticleVendu) request.getAttribute("article"); %>
+<% Utilisateur utilisateurConnecter = (Utilisateur) session.getAttribute("pseudo"); %>
 <%int surenchere = (int) request.getAttribute("surenchere"); %>
     
     
@@ -23,6 +25,49 @@
 	
 	<main>
 		<h1 class="text-center"> Détail Vente</h1>
+		
+		
+		<% if (article.getEtatVente()=='C') { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous vendez cet article</h2>
+			<% } %>
+			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous avez la meilleur enchère sur cet article</h2>
+			<% } %>
+		<% } %>
+		
+		<% if (article.getEtatVente()=='N') { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous avez créer cette article à vendre. il n'est pas encore en vente</h2>
+			<% } %>	
+		<% } %>
+		
+		<% if (article.getEtatVente()=='T') { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()
+				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> L'article n'a pas été vendu</h2>
+			<% } %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()
+				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur()!=utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> L'article a été vendu!</h2>
+			<% } %>
+			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous avez remporter l'enchère</h2>
+			<% } %>
+		<% } %>
+		
+		<% if (article.getEtatVente()=='R') { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> l'article à été retirer</h2>
+			<% } %>
+			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous avez retiré cette article</h2>
+			<% } %>
+		<% } %>
+		
+		
+		
+		
 		
 		<div >
 <!-- 		//col-l-10 offset-l-1	col-xl-8 offset-xl-2	col-xxl-6 offset-xxl-3 mt-4 -->
