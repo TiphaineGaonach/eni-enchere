@@ -59,6 +59,8 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 
 	private final static String SELECT_ALL_ARTICLE = "SELECT * FROM ARTICLES_VENDUS";
+	
+	
 
 	private final static String SELECT_ONE_ARTICLE = "SELECT "
 			+ " e.montant_enchere AS prix_enchere_max, "

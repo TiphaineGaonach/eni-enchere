@@ -164,10 +164,13 @@ public class ArticleManager {
 		return DaoFactory.getArticleDao().selectOne(id);
 	}	
 	
+	
+	
 	public void addArticleVendu(ArticleVendu ArticleVendu) throws BusinessException {
 		checkArticleVendu(ArticleVendu);
 		DaoFactory.getArticleDao().insert(ArticleVendu);
 	}
+	
 	
 	public void deleteArticleVendu(ArticleVendu ArticleVendu) {
 		DaoFactory.getArticleDao().delete(ArticleVendu);
@@ -222,8 +225,7 @@ public class ArticleManager {
 	        be.ajouterErreur("La date de début des enchères ne peut pas être antérieure à la date du jour (%s) !".formatted(currentDateFormatted));
 	    }
 	}
-	/** checkRetrait **/
-	
+
 	
 	
 	

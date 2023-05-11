@@ -19,25 +19,27 @@ import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
 
-@WebServlet("/enchere/detailEnchere")
+@WebServlet("/enchere/detailEnchere/*")
 public class DetailEnchereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    Integer noArticle =Integer.parseInt(request.getParameter("article"));
-	    System.out.println("*******************no Article "+ noArticle);
-	    //Integer noUtilisateur = Integer.parseInt(request.getParameter("user"));
-	    //Enchere enchere = EnchereManager.getInstance().getEnchere(noUtilisateur,noArticle);
-	    ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
-	    System.out.println("article à détailler : "+article);
-	    request.setAttribute("article", article);
-	    
-	    //on definit le montant minimum de surenchère (montant max de l'enchere +10)
-	    request.setAttribute("surenchere", article.getPrixVente()+10);
-	    
-	    request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
 
+		//on recupere tout ce qui est à la place de * (l'id)
+		String params = request.getPathInfo();
+		Integer noArticle = Integer.parseInt(params.substring(1));		
+		
+				
+			ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
+
+			request.setAttribute("article", article);
+	    
+			//on definit le montant minimum de surenchère (montant max de l'enchere +10)
+			request.setAttribute("surenchere", article.getPrixVente()+10);		
+	    
+			request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp").forward(request, response);
+	
 
 	}
 
@@ -53,7 +55,7 @@ public class DetailEnchereServlet extends HttpServlet {
 		Utilisateur utilisateur = new Utilisateur(noUtilisateur);		
 
 		//Mise à jour d'une enchère
-		EnchereManager.getInstance().surenchere(surenchere, article, utilisateur);
+		EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur);
 		
 		
 		doGet(request, response);

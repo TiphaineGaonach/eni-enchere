@@ -19,9 +19,11 @@ import java.util.List;
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.CategorieManager;
+import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.RetraitManager;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Retrait;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -85,9 +87,17 @@ public class AjouterEnchereServlet extends HttpServlet {
 		try {
 			
 			ArticleManager.getInstance().addArticleVendu(article);
+			
 		
 			if(article.getNoArticle()>0) {
-				System.out.println(" l'id de l'article créé est : " + article.getNoArticle());
+
+				
+				Enchere enchere = new Enchere(article.getMiseAPrix(),new Utilisateur(article.getUtilisateur().getNoUtilisateur()),article);
+				
+				EnchereManager.getInstance().addEnchere(enchere);
+				
+		
+
 				// l'article à bien un id ( et donc a été enregistré, ) création du retrait
 				
 				String rue = request.getParameter("rue");

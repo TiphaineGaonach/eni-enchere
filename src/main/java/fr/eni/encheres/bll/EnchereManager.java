@@ -56,30 +56,37 @@ public class EnchereManager {
 	 *  On fait un update
 	 *  sinon on créé une nouvelle enchère
 	 */
-	public void surenchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) {
-		Enchere enchere = new Enchere(surenchere,utilisateur,article);		
-		
-		List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
-		
-		boolean enchereTrouvee = false;
-		
-		for (Enchere enchereBDD : encheres) {
-			if ((enchere.getArticleVendu().getNoArticle() == enchereBDD.getArticleVendu().getNoArticle())
-				&& (enchere.getUtilisateur().getNoUtilisateur() == enchereBDD.getUtilisateur().getNoUtilisateur())) {
-				
-	
-				EnchereManager.getInstance().updateEnchere(enchere) ;
-				
-				// on passe le parametre à true pour ne pas executer l'addEnchere
-				enchereTrouvee = true; 
-				break;
-			}
-		}
-		// s'il n'y a pas d'enchere existante en BDD
-		if (!enchereTrouvee) {  
-			EnchereManager.getInstance().addEnchere(enchere) ;
-			System.out.println(" JE SUIS SORTI DU FOR !!!!!!");
-		}
+	public Enchere chercheEnchereByArtAndUser(Integer noArticle, Integer noUtilisateur) {
+	    List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
+	    for (Enchere enchere : encheres) {
+	        if (enchere.getArticleVendu().getNoArticle().equals(noArticle) 
+	                && enchere.getUtilisateur().getNoUtilisateur().equals(noUtilisateur)) {
+	            return enchere;
+	        }
+	    }
+	    return null;
 	}
+	
+	public Enchere chercheEnchereByArt(Integer noArticle) {
+	    List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
+	    for (Enchere enchere : encheres) {
+	        if (enchere.getArticleVendu().getNoArticle().equals(noArticle)) {
+	            return enchere;
+	        }
+	    }
+	    return null;
+	}
+
+	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) {
+	    Enchere enchere = chercheEnchereByArtAndUser(article.getNoArticle(), utilisateur.getNoUtilisateur());
+	    if (enchere != null) {
+	        enchere.setMontantEnchere(surenchere);
+	        EnchereManager.getInstance().updateEnchere(enchere);
+	    } else {
+	        Enchere newEnchere = new Enchere(surenchere, utilisateur, article);
+	        EnchereManager.getInstance().addEnchere(newEnchere);
+	    }
+	}
+
 	
 }
