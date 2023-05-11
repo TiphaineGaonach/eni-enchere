@@ -61,12 +61,10 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 					session.setAttribute("pseudo", utilisateur);
 					
 				} catch (BusinessException e) {
-					// TODO message d'erreur + retour à la modification
 					request.setAttribute("erreur", "Le pseudo ou l'email est déjà utilisé. Veuillez en choisir un autre");
 					request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/modifierUtilisateur.jsp")
 					.forward(request, response);
 					return;
-					//e.printStackTrace();
 				}
 		}else {
 			 request.setAttribute("erreur", "Les mots de passe ne sont pas identiques");

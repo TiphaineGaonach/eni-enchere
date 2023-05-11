@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@page import="fr.eni.encheres.bo.Categorie"%>
-<% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); %>  
+<% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); %> 
+<% String erreur = (String) request.getAttribute("erreur"); %>
     
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,12 @@
 		
 		<div class="container	col-12  col-l-10 offset-l-1	col-xl-8 offset-xl-2	col-xxl-6 offset-xxl-3 mt-4">
 			<div class="row">
-			
+				<div class="col-8 offset-2">
+					<%	
+				   	if (erreur!= null){ %> 
+					<p><%=erreur %></p>
+					<%} %>
+				</div>
 				<form action="" method="POST" >
 					<div class=" col-12">
 						<div class=" row mt-4">
