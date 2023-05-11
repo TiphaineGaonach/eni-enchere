@@ -58,10 +58,10 @@ public class AjouterEnchereServlet extends HttpServlet {
 		// recup de la categorie
 		List<Categorie> categories= CategorieManager.getInstance().getAllCategorie();		
 		String categorieVente = request.getParameter("categorie");// extraire la catégorie de l'article
-		System.out.println("catégiroe à vendre : "+ categorieVente );
+		System.out.println("catégorie à vendre : "+ categorieVente );
 		Categorie categorie = new Categorie(); 
 		for (Categorie c : categories) {
-			System.out.println(" catégorie tester : "+c);
+			System.out.println(" catégorie testée : "+c);
 				if (c.getLibelle().equals(categorieVente)) {
 					categorie=c;
 				}
@@ -81,13 +81,13 @@ public class AjouterEnchereServlet extends HttpServlet {
 		 // creation de l'article et recup de l'id
 		ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, miseAPrix, 'N', categorie, (Utilisateur)session.getAttribute("pseudo"));
 		//ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, categorie, (Utilisateur)session.getAttribute("pseudo") );
-		System.out.println(" l'article créer est : "+ article);
+		System.out.println(" l'article créé est : "+ article);
 		try {
 			
 			ArticleManager.getInstance().addArticleVendu(article);
 		
 			if(article.getNoArticle()>0) {
-				System.out.println(" l'id de l'article créer est : " + article.getNoArticle());
+				System.out.println(" l'id de l'article créé est : " + article.getNoArticle());
 				// l'article à bien un id ( et donc a été enregistré, ) création du retrait
 				
 				String rue = request.getParameter("rue");
@@ -99,24 +99,26 @@ public class AjouterEnchereServlet extends HttpServlet {
 				
 			}
 		} catch (BusinessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			request.setAttribute("erreur", e.getMessage());
+			System.out.println(e);
+
+			request.setAttribute("categories", categories);
+//			response.sendRedirect(request.getContextPath()+"/enchere/ajouterEnchere");
+			request.getRequestDispatcher("/WEB-INF/jsp/enchere/nouvelleVente.jsp")
+			.forward(request, response);
+			return;
 		}	
 			
-			
-			
-			
-//			Flash.send("success", "l'truc a bien été ajouté", request.getSession());
-			response.sendRedirect(request.getContextPath()+"/");
+//			Flash.send("success", "l'article a bien été ajouté", request.getSession());
+		
+//			request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp")
+//			.forward(request, response);
+		System.out.println("***********************no article "+article.getNoArticle());
+		System.out.println("***********************prix vente "+article.getPrixVente());
+		
+			response.sendRedirect(request.getContextPath()+"/enchere/detailEnchere/"+article.getNoArticle());
 		}
-		
-		
-		// TODO Auto-generated method stub
-		
-			
-
-			
-		
+				
 	
 
 }
