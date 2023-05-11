@@ -18,6 +18,8 @@ public interface ArticleDAO {
 
 	void update(ArticleVendu articleVendu);
 
+	
+
 //	List<Enchere> selectAllEnchere();
 
 	

@@ -19,13 +19,13 @@ import jakarta.servlet.http.HttpSession;
 			DispatcherType.REQUEST	
 		},
 		urlPatterns = {
-			"/enchere/detailEnchere",
 			"/utilisateur/mon-compte",
 			"/utilisateur/mon-compte/*",
 			"/utilisateur/modifierMonCompte",
 			"/utilisateur/suprimerMonCompte",
 			"/enchere/ajouterEnchere",
 			"/enchere/detailEnchere",
+			"/enchere/detailEnchere/*",
 			"/enchere/ModifierUneVente",
 			"/enchere/suprimer",
 		}	

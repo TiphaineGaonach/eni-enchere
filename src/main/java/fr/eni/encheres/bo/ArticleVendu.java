@@ -126,6 +126,23 @@ public class ArticleVendu {
 		this.enchereMax = enchereMax;
 		this.retrait = retrait;
 	}
+	
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull String description,
+			 @NonNull LocalDate dateFinEncheres, Integer miseAPrix,
+			Integer prixVente, char etatVente, 
+			Categorie categorie, Utilisateur utilisateur,  Retrait retrait) {
+		super();
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.categorie = categorie;
+		this.utilisateur = utilisateur;
+		this.retrait = retrait;
+	}
 
 	/**
 	 * Contructeur des articles à vendre pour la servlet Nouvelle Article DoPost
@@ -155,6 +172,11 @@ public class ArticleVendu {
 		this.utilisateur = utilisateur;
 		
 	}
+
+
+	
+	
+	
 
 
 	
