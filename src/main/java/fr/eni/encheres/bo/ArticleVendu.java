@@ -59,7 +59,7 @@ public class ArticleVendu {
 //	}
 
 	/**
-	 * Constructeur pour le Select_ALL d'ArticleDaoImpl
+	 * Pour ArticleDaoImpl, selectAll() rend un article avec son utilisateur Vendeur, son enchète, et son utilisateur Acheteur
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param dateFinEncheres
@@ -71,7 +71,7 @@ public class ArticleVendu {
 	 */
 	public ArticleVendu(Integer noArticle, @NonNull String nomArticle,String description, @NonNull LocalDate dateFinEncheres,
 			Integer miseAPrix, Integer prixVente, char etatVente, @NonNull Categorie categorie,
-			@NonNull Utilisateur utilisateur) {
+			@NonNull Utilisateur utilisateur, Enchere enchereMax) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -82,11 +82,12 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.categorie = categorie;
 		this.utilisateur = utilisateur;
+		this.enchereMax = enchereMax;
 	}
 	
 	
 	/**
-	 * Pour extraction de la BDD de l'article avec sa categorie et son utilisateur; return un utilisateur
+	 * Pour ArticleDaoImpl, SelectOneArticle. constructeur de  l'article avec sa categorie et son utilisateur; 
 	 * @param noArticle
 	 * @param nomArticle
 	 * @param description

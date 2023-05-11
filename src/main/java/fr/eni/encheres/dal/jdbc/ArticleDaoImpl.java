@@ -31,16 +31,23 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ "    a.nom_article, "
 			+ "    a.description, "
 			+ "    a.date_fin_encheres, "
-			+ "    a.no_utilisateur, "
+			+ "	   a.no_utilisateur AS noVendeur, "
+			+ "    e.no_utilisateur AS noAcheteur, "
+			+ "	   u2.pseudo AS pseudoAcheteur, "
+			+ "    u.pseudo AS pseudoVendeur, "
 			+ "    a.etat_vente, "
 			+ "    a.prix_initial, "
 			+ "    u.pseudo, "
 			+ "	   c.no_categorie, "
 			+ "    c.libelle "
-			+ "FROM ARTICLES_VENDUS a "
-			+ "LEFT JOIN ENCHERES e ON e.no_article = a.no_article "
-			+ "INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur "
-			+ "Inner join CATEGORIES c On a.no_categorie= c.no_categorie " 
+			
+			+ " FROM ARTICLES_VENDUS a "
+			+ " LEFT JOIN ENCHERES e ON e.no_article = a.no_article "
+			+ " INNER JOIN UTILISATEURS u ON a.no_utilisateur = u.no_utilisateur "
+			+ " INNER JOIN UTILISATEURS u2 ON u2.no_utilisateur = e.no_utilisateur  "
+			+ " INNER JOIN CATEGORIES c On a.no_categorie= c.no_categorie "
+			+ " INNER JOIN RETRAITS r on r.no_article = a.no_article "
+			
 			+ "WHERE ( "
 			+ "    e.montant_enchere = ( "
 			+ "        SELECT MAX(montant_enchere) "
@@ -65,7 +72,6 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ " u.pseudo AS pseudoVendeur, "
 			+ " a.etat_vente, "
 			+ " a.prix_initial, "
-			+ " u.pseudo, "
 			+ " c.no_categorie, "
 			+ " c.libelle ,"
 			+ " r.rue, "
@@ -130,16 +136,20 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 				Categorie categorie= new Categorie(
 						rs.getInt("no_categorie"),
-						
 						rs.getString("libelle")
 						);
 				
-				Utilisateur utilisateur = new Utilisateur(
-						rs.getInt("no_utilisateur"),
-						rs.getString("pseudo"));	
+				Utilisateur vendeur = new Utilisateur(
+						rs.getInt("noVendeur"),
+						rs.getString("pseudoVendeur"));
 				
-				
-				
+				Utilisateur acheteur = new Utilisateur(
+						rs.getInt("noAcheteur"),
+						rs.getString("pseudoAcheteur"));
+						
+				Enchere enchere = new Enchere(
+						rs.getInt("no_categorie"),
+						acheteur);
 						
 						
 			
@@ -152,10 +162,18 @@ public class ArticleDaoImpl implements ArticleDAO{
 						rs.getInt("prix_enchere_max"),   // on remplace le prix de vente par le prix enchere le plus haut
 						rs.getString("etat_vente").charAt(0),
 						categorie,
-						utilisateur));					
+						vendeur,
+						enchere
+						));	
+				
 						
 						
 			}
+			
+			for (ArticleVendu articleVendu : articleVendus) {
+				System.out.println(" article extraient de la bdd : " + articleVendu);
+			}
+			
 			return articleVendus;
 			
 		}catch (SQLException e) {
@@ -183,7 +201,6 @@ public class ArticleDaoImpl implements ArticleDAO{
 
 				Categorie categorie= new Categorie(
 						rs.getInt("no_categorie"),
-						
 						rs.getString("libelle")
 						);
 				

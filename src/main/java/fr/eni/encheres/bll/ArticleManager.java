@@ -10,7 +10,10 @@ import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Recherche;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
+import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 import lombok.NonNull;
 
 
@@ -38,6 +41,7 @@ public class ArticleManager {
 	
 	public List<ArticleVendu> getRechercheArticleVendus(Recherche recherche) {
 		// TODO Auto-generated method stub
+		System.out.println(recherche);
 		
 		List<ArticleVendu> articlesRechercher = getAllArticleVendus();
 		List<ArticleVendu> articlesAfficher = new ArrayList<>();
@@ -46,7 +50,7 @@ public class ArticleManager {
 		//System.out.println(" categorie à tester est : " + recherche.getCategorie());
 		System.out.println("entrer dans la boucle for");
 		for (ArticleVendu articleVendu : articlesRechercher) {
-			System.out.println("test d'un article" +articleVendu.getAfficherBoolean());
+			System.out.println("test d'un article " +articleVendu.getAfficherBoolean());
 		    
 		    if (recherche.getCategorie().getNoCategorie() != articleVendu.getCategorie().getNoCategorie()) {
 		        //System.out.println("l'article retirer est : " + articleVendu);
@@ -54,7 +58,7 @@ public class ArticleManager {
 		        //System.out.println("l'article retirer est : " + articleVendu);
 		        continue;
 		    }
-		    System.out.println(articleVendu.getDescription());
+		    //System.out.println(articleVendu.getDescription());
 		    if (recherche.getMotClef() != null && (
 		    		!articleVendu.getDescription().toLowerCase().contains(recherche.getMotClef().toLowerCase())
 		    		&& 
@@ -64,6 +68,75 @@ public class ArticleManager {
 		    	articleVendu.setAfficherBoolean(false);
 		    	continue;
 		    }
+		    
+		    if (recherche.getBoutonActif().equals("achatOuvert")
+		    		&&articleVendu.getEtatVente()!='C'
+		            ) {
+		    		
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		    
+		    if (recherche.getBoutonActif().equals("achatEnCours")	
+		    		&&(
+		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
+		    				||
+		    				articleVendu.getEtatVente()!='C'
+				    )) {
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		    	System.out.println("article à tester dans les achat " + articleVendu);
+		    if (recherche.getBoutonActif().equals("achatRemporter")	
+		    		&&(
+		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
+		    				||(
+			    				articleVendu.getEtatVente()!='T'
+			    				&&
+			    				articleVendu.getEtatVente()!='R'
+			    			)
+				    )) {
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		    
+		    if (recherche.getBoutonActif().equals("VenteEnCours")
+		    	&& (
+    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
+    				||(articleVendu.getEtatVente()!='C')
+		    )){
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    };
+	
+		    
+		    if (recherche.getBoutonActif().equals("VenteNonDebuter")	
+		    		&&(
+		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+		    				||
+		    				articleVendu.getEtatVente()!='N'
+				    )) {
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		    
+		    if (recherche.getBoutonActif().equals("VenteTerminer")	
+		    		&&(
+		    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+		    				||(
+			    				articleVendu.getEtatVente()!='T'
+			    				&&
+			    				articleVendu.getEtatVente()!='R'
+			    			)
+				    )) {
+		    	articleVendu.setAfficherBoolean(false);
+		    	continue;
+		    }
+		    
+		    
+		    
+		    
+		    
 		   System.out.println(" article gardé ");
 		}
 		System.out.println(" je suis sorti de la boucle for");

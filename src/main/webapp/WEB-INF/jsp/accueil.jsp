@@ -67,7 +67,7 @@
 											Enchère ouverte : 				
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="achatOuverte">				
+											<input type="radio" name="boutonActif" value="achatOuvert">				
 										</div>
 									</div>	
 									<div class="row ">
@@ -75,7 +75,7 @@
 											Mes enchères en cours :				
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="achatEnCours">				
+											<input type="radio" name="boutonActif" value="achatEnCours">				
 										</div>
 									</div>
 									<div class="row ">
@@ -83,7 +83,7 @@
 											Mes enchères reportées :				
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="achatRemporter">				
+											<input type="radio" name="boutonActif" value="achatRemporter">				
 										</div>
 									</div>
 								</div>
@@ -94,7 +94,7 @@
 											Mes ventes en cours :			
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="VenteEnCours">				
+											<input type="radio" name="boutonActif" value="VenteEnCours">				
 										</div>
 									</div>	
 									<div class="row ">
@@ -102,7 +102,7 @@
 											Mes ventes non débutées :			
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="VenteNonDebuter">				
+											<input type="radio" name="boutonActif" value="VenteNonDebuter">				
 										</div>
 									</div>
 									<div class="row ">
@@ -110,7 +110,7 @@
 											Mes ventes terminée : 				
 										</div>
 										<div class="col-2">
-											<input type="radio" name="filtre" value="Venteterminer">				
+											<input type="radio" name="boutonActif" value="VenteTerminer">				
 										</div>
 									</div>
 								</div>				
