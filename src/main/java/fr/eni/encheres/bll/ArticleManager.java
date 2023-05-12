@@ -55,9 +55,9 @@ public class ArticleManager {
 	
 	public List<ArticleVendu> getRechercheArticleVendus(Recherche recherche) {
 		// TODO Auto-generated method stub
-		//System.out.println(recherche);
+		System.out.println(recherche);
 		
-		List<ArticleVendu> articlesRechercher = getAllArticleVendus();
+		List<ArticleVendu> articlesRechercher = DaoFactory.getArticleDao().selectAll();
 		List<ArticleVendu> articlesAfficher = new ArrayList<>();
 		
 		//System.out.println("Article manager,getRechercheArticleVendus, liste à filtrer"+ articlesRechercher);
@@ -87,7 +87,8 @@ public class ArticleManager {
 		    	articleVendu.setAfficherBoolean(false);
 		    	continue;
 		    }
-// ********************** rechercher par état et utilisateur *******************************		    
+// ********************** rechercher par état et utilisateur *******************************	
+		    
 		    if (recherche.getBoutonActif()!=null) {
 
 		    
@@ -121,11 +122,12 @@ public class ArticleManager {
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
-			    
+//**********************************mes Ventes *****************************************************************************
 			    if (recherche.getBoutonActif().equals("VenteEnCours")
 			    	&& (
 	    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
-	    				||(articleVendu.getEtatVente()!='C')
+	    				||
+	    				(articleVendu.getEtatVente()!='C')
 			    )){
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
@@ -134,23 +136,25 @@ public class ArticleManager {
 			    
 			    if (recherche.getBoutonActif().equals("VenteNonDebuter")	
 			    		&&(
-			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
 			    				||
-			    				articleVendu.getEtatVente()!='N'
+			    				(articleVendu.getEtatVente()!='N')
 					    )) {
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
 			    
 			    if (recherche.getBoutonActif().equals("VenteTerminer")	
+		
 			    		&&(
-			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
 			    				||(
-				    				articleVendu.getEtatVente()=='N'
-				    				||
-				    				articleVendu.getEtatVente()=='C'
+				    				(articleVendu.getEtatVente()!='T')
+//				    				||
+//				    				(articleVendu.getEtatVente()=='C')
 				    			)
 					    )) {
+			    	System.out.println("dans le if VenteTerminer" + articleVendu.getEtatVente());
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
