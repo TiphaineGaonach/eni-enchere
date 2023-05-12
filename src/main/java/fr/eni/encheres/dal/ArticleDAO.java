@@ -20,8 +20,4 @@ public interface ArticleDAO {
 
 	
 
-//	List<Enchere> selectAllEnchere();
-
-	
-
 }

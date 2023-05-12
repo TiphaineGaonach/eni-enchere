@@ -47,22 +47,7 @@ public class RetraitManager {
 		DaoFactory.getRetraitDao().update(Retrait );
 	}
 	
-//	public void checkRetrait (Retrait  Retrait ) throws BLLException {
-//		BLLException bll = new BLLException();
-////		checkFiled(Retrait .getTitle(), "Titre",bll);
-////		checkFiled(Retrait .getContent(), "Contenu",bll);
-////		checkFiled(Retrait .getAuthor(), "Auteur",bll);
-//		if(bll.getErreurs().size()>0) {			
-//			throw bll;
-//		}
-//	}
-	
-//	private void checkFiled(String field,String name,BLLException bll ) {
-//		if(field.isBlank()) {
-//			bll.ajouterErreur("Le champs %s ne peut pas etre vide!".formatted(name));
-//		}
-//	}
-	
+
 
 	
 

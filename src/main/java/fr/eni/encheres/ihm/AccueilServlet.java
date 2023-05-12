@@ -37,6 +37,7 @@ public class AccueilServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Fonction rechercher.
 		System.out.println("List Article Servlet, Do Post");
+		
 		// creation de la demande de recherche
 		List<Categorie> categories = CategorieManager.getInstance().getAllCategorie();
 		request.setAttribute("categories", categories);
@@ -63,7 +64,7 @@ public class AccueilServlet extends HttpServlet {
 		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
 
-		System.out.println("servlet accueil list article vendu " + articlesAfficher);
+		//DEBUG :System.out.println("servlet accueil list article vendu " + articlesAfficher);
 		request.setAttribute("articleVendus", articlesAfficher);
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);

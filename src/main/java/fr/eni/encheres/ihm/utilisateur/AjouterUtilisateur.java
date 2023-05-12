@@ -41,7 +41,7 @@ public class AjouterUtilisateur extends HttpServlet {
 	 
 			if (motDePasse.equals(confirmation)) {
 				Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, 100, false);
-				System.out.println(utilisateur);
+				
 					try {
 						UtilisateurManager.getInstance().addUser(utilisateur);
 					
@@ -53,7 +53,7 @@ public class AjouterUtilisateur extends HttpServlet {
 						if(utilisateur.getNoUtilisateur()>0) {//TODO ajoute messega de réussite si utilisateur créer
 							HttpSession session = request.getSession();
 							session.setAttribute("pseudo", utilisateur);
-							//		Flash.send("success", "l'utilisateur à bien été créé", request.getSession());
+							
 								response.sendRedirect(request.getContextPath()+"");
 						}
 					else {

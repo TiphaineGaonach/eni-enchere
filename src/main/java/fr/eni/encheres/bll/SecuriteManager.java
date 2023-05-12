@@ -30,13 +30,7 @@ public class SecuriteManager {
 			throw new BusinessException("Mot de Passe erroné");
 		}
 
-		
-//		BCrypt.Result result = BCrypt.verifyer()
-//				.verify(motDePasse.toCharArray(), utilisateur.getMotDePasse());
-//		if (!result.verified) {
-//			throw new BLLException("Erreur mot de passe");
-//		}
-		
+
 		
 		
 		
