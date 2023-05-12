@@ -26,20 +26,20 @@
 	<main>
 		<h1 class="text-center"> Détail Vente</h1>
 		
+		<% if (article.getEtatVente()=='N') { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+					<h2 class="text-center"> Vous avez créer cette article à vendre. il n'est pas encore en vente</h2>
+			<% } %>	
+		<% } %>
 		
 		<% if (article.getEtatVente()=='C') { %>
 			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
 					<h2 class="text-center"> Vous vendez cet article</h2>
 			<% } %>
-			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
+			<% if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecter.getNoUtilisateur()
+					&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() ==utilisateurConnecter.getNoUtilisateur()) { %>
 					<h2 class="text-center"> Vous avez la meilleur enchère sur cet article</h2>
 			<% } %>
-		<% } %>
-		
-		<% if (article.getEtatVente()=='N') { %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-					<h2 class="text-center"> Vous avez créer cette article à vendre. il n'est pas encore en vente</h2>
-			<% } %>	
 		<% } %>
 		
 		<% if (article.getEtatVente()=='T') { %>

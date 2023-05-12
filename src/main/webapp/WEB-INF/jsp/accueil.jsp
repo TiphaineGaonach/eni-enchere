@@ -52,8 +52,9 @@
 								</div>						
 								<div class="form-group col-6 ">
 								    <select class="form-select" id="categorie" name="categorie">
-								    	
+								    	<option>Toutes les catégories</option>
 								    <% for (Categorie categorie: categories){%>
+								    	
 								        <option><%=categorie.getLibelle() %></option>
 								    <%}%>	
 								    </select>
