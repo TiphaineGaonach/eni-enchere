@@ -162,10 +162,12 @@ public class ArticleDaoImpl implements ArticleDAO{
 						
 						
 			}
+
 			//DEBUG :
 			//for (ArticleVendu articleVendu : articleVendus) {
 			//	System.out.println(" article extraient de la bdd : " + articleVendu);
 			//}
+
 			
 			return articleVendus;
 			
@@ -182,12 +184,16 @@ public class ArticleDaoImpl implements ArticleDAO{
 	 */
 	public ArticleVendu selectOne(int id) {
 		try(Connection connection = ConnectionProvider.getConnection()){
+
 			//DEBUG :System.out.println(" bien arrivé dans dao article impl, select on by id");
+
 			PreparedStatement stmt = connection.prepareStatement(SELECT_ONE_ARTICLE);
 			
 			stmt.setInt(1,id);
 			ResultSet rs = stmt.executeQuery();
+
 			//DEBUG :System.out.println("requete bien exécutée");
+
 			ArticleVendu article = new ArticleVendu();
 			
 			while(rs.next()) {				
@@ -230,7 +236,9 @@ public class ArticleDaoImpl implements ArticleDAO{
 						
 						
 			}
+
 			//DEBUG :System.out.println("dao Article, article à rendre : " + article);
+
 			return article;
 
 			
