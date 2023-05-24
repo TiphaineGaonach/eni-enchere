@@ -39,13 +39,12 @@ public class ConnexionUtilisateurServlet extends HttpServlet {
 
 			HttpSession session = request.getSession();
 			session.setAttribute("pseudo", utilisateur);
-//			session.setAttribute("ip", request.getRemoteAddr());// verif adresse IP
-//			session.setAttribute("useragent", request.getHeader("user-agent")); // verif du navigateur
+
 			response.sendRedirect(request.getContextPath()+"/");
 			}
 			
 			
-			//response.sendRedirect(request.getContextPath()+"/connexion");
+			
 			
 		} catch (BusinessException e) {
 		    String message = e.getMessage();

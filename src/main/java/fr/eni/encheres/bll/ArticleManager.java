@@ -36,29 +36,48 @@ public class ArticleManager {
 	
 	/**  get all ArticleVendus  **/
 	public List<ArticleVendu> getAllArticleVendus(){
-		return DaoFactory.getArticleDao().selectAll();
+		List<ArticleVendu> articlesRechercher = DaoFactory.getArticleDao().selectAll();
+		List<ArticleVendu> articlesAfficher = new ArrayList<>();
+
+		for (ArticleVendu articleVendu : articlesRechercher) {
+			if (articleVendu.getEtatVente()!='C' ) {
+		    	articleVendu.setAfficherBoolean(false);
+		    }
+		}
+		for (ArticleVendu articleVendu : articlesRechercher) {
+			if (articleVendu.getAfficherBoolean()) {
+				//System.out.println(articleVendu);
+				articlesAfficher.add(articleVendu);
+			}
+		}
+		return articlesRechercher;
 	}
 	
 	public List<ArticleVendu> getRechercheArticleVendus(Recherche recherche) {
 		// TODO Auto-generated method stub
 		System.out.println(recherche);
 		
-		List<ArticleVendu> articlesRechercher = getAllArticleVendus();
+		List<ArticleVendu> articlesRechercher = DaoFactory.getArticleDao().selectAll();
 		List<ArticleVendu> articlesAfficher = new ArrayList<>();
 		
 		//System.out.println("Article manager,getRechercheArticleVendus, liste à filtrer"+ articlesRechercher);
 		//System.out.println(" categorie à tester est : " + recherche.getCategorie());
-		System.out.println("entrer dans la boucle for");
+		//System.out.println("entrer dans la boucle for");
 		for (ArticleVendu articleVendu : articlesRechercher) {
-			System.out.println("test d'un article " +articleVendu.getAfficherBoolean());
+			//System.out.println("test d'un article " +articleVendu.getAfficherBoolean());
+//******************************* recherche par categorie **********************************************************		    
 		    
-		    if (recherche.getCategorie().getNoCategorie() != articleVendu.getCategorie().getNoCategorie()) {
-		        //System.out.println("l'article retirer est : " + articleVendu);
-		        articleVendu.setAfficherBoolean(false);
-		        //System.out.println("l'article retirer est : " + articleVendu);
-		        continue;
+			
+			
+			if (recherche.getCategorie().getNoCategorie() != null
+				&& recherche.getCategorie().getNoCategorie() != articleVendu.getCategorie().getNoCategorie()) {
+			        //System.out.println("l'article retirer est : " + articleVendu);
+			        articleVendu.setAfficherBoolean(false);
+			        //System.out.println("l'article retirer est : " + articleVendu);
+			        continue;
 		    }
 		    //System.out.println(articleVendu.getDescription());
+ //******************************* recherche par mots clef **********************************************************
 		    if (recherche.getMotClef() != null && (
 		    		!articleVendu.getDescription().toLowerCase().contains(recherche.getMotClef().toLowerCase())
 		    		&& 
@@ -68,6 +87,7 @@ public class ArticleManager {
 		    	articleVendu.setAfficherBoolean(false);
 		    	continue;
 		    }
+// ********************** rechercher par état et utilisateur *******************************	
 		    
 		    if (recherche.getBoutonActif()!=null) {
 
@@ -89,7 +109,7 @@ public class ArticleManager {
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
-			    	System.out.println("article à tester dans les achat " + articleVendu);
+			    	//System.out.println("article à tester dans les achat " + articleVendu);
 			    if (recherche.getBoutonActif().equals("achatRemporter")	
 			    		&&(
 			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getEnchereMax().getUtilisateur().getNoUtilisateur()
@@ -102,11 +122,12 @@ public class ArticleManager {
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
-			    
+//**********************************mes Ventes *****************************************************************************
 			    if (recherche.getBoutonActif().equals("VenteEnCours")
 			    	&& (
 	    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
-	    				||(articleVendu.getEtatVente()!='C')
+	    				||
+	    				(articleVendu.getEtatVente()!='C')
 			    )){
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
@@ -115,23 +136,25 @@ public class ArticleManager {
 			    
 			    if (recherche.getBoutonActif().equals("VenteNonDebuter")	
 			    		&&(
-			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
 			    				||
-			    				articleVendu.getEtatVente()!='N'
+			    				(articleVendu.getEtatVente()!='N')
 					    )) {
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
 			    
 			    if (recherche.getBoutonActif().equals("VenteTerminer")	
+		
 			    		&&(
-			    				recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur()
+			    				(recherche.getUtilisateur().getNoUtilisateur()!=articleVendu.getUtilisateur().getNoUtilisateur())
 			    				||(
-				    				articleVendu.getEtatVente()!='T'
-				    				&&
-				    				articleVendu.getEtatVente()!='R'
+				    				(articleVendu.getEtatVente()!='T')
+//				    				||
+//				    				(articleVendu.getEtatVente()=='C')
 				    			)
 					    )) {
+			    	System.out.println("dans le if VenteTerminer" + articleVendu.getEtatVente());
 			    	articleVendu.setAfficherBoolean(false);
 			    	continue;
 			    }
@@ -140,14 +163,14 @@ public class ArticleManager {
 		    }
 		    
 		    
-		   System.out.println(" article gardé ");
+		  // System.out.println(" article gardé ");
 		}
-		System.out.println(" je suis sorti de la boucle for");
+		//System.out.println(" je suis sorti de la boucle for");
 		
-		System.out.println(" la liste à affiché est : ");
+		//System.out.println(" la liste à affiché est : ");
 		for (ArticleVendu articleVendu : articlesRechercher) {
 			if (articleVendu.getAfficherBoolean()) {
-				System.out.println(articleVendu);
+				//System.out.println(articleVendu);
 				articlesAfficher.add(articleVendu);
 			}
 		}

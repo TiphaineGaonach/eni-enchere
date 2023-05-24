@@ -21,14 +21,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/utilisateur/modifierUtilisateur.jsp")
 		.forward(request, response);
-		
-//		//int id = Integer.parseInt(request.getParameter("id"));
-//			String params = request.getPathInfo();
-//			int noUtilisateur = Integer.parseInt(params.substring(1));// substring pour se débarasser du / + ParseInt pour caster en entier
-//		// récupere l'utilisateur pour la suppression
-//			Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(noUtilisateur);
-//			request.setAttribute("utilisateur", utilisateur);
-		
+				
 	}
 
 	
@@ -54,7 +47,7 @@ public class ModifierUtilisateurServlet extends HttpServlet {
 		
 		if (motDePasse.equals(confirmation)) {
 			Utilisateur utilisateur = new Utilisateur(id, pseudo, nom, prenom, email,telephone, rue, codePostal, ville, motDePasse, credit, administrateur);
-			System.out.println(utilisateur);
+			
 				try {
 					UtilisateurManager.getInstance().updateUtilisateur(utilisateur);
 					//TODO ajoute message de réussite si utilisateur modifier + modifie la session

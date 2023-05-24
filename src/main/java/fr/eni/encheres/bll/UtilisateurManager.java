@@ -114,13 +114,7 @@ public class UtilisateurManager {
 		}
 	}
 	
-	/** checkDelete **/
-//	private void checkDelete (Utilisateur utilisateur) {
-//		if () {
-//			
-//		}
-//		
-//	}
+
 	
 	
 	

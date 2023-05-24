@@ -48,15 +48,6 @@ public class ArticleVendu {
 	
 	
 
-	//constructeur pour le user de l'articleVendu pour la requete selectAllEnchere
-//	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull LocalDate dateFinEncheres, Integer miseAPrix,Integer prixVente, char etatVente,@NonNull Utilisateur utilisateur,@NonNull Categorie categorie) {
-//		super();
-//		this.noArticle = noArticle;
-//		this.nomArticle = nomArticle;
-//		this.dateFinEncheres = dateFinEncheres;
-//		this.utilisateur = utilisateur;
-//		this.miseAPrix = miseAPrix;
-//	}
 
 	/**
 	 * Pour ArticleDaoImpl, selectAll() rend un article avec son utilisateur Vendeur, son enchète, et son utilisateur Acheteur

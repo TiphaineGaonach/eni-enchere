@@ -13,6 +13,8 @@
 <% List<Categorie> categories = (List<Categorie>) request.getAttribute("categories"); %>  
 
 
+
+
 <% // Extraction du code de formatage de date en dehors de la boucle
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");%>
 
@@ -52,68 +54,75 @@
 								</div>						
 								<div class="form-group col-6 ">
 								    <select class="form-select" id="categorie" name="categorie">
-								    	
+								    	<option>Toutes les catégories</option>
 								    <% for (Categorie categorie: categories){%>
+								    	
 								        <option><%=categorie.getLibelle() %></option>
 								    <%}%>	
 								    </select>
 								</div>
 							</div>
 							<div class= "row mt-3">
-								<div class="col">
-									<h5>Achats :</h5>
-									<div class="row ">
-										<div class="col-8">
-											Enchère ouverte : 				
+								<%  if(session.getAttribute("pseudo")!=null){%>
+			        
+				       
+				       
+			      													
+									<div class="col">
+										<h5>Achats :</h5>
+										<div class="row ">
+											<div class="col-8">
+												Enchère ouverte : 				
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="achatOuvert">				
+											</div>
+										</div>	
+										<div class="row ">
+											<div class="col-8">
+												Mes enchères en cours :				
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="achatEnCours">				
+											</div>
 										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="achatOuvert">				
-										</div>
-									</div>	
-									<div class="row ">
-										<div class="col-8">
-											Mes enchères en cours :				
-										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="achatEnCours">				
-										</div>
-									</div>
-									<div class="row ">
-										<div class="col-8">
-											Mes enchères reportées :				
-										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="achatRemporter">				
-										</div>
-									</div>
-								</div>
-								<div class="col">
-									<h5>Mes Ventes :</h5>
-									<div class="row ">
-										<div class="col-8">
-											Mes ventes en cours :			
-										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="VenteEnCours">				
-										</div>
-									</div>	
-									<div class="row ">
-										<div class="col-8">
-											Mes ventes non débutées :			
-										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="VenteNonDebuter">				
+										<div class="row ">
+											<div class="col-8">
+												Mes enchères reportées :				
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="achatRemporter">				
+											</div>
 										</div>
 									</div>
-									<div class="row ">
-										<div class="col-8">
-											Mes ventes terminée : 				
+									<div class="col">
+										<h5>Mes Ventes :</h5>
+										<div class="row ">
+											<div class="col-8">
+												Mes ventes en cours :			
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="VenteEnCours">				
+											</div>
+										</div>	
+										<div class="row ">
+											<div class="col-8">
+												Mes ventes non débutées :			
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="VenteNonDebuter">				
+											</div>
 										</div>
-										<div class="col-2">
-											<input type="radio" name="boutonActif" value="VenteTerminer">				
+										<div class="row ">
+											<div class="col-8">
+												Mes ventes terminée : 				
+											</div>
+											<div class="col-2">
+												<input type="radio" name="boutonActif" value="VenteTerminer">				
+											</div>
 										</div>
 									</div>
-								</div>				
+								 <%  } %>				
 							</div> 
 							
 							
