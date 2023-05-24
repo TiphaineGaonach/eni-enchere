@@ -28,7 +28,6 @@ public class DetailEnchereServlet extends HttpServlet {
 
 		//on recupere tout ce qui est à la place de * (l'id)
 		String params = request.getPathInfo();
-		System.out.println(" le param est :  "+ params);
 		Integer noArticle = Integer.parseInt(params.substring(1));		
 		
 				
@@ -50,10 +49,11 @@ public class DetailEnchereServlet extends HttpServlet {
 		Integer noArticle = Integer.parseInt(request.getParameter("no_article"));		
 		Utilisateur session = (Utilisateur) request.getSession().getAttribute("pseudo");
 		Integer noUtilisateur = session.getNoUtilisateur();
+		Integer creditUtilisateur = session.getCredit();
 		
 		
 		ArticleVendu article = new ArticleVendu(noArticle);
-		Utilisateur utilisateur = new Utilisateur(noUtilisateur);		
+		Utilisateur utilisateur = new Utilisateur(noUtilisateur,creditUtilisateur);		
 
 		//Mise à jour d'une enchère
 		EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur);

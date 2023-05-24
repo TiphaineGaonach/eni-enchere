@@ -1,6 +1,8 @@
+<%@page import="fr.eni.encheres.bo.Utilisateur"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%
+Utilisateur utilisateurConnecte = (Utilisateur)session.getAttribute("pseudo");
 	String [][] menu = {
 			
 			
@@ -70,4 +72,14 @@
 			    </div>
 			  </div>
 			</nav>
-
+			<%if(utilisateurConnecte!=null) { %>
+				<div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+					<div class="toast-header">
+    					<strong class="me-auto">  <%=utilisateurConnecte.getPseudo().toUpperCase()%></strong>
+    				</div>
+				
+				  	<div class="toast-header">
+    					<strong class="me-auto">  CRÉDITS  :  <%=utilisateurConnecte.getCredit() %></strong>
+ 				 	</div>
+  				</div>
+			<%} %>

@@ -89,12 +89,17 @@ public class Utilisateur {
 
 
 
-	//constructeur pour le user de l'articleVendur pour la requete selectAllEnchere 
+	//constructeur pour le user de l'articleVendu pour la requete selectAllEnchere 
 	public Utilisateur(Integer noUtilisateur) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 	}
-
+	
+	public Utilisateur(Integer noUtilisateur, Integer credit) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.credit = credit;
+	}
 
 
 

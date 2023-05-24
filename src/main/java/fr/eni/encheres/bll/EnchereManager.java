@@ -67,18 +67,13 @@ public class EnchereManager {
 	    return null;
 	}
 	
-	public Enchere chercheEnchereByArt(Integer noArticle) {
-	    List<Enchere> encheres = EnchereManager.getInstance().getAllEnchere();
-	    for (Enchere enchere : encheres) {
-	        if (enchere.getArticleVendu().getNoArticle().equals(noArticle)) {
-	            return enchere;
-	        }
-	    }
-	    return null;
-	}
 
 	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) {
 	    Enchere enchere = chercheEnchereByArtAndUser(article.getNoArticle(), utilisateur.getNoUtilisateur());
+	    
+	    //check si l'enchere est realisable
+	    controleSurenchere(surenchere, utilisateur);
+
 	    if (enchere != null) {
 	        enchere.setMontantEnchere(surenchere);
 	        EnchereManager.getInstance().updateEnchere(enchere);
@@ -86,6 +81,14 @@ public class EnchereManager {
 	        Enchere newEnchere = new Enchere(surenchere, utilisateur, article);
 	        EnchereManager.getInstance().addEnchere(newEnchere);
 	    }
+	}
+	
+	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur) {
+	    if (surenchere > utilisateur.getCredit()) {
+	    	System.out.println("SYLVAIN utilisateur dans enchere manager :" +utilisateur);
+	    	System.out.println("pas assez de sou mec !");
+	    }
+		
 	}
 
 	

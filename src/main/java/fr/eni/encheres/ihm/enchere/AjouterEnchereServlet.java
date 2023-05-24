@@ -68,7 +68,7 @@ public class AjouterEnchereServlet extends HttpServlet {
 					categorie=c;
 				}
 		}
-		System.out.println("la categorie créé est : " + categorie);
+		//System.out.println("la categorie créé est : " + categorie);
 		
 		
 		// recup des dates
