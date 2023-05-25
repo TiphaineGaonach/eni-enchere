@@ -11,10 +11,12 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.EnchereManager;
 import fr.eni.encheres.bll.SecuriteManager;
 import fr.eni.encheres.bll.UtilisateurManager;
+import fr.eni.encheres.bll.exception.BLLException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
@@ -54,12 +56,21 @@ public class DetailEnchereServlet extends HttpServlet {
 		
 		ArticleVendu article = new ArticleVendu(noArticle);
 		Utilisateur utilisateur = new Utilisateur(noUtilisateur,creditUtilisateur);		
+		
+		
+		/**
+		 * Mise à jour d'une enchère
+		 */
+	    try {
+	        EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur);
+	        
+	    } catch (BusinessException e) {
+	    	//on enleve les crochets en début et fin de message
+	        String errorMessage = e.getMessage().substring(1, e.getMessage().length() - 1);
+	        request.setAttribute("erreur", errorMessage);
+	    }
 
-		//Mise à jour d'une enchère
-		EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur);
-		
-		
-		doGet(request, response);
+	    doGet(request, response);
 	}
 
 

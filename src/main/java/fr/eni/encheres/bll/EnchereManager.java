@@ -3,6 +3,8 @@ package fr.eni.encheres.bll;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bll.exception.BLLException;
 import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
@@ -68,11 +70,12 @@ public class EnchereManager {
 	}
 	
 
-	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) {
+	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) throws BusinessException {
 	    Enchere enchere = chercheEnchereByArtAndUser(article.getNoArticle(), utilisateur.getNoUtilisateur());
 	    
 	    //check si l'enchere est realisable
-	    controleSurenchere(surenchere, utilisateur);
+			controleSurenchere(surenchere, utilisateur);
+	
 
 	    if (enchere != null) {
 	        enchere.setMontantEnchere(surenchere);
@@ -83,10 +86,9 @@ public class EnchereManager {
 	    }
 	}
 	
-	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur) {
+	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur) throws BusinessException {
 	    if (surenchere > utilisateur.getCredit()) {
-	    	System.out.println("SYLVAIN utilisateur dans enchere manager :" +utilisateur);
-	    	System.out.println("pas assez de sou mec !");
+	    	throw new BusinessException("Vous n'avez pas assez de crédit pour enchérir");	    	
 	    }
 		
 	}

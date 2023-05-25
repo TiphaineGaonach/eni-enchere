@@ -174,13 +174,6 @@ public class ArticleManager {
 				articlesAfficher.add(articleVendu);
 			}
 		}
-		
-		
-		
-//		if (recherche.getMotClef() != null && (!articleVendu.getDescription().contains(recherche.getMotClef())
-//	            || !articleVendu.getNomArticle().contains(recherche.getMotClef()))) {
-//	        articlesRechercher.remove(i);
-//	    }
 
 		return articlesAfficher;
 	}
@@ -252,16 +245,7 @@ public class ArticleManager {
 	    }
 	}
 
-	
-	
-	
-	
-//	public List<Enchere> getAllEnchere() {
-//		DaoFactory.getArticleDao().selectAllEnchere();
-//		
-//		return null;
-//	}
-	
+
 		
 	
 }

@@ -82,8 +82,8 @@ public class AjouterEnchereServlet extends HttpServlet {
 
 		 // creation de l'article et recup de l'id
 		ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, miseAPrix, miseAPrix, 'N', categorie, (Utilisateur)session.getAttribute("pseudo"));
-		//ArticleVendu article = new ArticleVendu(nomArticle, description, dateDebutEncheres, dateFinEncheres, categorie, (Utilisateur)session.getAttribute("pseudo") );
-		System.out.println(" l'article créé est : "+ article);
+		//DEBUG : System.out.println(" l'article créé est : "+ article);
+		
 		try {
 			
 			ArticleManager.getInstance().addArticleVendu(article);
@@ -110,21 +110,16 @@ public class AjouterEnchereServlet extends HttpServlet {
 			}
 		} catch (BusinessException e) {
 			request.setAttribute("erreur", e.getMessage());
-			System.out.println(e);
 
 			request.setAttribute("categories", categories);
-//			response.sendRedirect(request.getContextPath()+"/enchere/ajouterEnchere");
+
 			request.getRequestDispatcher("/WEB-INF/jsp/enchere/nouvelleVente.jsp")
 			.forward(request, response);
 			return;
 		}	
 			
-//			Flash.send("success", "l'article a bien été ajouté", request.getSession());
-		
-//			request.getRequestDispatcher("/WEB-INF/jsp/enchere/detailEnchere.jsp")
-//			.forward(request, response);
-		System.out.println("***********************no article "+article.getNoArticle());
-		System.out.println("***********************prix vente "+article.getPrixVente());
+//	DEBUG:	System.out.println("***********************no article "+article.getNoArticle());
+//	DEBUG:	System.out.println("***********************prix vente "+article.getPrixVente());
 		
 			response.sendRedirect(request.getContextPath()+"/enchere/detailEnchere/"+article.getNoArticle());
 		}

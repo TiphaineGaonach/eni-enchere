@@ -5,6 +5,7 @@
 <% ArticleVendu article = (ArticleVendu) request.getAttribute("article"); %>
 <% Utilisateur utilisateurConnecter = (Utilisateur) session.getAttribute("pseudo"); %>
 <%int surenchere = (int) request.getAttribute("surenchere"); %>
+<% String erreur = (String) request.getAttribute("erreur"); %>
     
     
 <!DOCTYPE html>
@@ -25,6 +26,15 @@
 	
 	<main>
 		<h1 class="text-center"> Détail Vente</h1>
+					
+						<% if (erreur!= null){ %> 
+						<div class="col-3 offset-5">
+							<div class=" alert alert-dismissible alert-danger">
+								<p><%=erreur %></p>
+							</div>
+						</div>
+						<%} %>
+					
 		
 		<% if (article.getEtatVente()=='N') { %>
 			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
@@ -75,6 +85,7 @@
 
 				
 				<div class="row ">
+
 					<div class="col-3 offset-1 ">
 				    	<img class="img-thumbnail" src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
 				 	</div>
