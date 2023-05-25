@@ -139,7 +139,6 @@
 						<div class = "col-4">
 							<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">			
 								  <div class="card-header card-header-link text-center">
-<%-- 								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere?article=<%= enchere.getArticleVendu().getNoArticle() %>&user=<%= enchere.getUtilisateur().getNoUtilisateur()%>"> --%>
 								  	<a class="card-header-link" href="<%= request.getContextPath() %>/enchere/detailEnchere/<%= articleVendu.getNoArticle() %>">
 								  		<h4><%= articleVendu.getNomArticle()%></h4>
 								  	</a>

@@ -94,7 +94,12 @@ public class Utilisateur {
 		super();
 		this.noUtilisateur = noUtilisateur;
 	}
-
+	
+	public Utilisateur(Integer noUtilisateur, Integer credit) {
+		super();
+		this.noUtilisateur = noUtilisateur;
+		this.credit = credit;
+	}
 
 
 

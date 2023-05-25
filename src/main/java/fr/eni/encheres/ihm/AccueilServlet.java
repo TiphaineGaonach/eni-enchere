@@ -64,7 +64,9 @@ public class AccueilServlet extends HttpServlet {
 		
 		List<ArticleVendu> articlesAfficher = ArticleManager.getInstance().getRechercheArticleVendus(recherche);
 
+
 		//DEBUG :System.out.println("servlet accueil list article vendu " + articlesAfficher);
+
 		request.setAttribute("articleVendus", articlesAfficher);
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/accueil.jsp").forward(request, response);
