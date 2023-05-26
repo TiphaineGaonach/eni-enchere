@@ -70,11 +70,11 @@ public class EnchereManager {
 	}
 	
 
-	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur) throws BusinessException {
+	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur, Utilisateur session) throws BusinessException {
 	    Enchere enchere = chercheEnchereByArtAndUser(article.getNoArticle(), utilisateur.getNoUtilisateur());
 	    
 	    //check si l'enchere est realisable
-			controleSurenchere(surenchere, utilisateur);
+			controleSurenchere(surenchere, utilisateur,article,session);
 	
 
 	    if (enchere != null) {
@@ -86,11 +86,15 @@ public class EnchereManager {
 	    }
 	}
 	
-	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur) throws BusinessException {
+	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur,ArticleVendu article,Utilisateur session) throws BusinessException {
 	    if (surenchere > utilisateur.getCredit()) {
 	    	throw new BusinessException("Vous n'avez pas assez de crédit pour enchérir");	    	
 	    }
-		
+	    
+	    if (article.getUtilisateur().getNoUtilisateur()!=session.getNoUtilisateur()
+				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() == session.getNoUtilisateur()) {
+	    	throw new BusinessException("Vous avez deja la meilleure enchère sur cet article ;)");
+	    };
 	}
 
 	

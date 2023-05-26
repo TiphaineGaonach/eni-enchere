@@ -49,23 +49,26 @@ public class DetailEnchereServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer surenchere =   Integer.parseInt(request.getParameter("enchere"));
 		Integer noArticle = Integer.parseInt(request.getParameter("no_article"));		
-		Utilisateur session = (Utilisateur) request.getSession().getAttribute("pseudo");
-		Integer noUtilisateur = session.getNoUtilisateur();
-		Integer creditUtilisateur = session.getCredit();
+		Utilisateur utilisateurConnecte = (Utilisateur) request.getSession().getAttribute("pseudo");
+		
+		Integer noUtilisateurConnecte = utilisateurConnecte.getNoUtilisateur();
+		//Integer creditUtilisateur = utilisateurConnecte.getCredit();
 		
 		
-		ArticleVendu article = new ArticleVendu(noArticle);
-		Utilisateur utilisateur = new Utilisateur(noUtilisateur,creditUtilisateur);		
-		
+		//Recuperation de l'user connecté et de l'article selectionné
+		Utilisateur utilisateur = UtilisateurManager.getInstance().getUtilisateur(noUtilisateurConnecte);			
+		ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
+			
+
 		
 		/**
-		 * Mise à jour d'une enchère
+		 * MISE A JOUR DE L'ENCHERE
 		 */
 	    try {
-	        EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur);
+	        EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur,utilisateurConnecte);
 	        
 	    } catch (BusinessException e) {
-	    	//on enleve les crochets en début et fin de message
+	    	//Suppression des crochets en début et fin de message
 	        String errorMessage = e.getMessage().substring(1, e.getMessage().length() - 1);
 	        request.setAttribute("erreur", errorMessage);
 	    }

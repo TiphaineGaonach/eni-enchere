@@ -35,8 +35,6 @@ public class AccueilServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Fonction rechercher.
-		System.out.println("List Article Servlet, Do Post");
 		
 		// creation de la demande de recherche
 		List<Categorie> categories = CategorieManager.getInstance().getAllCategorie();

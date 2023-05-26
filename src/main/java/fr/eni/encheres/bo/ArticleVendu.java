@@ -46,6 +46,14 @@ public class ArticleVendu {
 		this.dateFinEncheres = dateFinEncheres;
 	}
 	
+	public ArticleVendu(Integer noArticle, @NonNull Utilisateur utilisateur) {
+		super();
+		this.noArticle = noArticle;
+		this.utilisateur = utilisateur;
+	}
+	
+	
+	
 	
 
 
