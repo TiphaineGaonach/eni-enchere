@@ -112,8 +112,10 @@ public class EnchereManager {
 	
 	public String affichageEtatEnchere (ArticleVendu article,Utilisateur utilisateurConnecte) {
 		
-		if (article.getEtatVente()=='N') { 
-	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("fr", "FR"));
+		//formatage de la date xx mois xxxx (ex : 27 mai 2023)
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("fr", "FR"));
+		
+		if (article.getEtatVente()=='N') { 	        
 			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
 				return "L'enchère sera ouverte le " +article.getDateDebutEncheres().format(formatter)+ " pour cet article" ;
 			}
