@@ -1,7 +1,9 @@
 package fr.eni.encheres.bll;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.exception.BLLException;
@@ -86,15 +88,71 @@ public class EnchereManager {
 	    }
 	}
 	
-	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur,ArticleVendu article,Utilisateur session) throws BusinessException {
-	    if (surenchere > utilisateur.getCredit()) {
-	    	throw new BusinessException("Vous n'avez pas assez de crédit pour enchérir");	    	
+	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur,ArticleVendu article,Utilisateur utilisateurConnecte) throws BusinessException {
+	    
+	    if (article.getEtatVente()=='T' || article.getEtatVente() =='R') {
+	    	throw new BusinessException("Vous ne pouvez pas enchérir sur une enchère terminée");
 	    }
 	    
-	    if (article.getUtilisateur().getNoUtilisateur()!=session.getNoUtilisateur()
-				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() == session.getNoUtilisateur()) {
-	    	throw new BusinessException("Vous avez deja la meilleure enchère sur cet article ;)");
-	    };
+	    if (article.getEtatVente()=='N') {
+	    	throw new BusinessException("Vous ne pouvez pas enchérir sur une enchère non débutée");
+	    }
+	    
+	    if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecte.getNoUtilisateur()
+				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() == utilisateurConnecte.getNoUtilisateur()) {
+	    	throw new BusinessException("Vous avez déjà la meilleure enchère sur cet article ;)");
+	    }	
+	    
+		if (surenchere > utilisateur.getCredit()) {
+	    	throw new BusinessException("Vous n'avez pas assez de crédit pour enchérir");	    	
+	    }
+	}
+	
+	
+	
+	public String affichageEtatEnchere (ArticleVendu article,Utilisateur utilisateurConnecte) {
+		
+		if (article.getEtatVente()=='N') { 
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("fr", "FR"));
+			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
+				return "L'enchère sera ouverte le " +article.getDateDebutEncheres().format(formatter)+ " pour cet article" ;
+			}
+		}
+		
+		if (article.getEtatVente()=='C') {
+			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
+				return "Vous vendez cet article" ;
+			}
+			if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecte.getNoUtilisateur()
+					&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() ==utilisateurConnecte.getNoUtilisateur()) {
+						return " Vous avez la meilleure enchère sur cet article";
+			}
+		}
+		
+		if (article.getEtatVente()=='T') {
+			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==article.getUtilisateur().getNoUtilisateur()) {
+				return "L'enchère est terminée, l'article n'a pas été vendu";
+				}			
+			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
+				return " Vous avez remporté l'enchère";
+			}			
+			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()!=article.getUtilisateur().getNoUtilisateur()) {
+				return " L'enchère est terminée , l'article a été vendu !";
+			}
+		}
+		
+		
+		if (article.getEtatVente()=='R') { 
+			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
+				return "l'article à été retiré";
+			}
+			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
+				return "Vous avez retiré cet article";
+			} 
+		}
+		
+		//si aucun de ces cas -> on n'affiche rien
+		return null;
 	}
 
 	

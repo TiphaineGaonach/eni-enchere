@@ -122,7 +122,7 @@ public class ArticleVendu {
 	 * @param prixVente
 	 * @param etatVente
 	 */
-	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull String description,
+	public ArticleVendu(Integer noArticle, @NonNull String nomArticle, @NonNull String description,@NonNull LocalDate dateDebutEncheres,
 			 @NonNull LocalDate dateFinEncheres, Integer miseAPrix,
 			Integer prixVente, char etatVente, 
 			Categorie categorie, Utilisateur utilisateur, Enchere enchereMax, Retrait retrait) {
@@ -130,6 +130,7 @@ public class ArticleVendu {
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
+		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;

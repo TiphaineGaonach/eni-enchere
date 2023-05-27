@@ -34,8 +34,14 @@ public class DetailEnchereServlet extends HttpServlet {
 		
 				
 			ArticleVendu article = ArticleManager.getInstance().getArticleVendu(noArticle);
-
 			request.setAttribute("article", article);
+			
+			Utilisateur utilisateurConnecte = (Utilisateur) request.getSession().getAttribute("pseudo");
+			
+			//on recupere l'etat de l'enchère pour l'afficher dans la JSP
+			String etatEnchere = EnchereManager.getInstance().affichageEtatEnchere(article, utilisateurConnecte);
+			request.setAttribute("etatEnchere", etatEnchere);
+			
 	    
 			//on definit le montant minimum de surenchère (montant max de l'enchere +10)
 			request.setAttribute("surenchere", article.getPrixVente()+10);		

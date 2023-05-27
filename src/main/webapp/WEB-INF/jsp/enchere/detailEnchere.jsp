@@ -6,6 +6,7 @@
 <% Utilisateur utilisateurConnecter = (Utilisateur) session.getAttribute("pseudo"); %>
 <%int surenchere = (int) request.getAttribute("surenchere"); %>
 <% String erreur = (String) request.getAttribute("erreur"); %>
+<% String etatEnchere = (String) request.getAttribute("etatEnchere"); %>
     
     
 <!DOCTYPE html>
@@ -23,85 +24,37 @@
 	<header class="row">
 		<%@ include file="/WEB-INF/jsp/part/menu.jsp" %>
 	</header>
-	
+
+		
 	<main>
 		<h1 class="text-center"> Détail Vente</h1>
-					
-						<% if (erreur!= null){ %> 
-						<div class="col-4 offset-5">
-							<div class=" alert alert-dismissible alert-danger text-center">
-								<p><%=erreur %></p>
-							</div>
-						</div>
-						<%} %>
-					
-		
-		<% if (article.getEtatVente()=='N') { %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-			<div class="col-4 offset-5">
-					<h2 class="text-center"> Vous avez créer cette article à vendre. il n'est pas encore en vente</h2>
-			</div>
-			<% } %>	
-		<% } %>
-		
-		<% if (article.getEtatVente()=='C') { %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-			<div class="col-4 offset-5">
-					<h2 class="text-center"> Vous vendez cet article</h2>
-			</div>
-			<% } %>
-			<% if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecter.getNoUtilisateur()
-					&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() ==utilisateurConnecter.getNoUtilisateur()) { %>
+			
+				<% if (erreur!= null){ %> 
 					<div class="col-4 offset-5">
-						<h2 class="text-center"> Vous avez la meilleur enchère sur cet article</h2>
+						<div class=" alert alert-dismissible alert-danger text-center">
+							<p><%=erreur %></p>
+						</div>
 					</div>
-			<% } %>
-		<% } %>
-		
-		<% if (article.getEtatVente()=='T') { %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()
-				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-				<div class="col-4 offset-5">
-					<h2 class="text-center"> L'article n'a pas été vendu</h2>
-				</div>
-			<% } %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()
-				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur()!=utilisateurConnecter.getNoUtilisateur()) { %>
-				<div class="col-4 offset-5">
-					<h2 class="text-center"> L'article a été vendu!</h2>
-				</div>
-			<% } %>
-			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-			<div class="col-4 offset-5">
-					<h2 class="text-center"> Vous avez remporter l'enchère</h2>
-			</div>
-			<% } %>
-		<% } %>
-		
-		<% if (article.getEtatVente()=='R') { %>
-			<% if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-			<div class="col-4 offset-5">
-					<h2 class="text-center"> l'article à été retirer</h2>
-			</div>
-			<% } %>
-			<% if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecter.getNoUtilisateur()) { %>
-			<div class="col-4 offset-5">
-					<h2 class="text-center"> Vous avez retiré cette article</h2>
-			</div>
-			<% } %>
-		<% } %>
-		
-		
-		
-		
+				<%} %>
+						
+					
+				<% if (etatEnchere!= null){ %> 
+					<div class="col-4 offset-5">
+						<div class=" alert alert-dismissible alert-success text-center">
+							<p><%=etatEnchere %></p>
+						</div>
+					</div>
+				<%} %>
 		
 		<div >
-				
+						
+	
 				<div class="row ">
 
 					<div class="col-3 offset-1 ">
 				    	<img class="img-thumbnail" src="<%= request.getContextPath()%>/img/article_<%= article.getNoArticle() %>.png" alt="Image de l'article <%=article.getNoArticle()%>">
 				 	</div>
+
 					<div class=" col-6 offset-1 ">
 						<div class=" row mt-4">
 							<div class="col-4 col-xxl-2">
