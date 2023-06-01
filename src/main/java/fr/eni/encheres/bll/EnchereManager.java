@@ -115,12 +115,14 @@ public class EnchereManager {
 		//formatage de la date xx mois xxxx (ex : 27 mai 2023)
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", new Locale("fr", "FR"));
 		
+		//enchere non debutée
 		if (article.getEtatVente()=='N') { 	        
 			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
 				return "L'enchère sera ouverte le " +article.getDateDebutEncheres().format(formatter)+ " pour cet article" ;
 			}
 		}
 		
+		//enchère en cours
 		if (article.getEtatVente()=='C') {
 			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
 				return "Vous vendez cet article" ;
@@ -131,6 +133,7 @@ public class EnchereManager {
 			}
 		}
 		
+		//enchère terminée
 		if (article.getEtatVente()=='T') {
 			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==article.getUtilisateur().getNoUtilisateur()) {
 				return "L'enchère est terminée, l'article n'a pas été vendu";
@@ -143,7 +146,7 @@ public class EnchereManager {
 			}
 		}
 		
-		
+		//enchère retirée
 		if (article.getEtatVente()=='R') { 
 			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
 				return "l'article à été retiré";

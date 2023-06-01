@@ -3,10 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <% ArticleVendu article = (ArticleVendu) request.getAttribute("article"); %>
-<% Utilisateur utilisateurConnecter = (Utilisateur) session.getAttribute("pseudo"); %>
 <%int surenchere = (int) request.getAttribute("surenchere"); %>
 <% String erreur = (String) request.getAttribute("erreur"); %>
 <% String etatEnchere = (String) request.getAttribute("etatEnchere"); %>
+<% boolean isRetrait = (boolean) request.getAttribute("isRetrait"); %>
     
     
 <!DOCTYPE html>
@@ -135,10 +135,21 @@
 										<div class="form-group col-8">
 									    	${article.retrait.ville}
 									    </div>
-									</div>			
+									</div>
+									
+									<% if (isRetrait) { %>
+									<form action="" method ="POST" class="mt-4 row ">
+										<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
+										<input type="hidden" name="no_vendeur" value="<%= article.getUtilisateur().getNoUtilisateur() %>">
+										<div class="d-grid gap-2">
+										    <button class="btn btn-lg btn-primary card-header-link" type="submit" name="action" value="retirerArticle">Confirmer le retrait ?</button>
+										</div>						  
+									</form>								
+									<% } %>		
+  
 						 		</div>
 						</div>	
-						
+				
 						
 						<div class=" row mt-4">
 							<div class="col-4 col-xxl-2">
@@ -163,7 +174,7 @@
 									  		</select>
 									    </div>
 									    <div class="form-group col-4">
-									    	<button type="submit">Enchérir</button>
+									    	<button type="submit" name="action" value="encherir">Enchérir</button>
 									    </div>
 									</div>	
 						

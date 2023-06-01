@@ -2,7 +2,9 @@ package fr.eni.encheres.bll;
 
 import java.util.List;
 
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Retrait ;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DaoFactory;
 
 
@@ -48,7 +50,18 @@ public class RetraitManager {
 	}
 	
 
-
+	public boolean isRetraitPermis(ArticleVendu article, Utilisateur utilisateurConnecte) {
+			
+			Integer noUtilisateurEnchereMAX = article.getEnchereMax().getUtilisateur().getNoUtilisateur() ;
+			Integer noUtilisateurConnecte = utilisateurConnecte.getNoUtilisateur() ;
+			Integer noVendeur = article.getUtilisateur().getNoUtilisateur() ;
+	
+					
+			boolean retraitPermis = article.getEtatVente() == 'T'
+									&& noUtilisateurEnchereMAX == noUtilisateurConnecte
+									&& noUtilisateurEnchereMAX != noVendeur;
+		    return retraitPermis ;
+	}
 	
 
 }
