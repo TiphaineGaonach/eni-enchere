@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.encheres.BusinessException;
+import fr.eni.encheres.bo.ArticleVendu;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.config.ConnectionProvider;
 import fr.eni.encheres.dal.UtilisateurDAO;
@@ -26,6 +27,8 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 	private final static String INSERT_UTILISATEUR = "INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur  ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_UTILISATEUR = "DELETE FROM UTILISATEURS WHERE no_utilisateur = ?";
 	private static final String SELECT_BY_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? OR email = ?";
+	private static final String CREDITER_USER = "UPDATE UTILISATEURS SET credit = credit + ? WHERE no_utilisateur = ?";
+	private static final String DEBITER_USER = "UPDATE UTILISATEURS SET credit = credit - ? WHERE no_utilisateur = ?";
 	
 
 	@Override
@@ -194,6 +197,63 @@ public class UtilisateurDaoImpl implements UtilisateurDAO{
 		}
 		return null;
 	}
+
+	@Override
+	public void updateCreditUtilisateur(ArticleVendu article) throws BusinessException {
+		try(Connection connection = ConnectionProvider.getConnection()) {
+			
+			//on credite le vendeur
+			PreparedStatement pStmtCredit = connection.prepareStatement(CREDITER_USER);
+			pStmtCredit.setInt(1, article.getPrixVente());
+			pStmtCredit.setInt(2, article.getUtilisateur().getNoUtilisateur());			
+			pStmtCredit.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			throw new BusinessException ("Erreur update");
+		}	
+		
+		
+	}
+
+	@Override
+	public void updateDebitUtilisateur(ArticleVendu article, Utilisateur utilisateurConnecte,Integer surenchere) throws BusinessException {
+		try(Connection connection = ConnectionProvider.getConnection()) {
+			
+			
+			//on debite l'acheteur
+			PreparedStatement pStmtDebit = connection.prepareStatement(DEBITER_USER);
+			pStmtDebit.setInt(1, surenchere);
+			pStmtDebit.setInt(2, utilisateurConnecte.getNoUtilisateur());
+			pStmtDebit.executeUpdate();
+			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			throw new BusinessException ("Erreur update");
+		}	
+		
+		
+	}
+
+	@Override
+	public void updateCreditDernierEncherisseur(ArticleVendu article, Utilisateur utilisateurConnecte) throws BusinessException {
+		try(Connection connection = ConnectionProvider.getConnection()) {
+			
+			//on credite le vendeur
+			PreparedStatement pStmtCredit = connection.prepareStatement(CREDITER_USER);
+			pStmtCredit.setInt(1, article.getPrixVente());
+			pStmtCredit.setInt(2, article.getEnchereMax().getUtilisateur().getNoUtilisateur());			
+			pStmtCredit.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			throw new BusinessException ("Erreur update");
+		}			
+	}
+	
+	
 
 
 	

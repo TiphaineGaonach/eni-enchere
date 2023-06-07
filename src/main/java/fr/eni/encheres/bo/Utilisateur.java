@@ -79,10 +79,11 @@ public class Utilisateur {
 
 
 	// SYLVAIN : constructeur créé pour selectAllEnchere() -> recuperer la liste des encheres sur la page d'accueil
-	public Utilisateur(Integer noUtilisateur,String pseudo) {
+	public Utilisateur(Integer noUtilisateur,String pseudo, Integer credit) {
 		super();
 		this.noUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
+		this.credit = credit;
 	}
 
 

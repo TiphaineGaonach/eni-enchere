@@ -60,10 +60,8 @@ public class AjouterEnchereServlet extends HttpServlet {
 		// recup de la categorie
 		List<Categorie> categories= CategorieManager.getInstance().getAllCategorie();		
 		String categorieVente = request.getParameter("categorie");// extraire la catégorie de l'article
-		System.out.println("catégorie à vendre : "+ categorieVente );
 		Categorie categorie = new Categorie(); 
 		for (Categorie c : categories) {
-			System.out.println(" catégorie testée : "+c);
 				if (c.getLibelle().equals(categorieVente)) {
 					categorie=c;
 				}

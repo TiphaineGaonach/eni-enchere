@@ -200,6 +200,11 @@ public class ArticleManager {
 		DaoFactory.getArticleDao().update(ArticleVendu);
 	}
 	
+	public void terminerVente(ArticleVendu articleVendu) throws BusinessException {
+		DaoFactory.getArticleDao().etatArticleT(articleVendu);
+		
+	}
+	
 	
 	
 	/************************* Check *************************/

@@ -60,6 +60,7 @@ public class RetraitManager {
 			boolean retraitPermis = article.getEtatVente() == 'T'
 									&& noUtilisateurEnchereMAX == noUtilisateurConnecte
 									&& noUtilisateurEnchereMAX != noVendeur;
+			
 		    return retraitPermis ;
 	}
 	

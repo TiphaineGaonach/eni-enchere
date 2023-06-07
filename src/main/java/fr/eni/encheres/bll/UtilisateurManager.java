@@ -56,6 +56,20 @@ public class UtilisateurManager {
 		daoU.insert(utilisateur);
 	}
 	
+	
+	public void crediterVendeur(ArticleVendu article) throws BusinessException {
+		daoU.updateCreditUtilisateur(article);
+	}
+	
+	public void debiterAcheteur(ArticleVendu article,Utilisateur utilisateurConnecte,Integer surenchere) throws BusinessException {
+		daoU.updateDebitUtilisateur(article,utilisateurConnecte,surenchere);
+		
+	}
+	
+	public void crediterDernierEncherisseur(ArticleVendu article, Utilisateur utilisateurConnecte) throws BusinessException{
+		daoU.updateCreditDernierEncherisseur(article,utilisateurConnecte);
+		
+	}	
 	//Afficher tous les utilisateurs
 	public List<Utilisateur> getAllUtilisateur(){
 		return daoU.selectAll();
@@ -113,6 +127,12 @@ public class UtilisateurManager {
 			be.ajouterErreur("Le champ %s ne peut pas être vide!".formatted(name));
 		}
 	}
+
+
+
+
+
+
 	
 
 	

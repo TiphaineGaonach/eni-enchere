@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mysql.cj.exceptions.PasswordExpiredException;
 
-
+import fr.eni.encheres.BusinessException;
 import fr.eni.encheres.bll.CategorieManager;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.ArticleVendu;
@@ -35,6 +35,8 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ "    e.no_utilisateur AS noAcheteur, "
 			+ "	   u2.pseudo AS pseudoAcheteur, "
 			+ "    u.pseudo AS pseudoVendeur, "
+			+ "    u.credit AS creditVendeur, "
+			+ "    u2.credit AS creditAcheteur, "
 			+ "    a.etat_vente, "
 			+ "    a.prix_initial, "
 			+ "    u.pseudo, "
@@ -73,6 +75,8 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ " e.no_utilisateur AS noAcheteur, "
 			+ "	u2.pseudo AS pseudoAcheteur, "
 			+ " u.pseudo AS pseudoVendeur, "
+			+ " u.credit AS creditVendeur, "
+			+ " u2.credit AS creditAcheteur, "
 			+ " a.etat_vente, "
 			+ " a.prix_initial, "
 			+ " c.no_categorie, "
@@ -114,6 +118,8 @@ public class ArticleDaoImpl implements ArticleDAO{
 			+ "etat_vente  ) VALUES (?,?,?,?,?,?,?,?,?)";
 	private final static String DELETE_ARTICLE = "DELETE FROM ARTICLES_VENDUS WHERE id = ?";
 	
+	private final static String UPDATE_ARTICLE_R = "UPDATE ARTICLES_VENDUS SET etat_vente=? WHERE no_article = ?";
+	
 	
 	
 
@@ -135,11 +141,13 @@ public class ArticleDaoImpl implements ArticleDAO{
 				
 				Utilisateur vendeur = new Utilisateur(
 						rs.getInt("noVendeur"),
-						rs.getString("pseudoVendeur"));
+						rs.getString("pseudoVendeur"),
+						rs.getInt("creditVendeur"));
 				
 				Utilisateur acheteur = new Utilisateur(
 						rs.getInt("noAcheteur"),
-						rs.getString("pseudoAcheteur"));
+						rs.getString("pseudoAcheteur"),
+						rs.getInt("creditAcheteur"));
 						
 				Enchere enchere = new Enchere(
 						rs.getInt("no_categorie"),
@@ -211,11 +219,13 @@ public class ArticleDaoImpl implements ArticleDAO{
 				
 				Utilisateur vendeur = new Utilisateur(
 						rs.getInt("noVendeur"),
-						rs.getString("pseudoVendeur"));
+						rs.getString("pseudoVendeur"),
+						rs.getInt("creditVendeur"));
 				
 				Utilisateur acheteur = new Utilisateur(
 						rs.getInt("noAcheteur"),
-						rs.getString("pseudoAcheteur"));
+						rs.getString("pseudoAcheteur"),
+						rs.getInt("creditAcheteur"));
 						
 				Enchere enchere = new Enchere(
 						rs.getInt("no_categorie"),
@@ -245,7 +255,7 @@ public class ArticleDaoImpl implements ArticleDAO{
 			}
 
 
-			//DEBUG :System.out.println("dao Article, article à rendre : " + article);
+			//System.out.println("dao Article, article à rendre : " + article);
 
 
 			return article;
@@ -308,6 +318,23 @@ public class ArticleDaoImpl implements ArticleDAO{
 		stmt.setString(9, Character.toString(articleVendu.getEtatVente()));
 		
 		
+	}
+
+
+	@Override
+	public void etatArticleT(ArticleVendu articleVendu) throws BusinessException {
+		try(Connection connection = ConnectionProvider.getConnection()) {
+			
+			PreparedStatement pStmtCredit = connection.prepareStatement(UPDATE_ARTICLE_R);
+			pStmtCredit.setString(1, "R");
+			pStmtCredit.setInt(2, articleVendu.getNoArticle());			
+			pStmtCredit.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			throw new BusinessException ("Erreur update");
+		}			
 	}
 
 

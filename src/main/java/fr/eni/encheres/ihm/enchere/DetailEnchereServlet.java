@@ -88,6 +88,10 @@ public class DetailEnchereServlet extends HttpServlet {
 			    try {
 			        EnchereManager.getInstance().miseAJourEnchere(surenchere, article, utilisateur,utilisateurConnecte);
 			        
+					//MAJ de la session utilisateurConnecte pour afficher le nouveau solde
+					Utilisateur utilisateurMaj = UtilisateurManager.getInstance().getUtilisateur(utilisateurConnecte.getNoUtilisateur());
+					request.getSession().setAttribute("pseudo", utilisateurMaj);
+			        
 			    } catch (BusinessException e) {
 			    	//Suppression des crochets en début et fin de message
 			        String errorMessage = e.getMessage().substring(1, e.getMessage().length() - 1);
@@ -95,18 +99,19 @@ public class DetailEnchereServlet extends HttpServlet {
 			    }
 
 			   
-			//FORMULAIRE RETRAIT ARTICLE    
+			//ARTICLE RETIRE    
 			} else if (action.equals("retirerArticle")) {
-				Integer noVendeur = Integer.parseInt(request.getParameter("no_vendeur"));
-				System.out.println("no vendeur : "+noVendeur);
-				
-				/**
-				 * RESTE A FAIRE
-				 * 		ajouter en BDD 
-				 * 		Credits vendeur
-				 *		debits acheteur
-				 * 		passage de l'etat de vente à T
-				 */
+							
+				try {
+					UtilisateurManager.getInstance().crediterVendeur(article);
+					ArticleManager.getInstance().terminerVente(article);
+					
+
+				} catch (BusinessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		}
 		 doGet(request, response);

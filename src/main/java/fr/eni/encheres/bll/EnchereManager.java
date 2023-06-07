@@ -72,11 +72,12 @@ public class EnchereManager {
 	}
 	
 
-	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur, Utilisateur session) throws BusinessException {
+	public void miseAJourEnchere(Integer surenchere, ArticleVendu article, Utilisateur utilisateur, Utilisateur utilisateurConnecte) throws BusinessException {
 	    Enchere enchere = chercheEnchereByArtAndUser(article.getNoArticle(), utilisateur.getNoUtilisateur());
-	    
+	    Integer Vendeur = article.getUtilisateur().getNoUtilisateur();
+	    Integer DernierEncherisseur = article.getEnchereMax().getUtilisateur().getNoUtilisateur();
 	    //check si l'enchere est realisable
-			controleSurenchere(surenchere, utilisateur,article,session);
+			controleSurenchere(surenchere, utilisateur,article,utilisateurConnecte);
 	
 
 	    if (enchere != null) {
@@ -86,6 +87,15 @@ public class EnchereManager {
 	        Enchere newEnchere = new Enchere(surenchere, utilisateur, article);
 	        EnchereManager.getInstance().addEnchere(newEnchere);
 	    }
+	    
+	    //calcul des nouveaux soldes des 2 derniers encherisseurs
+	    UtilisateurManager.getInstance().debiterAcheteur(article,utilisateurConnecte,surenchere);
+	    
+	    if(Vendeur != DernierEncherisseur) {
+	    	UtilisateurManager.getInstance().crediterDernierEncherisseur(article,utilisateurConnecte);
+	    }
+	    
+
 	}
 	
 	public void controleSurenchere (Integer surenchere,Utilisateur utilisateur,ArticleVendu article,Utilisateur utilisateurConnecte) throws BusinessException {
@@ -101,9 +111,13 @@ public class EnchereManager {
 	    if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecte.getNoUtilisateur()
 				&& article.getEnchereMax().getUtilisateur().getNoUtilisateur() == utilisateurConnecte.getNoUtilisateur()) {
 	    	throw new BusinessException("Vous avez déjà la meilleure enchère sur cet article ;)");
-	    }	
+	    }
 	    
-		if (surenchere > utilisateur.getCredit()) {
+	    if (article.getUtilisateur().getNoUtilisateur()== utilisateurConnecte.getNoUtilisateur()) {
+	    	throw new BusinessException("Vous ne pouvez pas enchérir sur un article que vous vendez");
+	    }
+
+	    if (surenchere > utilisateur.getCredit()) {
 	    	throw new BusinessException("Vous n'avez pas assez de crédit pour enchérir");	    	
 	    }
 	}
@@ -149,16 +163,22 @@ public class EnchereManager {
 		//enchère retirée
 		if (article.getEtatVente()=='R') { 
 			if (article.getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
-				return "l'article à été retiré";
+				return "l'article à été retiré et vous a rapporté "+article.getPrixVente()+" crédits";
 			}
+
 			if (article.getEnchereMax().getUtilisateur().getNoUtilisateur()==utilisateurConnecte.getNoUtilisateur()) {
 				return "Vous avez retiré cet article";
 			} 
+			
+			if (article.getUtilisateur().getNoUtilisateur()!=utilisateurConnecte.getNoUtilisateur()) {
+				return "Cet article est déjà vendu";
+			}
+			
 		}
 		
 		//si aucun de ces cas -> on n'affiche rien
 		return null;
 	}
 
-	
+
 }

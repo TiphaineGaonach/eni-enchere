@@ -140,7 +140,6 @@
 									<% if (isRetrait) { %>
 									<form action="" method ="POST" class="mt-4 row ">
 										<input type="hidden" name="no_article" value="<%= article.getNoArticle() %>">
-										<input type="hidden" name="no_vendeur" value="<%= article.getUtilisateur().getNoUtilisateur() %>">
 										<div class="d-grid gap-2">
 										    <button class="btn btn-lg btn-primary card-header-link" type="submit" name="action" value="retirerArticle">Confirmer le retrait ?</button>
 										</div>						  
