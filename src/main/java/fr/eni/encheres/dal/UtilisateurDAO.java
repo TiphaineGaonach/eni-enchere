@@ -30,8 +30,4 @@ public interface UtilisateurDAO {
 	void updateCreditDernierEncherisseur(ArticleVendu article, Utilisateur utilisateurConnecte) throws BusinessException;
 
 
-
-
-	
-
 }
