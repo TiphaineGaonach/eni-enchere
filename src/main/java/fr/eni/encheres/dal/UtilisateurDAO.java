@@ -22,7 +22,4 @@ public interface UtilisateurDAO {
 
 	Utilisateur selectByUser(String identifiant);
 
-
-	
-
 }
